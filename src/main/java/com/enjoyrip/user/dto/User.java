@@ -14,9 +14,9 @@ public class User { // 사용자 DTO
 		return userId;
 	}
 
-	public void setUserId(BigInteger userId) {
-		this.userId = userId;
-	}
+//	public void setUserId(BigInteger userId) {
+//		this.userId = userId;
+//	}
 
 	public String getId() {
 		return id;
