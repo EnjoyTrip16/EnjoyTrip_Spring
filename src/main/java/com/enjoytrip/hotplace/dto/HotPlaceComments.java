@@ -1,36 +1,41 @@
 package com.enjoytrip.hotplace.dto;
 
-import java.math.BigInteger;
-import java.sql.Timestamp;
+//핫 플레이스 댓글 DTO
+public class HotPlaceComments {
 
-public class HotPlaceComments { // 핫 플레이스 댓글 DTO
+	// 핫 플레이스 댓글 번호 (PK)
+	private long hotPlaceCommentId;
 
-	private BigInteger hotPlaceCommentId; // 핫 플레이스 댓글 번호 (기본키)
-	private BigInteger hotPlaceId; // 핫 플레이스 번호 (외래키)
-	private BigInteger userId; // 댓글 작성자 번호 (외래키)
-	private String content; // 댓글 내용
+	// 핫 플레이스 번호 (FK)
+	private long hotPlaceId;
 
-	public BigInteger getHotPlaceCommentId() {
+	// 댓글 작성자 번호 (FK)
+	private long userId;
+
+	// 댓글 내용
+	private String content;
+
+	public long getHotPlaceCommentId() {
 		return hotPlaceCommentId;
 	}
 
-	public void setHotPlaceCommentId(BigInteger hotPlaceCommentId) {
+	public void setHotPlaceCommentId(long hotPlaceCommentId) {
 		this.hotPlaceCommentId = hotPlaceCommentId;
 	}
 
-	public BigInteger getHotPlaceId() {
+	public long getHotPlaceId() {
 		return hotPlaceId;
 	}
 
-	public void setHotPlaceId(BigInteger hotPlaceId) {
+	public void setHotPlaceId(long hotPlaceId) {
 		this.hotPlaceId = hotPlaceId;
 	}
 
-	public BigInteger getUserId() {
+	public long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(BigInteger userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 

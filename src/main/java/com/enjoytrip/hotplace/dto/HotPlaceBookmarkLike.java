@@ -1,28 +1,33 @@
 package com.enjoytrip.hotplace.dto;
 
-import java.math.BigInteger;
-import java.sql.Timestamp;
+//핫 플레이스 북마크 좋아요 DTO
+public class HotPlaceBookmarkLike {
 
-public class HotPlaceBookmarkLike { // 핫 플레이스 북마크 좋아요 DTO
+	// 핫 플레이스 번호 (FK)
+	private long hotPlaceId;
 
-	private BigInteger hotPlaceId; // 핫 플레이스 번호 (외래키)
-	private BigInteger userId; // 사용자 번호 (외래키)
-	private int bookmark; // 북마크
-	private int like; // 좋아요
+	// 사용자 번호 (FK)
+	private long userId;
 
-	public BigInteger getHotPlaceId() {
+	// 북마크
+	private int bookmark;
+
+	// 좋아요
+	private int like;
+
+	public long getHotPlaceId() {
 		return hotPlaceId;
 	}
 
-	public void setHotPlaceId(BigInteger hotPlaceId) {
+	public void setHotPlaceId(long hotPlaceId) {
 		this.hotPlaceId = hotPlaceId;
 	}
 
-	public BigInteger getUserId() {
+	public long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(BigInteger userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 
