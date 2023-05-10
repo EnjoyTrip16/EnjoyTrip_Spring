@@ -4,10 +4,10 @@ package com.enjoytrip.dto.attraction;
 public class AttractionModifyRequest {
 	
 	//attraction table PK attraction_modify_request FK
-	private Long attractionId;
+	private long attractionId;
 	
 	//user table PK attraction_modify_request FK
-	private Long userId;
+	private long userId;
 	
 	//attraction_modify_request table
 	//관광지 정보 수청을 요청한 신청한 시간
@@ -25,19 +25,19 @@ public class AttractionModifyRequest {
 	//관광지 정보 수정 요청에 대한 검토상태
 	private String requestStatus;
 
-	public Long getAttractionId() {
+	public long getAttractionId() {
 		return attractionId;
 	}
 
-	public void setAttractionId(Long attractionId) {
+	public void setAttractionId(long attractionId) {
 		this.attractionId = attractionId;
 	}
 
-	public Long getUserId() {
+	public long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Long userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 

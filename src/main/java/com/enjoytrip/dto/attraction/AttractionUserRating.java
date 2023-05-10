@@ -4,28 +4,28 @@ package com.enjoytrip.dto.attraction;
 public class AttractionUserRating {
 
 	//attraction table PK attraciton_user_rating FK
-	private int attractionId;
+	private long attractionId;
 	
 	//user table PK attraction_user_rating FK
-	private int userId;
+	private long userId;
 	
 	//attraction_user_rating table
 	//유저가 관광지에 매긴 평점 점수 (0~5) 소수점 1자리수
 	private String rating;
 
-	public int getAttractionId() {
+	public long getAttractionId() {
 		return attractionId;
 	}
 
-	public void setAttractionId(int attractionId) {
+	public void setAttractionId(long attractionId) {
 		this.attractionId = attractionId;
 	}
 
-	public int getUserId() {
+	public long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 

@@ -3,7 +3,7 @@ package com.enjoytrip.dto.attraction;
 public class AttractionSimpleInfo {
 	
 	//attraction table의 PK 관광지 ID
-	private Long attractionId;
+	private long attractionId;
 	
 	//attraction table 관광지의 최종 수정일
 	//다른테이블에 있는 관광지 정보를 포함하여 모든 관광지 정보에 대한 수정 시간
@@ -14,7 +14,7 @@ public class AttractionSimpleInfo {
 	
 	//attraction type의 PK attraction table의 FK
 	//관광지 종류에 대한 ID
-	private Long attractionTypeId;	
+	private long attractionTypeId;	
 	
 	//attraction type 관광지 종류명
 	//관광지 종류명
@@ -44,11 +44,11 @@ public class AttractionSimpleInfo {
 	//attraction_info table 경도
 	private String longitude;
 
-	public Long getAttractionId() {
+	public long getAttractionId() {
 		return attractionId;
 	}
 
-	public void setAttractionId(Long attractionId) {
+	public void setAttractionId(long attractionId) {
 		this.attractionId = attractionId;
 	}
 
@@ -68,11 +68,11 @@ public class AttractionSimpleInfo {
 		this.title = title;
 	}
 
-	public Long getAttractionTypeId() {
+	public long getAttractionTypeId() {
 		return attractionTypeId;
 	}
 
-	public void setAttractionTypeId(Long attractionTypeId) {
+	public void setAttractionTypeId(long attractionTypeId) {
 		this.attractionTypeId = attractionTypeId;
 	}
 
@@ -124,11 +124,11 @@ public class AttractionSimpleInfo {
 		this.latitude = latitude;
 	}
 
-	public String getLongitude() {
+	public String getlongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(String longitude) {
+	public void setlongitude(String longitude) {
 		this.longitude = longitude;
 	}
 
