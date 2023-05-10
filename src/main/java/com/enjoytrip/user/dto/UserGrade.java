@@ -1,21 +1,26 @@
 package com.enjoytrip.user.dto;
 
-import java.math.BigInteger;
 import java.sql.Timestamp;
 
-public class UserGrade { // 사용자 역할 DTO
+//사용자 역할 DTO
+public class UserGrade {
 
-	private BigInteger userId; // 사용자 번호 (외래키)
-	private String grade; // 사용자 등급(역할)
-	private Timestamp updatedAt; // 변경 일시
+	// 사용자 번호 (FK)
+	private long userId;
+	
+	// 사용자 등급(역할)
+	private String grade;
 
-	public BigInteger getUserId() {
+	// 변경 일시
+	private Timestamp updatedAt;
+
+	public long getUserId() {
 		return userId;
 	}
 
-//	public void setUserId(BigInteger userId) {
-//		this.userId = userId;
-//	}
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
 
 	public String getGrade() {
 		return grade;

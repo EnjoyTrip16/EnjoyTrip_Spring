@@ -1,22 +1,30 @@
 package com.enjoytrip.user.dto;
 
-import java.math.BigInteger;
+//사용자 DTO
+public class User {
 
-public class User { // 사용자 DTO
+	// 사용자 번호 (PK)
+	private long userId;
 
-	private BigInteger userId; // 사용자 번호 (기본키)
-	private String id; // 사용자 아이디
-	private String pw; // 사용자 비밀번호
-	private String name; // 사용자 이름
-	private String email; // 사용자 이메일 주소
+	// 사용자 아이디
+	private String id;
 
-	public BigInteger getUserId() {
+	// 사용자 비밀번호
+	private String pw;
+
+	// 사용자 이름
+	private String name;
+
+	// 사용자 이메일 주소
+	private String email;
+
+	public long getUserId() {
 		return userId;
 	}
 
-//	public void setUserId(BigInteger userId) {
-//		this.userId = userId;
-//	}
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
 
 	public String getId() {
 		return id;
