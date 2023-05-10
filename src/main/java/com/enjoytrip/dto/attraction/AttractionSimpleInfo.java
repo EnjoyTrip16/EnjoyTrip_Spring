@@ -14,7 +14,11 @@ public class AttractionSimpleInfo {
 	
 	//attraction type의 PK attraction table의 FK
 	//관광지 종류에 대한 ID
-	private Long attractionTypeId;
+	private Long attractionTypeId;	
+	
+	//attraction type 관광지 종류명
+	//관광지 종류명
+	private String attractionType;
 	
 	//attraction table 조회수
 	//관광지에 대한 상세정보를 조회했을때의 조회수
@@ -128,12 +132,20 @@ public class AttractionSimpleInfo {
 		this.longitude = longitude;
 	}
 
+	public String getAttractionType() {
+		return attractionType;
+	}
+
+	public void setAttractionType(String attractionType) {
+		this.attractionType = attractionType;
+	}
+
 	@Override
 	public String toString() {
-		return "AttractionSimpleInfo 관광지 요약 정보 [attractionId=" + attractionId + ", updatedAt=" + updatedAt + ", title=" + title
-				+ ", attractionTypeId=" + attractionTypeId + ", readCount=" + readCount + ", rating=" + rating
-				+ ", addr1=" + addr1 + ", tel=" + tel + ", first_image=" + first_image + ", latitude=" + latitude
-				+ ", longitude=" + longitude + "]";
+		return "AttractionSimpleInfo [attractionId=" + attractionId + ", updatedAt=" + updatedAt + ", title=" + title
+				+ ", attractionTypeId=" + attractionTypeId + ", attractionType=" + attractionType + ", readCount="
+				+ readCount + ", rating=" + rating + ", addr1=" + addr1 + ", tel=" + tel + ", first_image="
+				+ first_image + ", latitude=" + latitude + ", longitude=" + longitude + "]";
 	}
 	
 }
