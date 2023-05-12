@@ -6,10 +6,10 @@ import java.sql.Timestamp;
 public class PlanSimpleInfo {
 	
 	//plan table PK
-	private long plan_id;
+	private long planId;
 	
 	//plan table 여행 계획 생성 시간
-	private Timestamp created_at;
+	private Timestamp createdAt;
 	
 	//user table FK user_id 
 	private long author;
@@ -17,20 +17,20 @@ public class PlanSimpleInfo {
 	//해당 여행 계획 공개 범위 ex)익명 전체 비공개
 	private String visibility;
 
-	public long getPlan_id() {
-		return plan_id;
+	public long getplanId() {
+		return planId;
 	}
 
-	public void setPlan_id(long plan_id) {
-		this.plan_id = plan_id;
+	public void setplanId(long planId) {
+		this.planId = planId;
 	}
 
-	public Timestamp getCreated_at() {
-		return created_at;
+	public Timestamp getcreatedAt() {
+		return createdAt;
 	}
 
-	public void setCreated_at(Timestamp created_at) {
-		this.created_at = created_at;
+	public void setcreatedAt(Timestamp createdAt) {
+		this.createdAt = createdAt;
 	}
 
 	public long getAuthor() {
@@ -51,7 +51,7 @@ public class PlanSimpleInfo {
 
 	@Override
 	public String toString() {
-		return "PlanSimpleInfo 간단한 여행계획 정보 [plan_id=" + plan_id + ", created_at=" + created_at + ", author=" + author
+		return "PlanSimpleInfo 간단한 여행계획 정보 [planId=" + planId + ", createdAt=" + createdAt + ", author=" + author
 				+ ", visibility=" + visibility + "]";
 	}
 	
