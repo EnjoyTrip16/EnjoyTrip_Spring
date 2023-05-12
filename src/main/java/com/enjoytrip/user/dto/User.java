@@ -4,7 +4,7 @@ package com.enjoytrip.user.dto;
 public class User {
 
 	// 사용자 번호 (PK)
-	private long userId;
+	private Long userId;
 
 	// 사용자 아이디
 	private String id;
@@ -18,11 +18,11 @@ public class User {
 	// 사용자 이메일 주소
 	private String email;
 
-	public long getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
