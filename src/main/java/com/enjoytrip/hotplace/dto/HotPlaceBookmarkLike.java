@@ -4,46 +4,46 @@ package com.enjoytrip.hotplace.dto;
 public class HotPlaceBookmarkLike {
 
 	// 핫 플레이스 번호 (FK)
-	private long hotPlaceId;
+	private Long hotPlaceId;
 
 	// 사용자 번호 (FK)
-	private long userId;
+	private Long userId;
 
 	// 북마크
-	private int bookmark;
+	private Integer bookmark;
 
 	// 좋아요
-	private int like;
+	private Integer like;
 
-	public long getHotPlaceId() {
+	public Long getHotPlaceId() {
 		return hotPlaceId;
 	}
 
-	public void setHotPlaceId(long hotPlaceId) {
+	public void setHotPlaceId(Long hotPlaceId) {
 		this.hotPlaceId = hotPlaceId;
 	}
 
-	public long getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
-	public int getBookmark() {
+	public Integer getBookmark() {
 		return bookmark;
 	}
 
-	public void setBookmark(int bookmark) {
+	public void setBookmark(Integer bookmark) {
 		this.bookmark = bookmark;
 	}
 
-	public int getLike() {
+	public Integer getLike() {
 		return like;
 	}
 
-	public void setLike(int like) {
+	public void setLike(Integer like) {
 		this.like = like;
 	}
 

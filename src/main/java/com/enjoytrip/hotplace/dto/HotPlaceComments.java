@@ -4,38 +4,38 @@ package com.enjoytrip.hotplace.dto;
 public class HotPlaceComments {
 
 	// 핫 플레이스 댓글 번호 (PK)
-	private long hotPlaceCommentId;
+	private Long hotPlaceCommentId;
 
 	// 핫 플레이스 번호 (FK)
-	private long hotPlaceId;
+	private Long hotPlaceId;
 
 	// 댓글 작성자 번호 (FK)
-	private long userId;
+	private Long userId;
 
 	// 댓글 내용
 	private String content;
 
-	public long getHotPlaceCommentId() {
+	public Long getHotPlaceCommentId() {
 		return hotPlaceCommentId;
 	}
 
-	public void setHotPlaceCommentId(long hotPlaceCommentId) {
+	public void setHotPlaceCommentId(Long hotPlaceCommentId) {
 		this.hotPlaceCommentId = hotPlaceCommentId;
 	}
 
-	public long getHotPlaceId() {
+	public Long getHotPlaceId() {
 		return hotPlaceId;
 	}
 
-	public void setHotPlaceId(long hotPlaceId) {
+	public void setHotPlaceId(Long hotPlaceId) {
 		this.hotPlaceId = hotPlaceId;
 	}
 
-	public long getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 

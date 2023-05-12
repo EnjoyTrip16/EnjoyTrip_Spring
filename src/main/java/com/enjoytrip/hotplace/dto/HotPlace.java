@@ -6,10 +6,10 @@ import java.sql.Timestamp;
 public class HotPlace {
 
 	// 핫 플레이스 번호 (PK)
-	private long hotPlaceId;
+	private Long hotPlaceId;
 
 	// 사용자 번호 (FK)
-	private long userId;
+	private Long userId;
 
 	// 제목
 	private String title;
@@ -27,21 +27,21 @@ public class HotPlace {
 	private Timestamp updatedAt;
 
 	// 조회수
-	private int readCount;
+	private Integer readCount;
 
-	public long getHotPlaceId() {
+	public Long getHotPlaceId() {
 		return hotPlaceId;
 	}
 
-	public void setHotPlaceId(long hotPlaceId) {
+	public void setHotPlaceId(Long hotPlaceId) {
 		this.hotPlaceId = hotPlaceId;
 	}
 
-	public long getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
@@ -85,11 +85,11 @@ public class HotPlace {
 		this.updatedAt = updatedAt;
 	}
 
-	public int getReadCount() {
+	public Integer getReadCount() {
 		return readCount;
 	}
 
-	public void setReadCount(int readCount) {
+	public void setReadCount(Integer readCount) {
 		this.readCount = readCount;
 	}
 
