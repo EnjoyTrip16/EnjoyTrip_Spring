@@ -1,4 +1,4 @@
-package com.enjoytrip.dao;
+package com.enjoytrip.dao.attraction;
 
 import java.util.List;
 
