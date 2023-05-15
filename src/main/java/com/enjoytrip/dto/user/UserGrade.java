@@ -1,4 +1,4 @@
-package com.enjoytrip.user.dto;
+package com.enjoytrip.dto.user;
 
 import java.sql.Timestamp;
 
@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 public class UserGrade {
 
 	// 사용자 번호 (FK)
-	private long userId;
+	private Long userId;
 	
 	// 사용자 등급(역할)
 	private String grade;
@@ -14,11 +14,11 @@ public class UserGrade {
 	// 변경 일시
 	private Timestamp updatedAt;
 
-	public long getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
