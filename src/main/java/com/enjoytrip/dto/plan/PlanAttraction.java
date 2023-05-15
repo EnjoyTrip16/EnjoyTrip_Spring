@@ -2,7 +2,7 @@ package com.enjoytrip.dto.plan;
 
 import java.sql.Timestamp;
 
-//여행계획에 해당하는 관광지에 대한 저보를 담는 DTO
+//여행계획에 해당하는 관광지에 대한 정보를 담는 DTO
 public class PlanAttraction {
 	
 	//plan table PK plan_attraction FK
