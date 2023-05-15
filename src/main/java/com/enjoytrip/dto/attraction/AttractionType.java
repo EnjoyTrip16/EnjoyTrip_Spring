@@ -4,17 +4,13 @@ package com.enjoytrip.dto.attraction;
 public class AttractionType {
 	
 	//attraction_type table PK 
-	private long attractionTypeId;
+	private Long attractionTypeId;
 	
 	//attraction_type 관광지 종류명
 	private String attractionType;
 
-	public long getAttractionTypeId() {
+	public Long getAttractionTypeId() {
 		return attractionTypeId;
-	}
-
-	public void setAttractionTypeId(long attractionTypeId) {
-		this.attractionTypeId = attractionTypeId;
 	}
 
 	public String getAttractionType() {
@@ -25,9 +21,15 @@ public class AttractionType {
 		this.attractionType = attractionType;
 	}
 
+	public void setAttractionTypeId(Long attractionTypeId) {
+		this.attractionTypeId = attractionTypeId;
+	}
+
 	@Override
 	public String toString() {
 		return "AttractionType [attractionTypeId=" + attractionTypeId + ", attractionType=" + attractionType + "]";
 	}
+	
+	
 	
 }

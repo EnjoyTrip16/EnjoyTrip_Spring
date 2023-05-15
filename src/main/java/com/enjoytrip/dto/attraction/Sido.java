@@ -3,16 +3,16 @@ package com.enjoytrip.dto.attraction;
 public class Sido {
 	
 	//sido table PK
-	private long sidoCode;
+	private Long sidoCode;
 	
 	//sido table 시/도 이름 ex)서울시, 경기도
 	private String sidoName;
 
-	public long getSidoCode() {
+	public Long getSidoCode() {
 		return sidoCode;
 	}
 
-	public void setSidoCode(long sidoCode) {
+	public void setSidoCode(Long sidoCode) {
 		this.sidoCode = sidoCode;
 	}
 

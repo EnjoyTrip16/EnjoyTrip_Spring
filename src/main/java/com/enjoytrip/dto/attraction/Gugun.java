@@ -3,19 +3,19 @@ package com.enjoytrip.dto.attraction;
 public class Gugun {
 	
 	//gugun table PK
-	private long gugunCode;
+	private Long gugunCode;
 	
 	//gugun table 구/군 이름 ex)강서구,달성구,강화군
 	private String gugunName;
 	
 	//sido table PK gugun table FK
-	private long sidoCode;
+	private Long sidoCode;
 
-	public long getGugunCode() {
+	public Long getGugunCode() {
 		return gugunCode;
 	}
 
-	public void setGugunCode(long gugunCode) {
+	public void setGugunCode(Long gugunCode) {
 		this.gugunCode = gugunCode;
 	}
 
@@ -27,17 +27,17 @@ public class Gugun {
 		this.gugunName = gugunName;
 	}
 
-	public long getSidoCode() {
+	public Long getSidoCode() {
 		return sidoCode;
 	}
 
-	public void setSidoCode(long sidoCode) {
+	public void setSidoCode(Long sidoCode) {
 		this.sidoCode = sidoCode;
 	}
 
 	@Override
 	public String toString() {
-		return "Gugun 구/군 정보 [gugunCode=" + gugunCode + ", gugunName=" + gugunName + ", sidoCode=" + sidoCode + "]";
+		return "Gugun [gugunCode=" + gugunCode + ", gugunName=" + gugunName + ", sidoCode=" + sidoCode + "]";
 	}
 	
 	
