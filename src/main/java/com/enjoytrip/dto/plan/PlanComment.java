@@ -4,42 +4,42 @@ package com.enjoytrip.dto.plan;
 public class PlanComment {
 
 	//plan_comment table PK
-	private long comment_id;
+	private Long comment_id;
 	
 	//plan table PK plan_comment table FK
-	private long planId;
+	private Long planId;
 	
 	//user table PK plan_comment table FK
-	private long userId;
+	private Long userId;
 	
 	//plan_comment table 댓글 내용
 	private String content;
 	
 	//plan_comment PK plan_comment FK (recursive relationship)
 	//답글대상의 ID
-	private long reply_id;
+	private Long reply_id;
 
-	public long getComment_id() {
+	public Long getComment_id() {
 		return comment_id;
 	}
 
-	public void setComment_id(long comment_id) {
+	public void setComment_id(Long comment_id) {
 		this.comment_id = comment_id;
 	}
 
-	public long getPlanId() {
+	public Long getPlanId() {
 		return planId;
 	}
 
-	public void setPlanId(long planId) {
+	public void setPlanId(Long planId) {
 		this.planId = planId;
 	}
 
-	public long getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
@@ -51,19 +51,19 @@ public class PlanComment {
 		this.content = content;
 	}
 
-	public long getReply_id() {
+	public Long getReply_id() {
 		return reply_id;
 	}
 
-	public void setReply_id(long reply_id) {
+	public void setReply_id(Long reply_id) {
 		this.reply_id = reply_id;
 	}
 
 	@Override
 	public String toString() {
-		return "PlanComment 여행계획 댓글 [comment_id=" + comment_id + ", planId=" + planId + ", userId=" + userId + ", content="
+		return "PlanComment [comment_id=" + comment_id + ", planId=" + planId + ", userId=" + userId + ", content="
 				+ content + ", reply_id=" + reply_id + "]";
 	}
-	
+
 	
 }

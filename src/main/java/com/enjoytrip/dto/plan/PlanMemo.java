@@ -6,16 +6,16 @@ import java.sql.Timestamp;
 public class PlanMemo {
 
 	//plan table PK
-	private long planId;
+	private Long planId;
 	
 	//user table PK
-	private long userId;
+	private Long userId;
 	
 	//plan_memo table 메모에 대한 내용
 	private String content;
 	
 	//plan_memo_tag PK plan_memo FK
-	private long tagId;
+	private Long tagId;
 	
 	//메모 생성시간
 	private Timestamp createdAt;
@@ -23,19 +23,19 @@ public class PlanMemo {
 	//메모 수정시간
 	private Timestamp updatedAt;
 
-	public long getPlanId() {
+	public Long getPlanId() {
 		return planId;
 	}
 
-	public void setPlanId(long planId) {
+	public void setPlanId(Long planId) {
 		this.planId = planId;
 	}
 
-	public long getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
@@ -47,11 +47,11 @@ public class PlanMemo {
 		this.content = content;
 	}
 
-	public long getTagId() {
+	public Long getTagId() {
 		return tagId;
 	}
 
-	public void setTagId(long tagId) {
+	public void setTagId(Long tagId) {
 		this.tagId = tagId;
 	}
 
