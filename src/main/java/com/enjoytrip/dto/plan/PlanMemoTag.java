@@ -1,6 +1,6 @@
 package com.enjoytrip.dto.plan;
 
-public class PlanTag {
+public class PlanMemoTag {
 	
 	//plan_memo_tag PK
 	private Long tagId;
@@ -26,7 +26,7 @@ public class PlanTag {
 
 	@Override
 	public String toString() {
-		return "PlanTag [tagId=" + tagId + ", tagName=" + tagName + "]";
+		return "PlanMemoTag 여행계획 메모 태그 [tagId=" + tagId + ", tagName=" + tagName + "]";
 	}
 	
 }
