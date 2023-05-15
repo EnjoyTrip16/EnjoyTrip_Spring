@@ -1,4 +1,4 @@
-package com.enjoytrip.user.dto;
+package com.enjoytrip.dto.user;
 
 import java.sql.Timestamp;
 

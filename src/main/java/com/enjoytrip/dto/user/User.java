@@ -1,4 +1,4 @@
-package com.enjoytrip.user.dto;
+package com.enjoytrip.dto.user;
 
 //사용자 DTO
 public class User {
