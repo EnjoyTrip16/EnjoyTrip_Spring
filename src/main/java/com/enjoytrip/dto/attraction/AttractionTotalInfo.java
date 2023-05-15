@@ -1,21 +1,23 @@
 package com.enjoytrip.dto.attraction;
 
+import java.sql.Timestamp;
+
 //관광지 정보 전체에 대한 DTO
 public class AttractionTotalInfo {
 	
 	//attraction table의 PK 관광지 ID
-	private long attractionId;
+	private Long attractionId;
 	
 	//attraction table 관광지의 최종 수정일
 	//다른테이블에 있는 관광지 정보를 포함하여 모든 관광지 정보에 대한 수정 시간
-	private String updatedAt;
+	private Timestamp updatedAt;
 	
 	//attraction table 관광지명
 	private String title;
 	
 	//attraction type의 PK attraction table의 FK
 	//관광지 종류에 대한 ID
-	private long attractionTypeId;	
+	private Long attractionTypeId;	
 	
 	//attraction type 관광지 종류명
 	//관광지 종류명
@@ -23,7 +25,7 @@ public class AttractionTotalInfo {
 	
 	//attraction table 조회수
 	//관광지에 대한 상세정보를 조회했을때의 조회수
-	private int readCount;
+	private Integer readCount;
 	
 	//attraction_info table 관광지에 대한 간략한 주소
 	private String addr1;
@@ -54,19 +56,19 @@ public class AttractionTotalInfo {
 	//유저가 관광지에 매긴 평점 점수의 평균 (0~5) 소수점 1자리수
 	private String rating;
 
-	public long getAttractionId() {
+	public Long getAttractionId() {
 		return attractionId;
 	}
 
-	public void setAttractionId(long attractionId) {
+	public void setAttractionId(Long attractionId) {
 		this.attractionId = attractionId;
 	}
 
-	public String getUpdatedAt() {
+	public Timestamp getUpdatedAt() {
 		return updatedAt;
 	}
 
-	public void setUpdatedAt(String updatedAt) {
+	public void setUpdatedAt(Timestamp updatedAt) {
 		this.updatedAt = updatedAt;
 	}
 
@@ -78,11 +80,11 @@ public class AttractionTotalInfo {
 		this.title = title;
 	}
 
-	public long getAttractionTypeId() {
+	public Long getAttractionTypeId() {
 		return attractionTypeId;
 	}
 
-	public void setAttractionTypeId(long attractionTypeId) {
+	public void setAttractionTypeId(Long attractionTypeId) {
 		this.attractionTypeId = attractionTypeId;
 	}
 
@@ -94,11 +96,11 @@ public class AttractionTotalInfo {
 		this.attractionType = attractionType;
 	}
 
-	public int getReadCount() {
+	public Integer getReadCount() {
 		return readCount;
 	}
 
-	public void setReadCount(int readCount) {
+	public void setReadCount(Integer readCount) {
 		this.readCount = readCount;
 	}
 
@@ -182,6 +184,7 @@ public class AttractionTotalInfo {
 				+ latitude + ", longitude=" + longitude + ", homepage=" + homepage + ", overview=" + overview
 				+ ", telname=" + telname + ", rating=" + rating + "]";
 	}
+	
 	
 	
 }
