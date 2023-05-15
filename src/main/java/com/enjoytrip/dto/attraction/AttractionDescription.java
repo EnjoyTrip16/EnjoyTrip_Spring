@@ -4,7 +4,7 @@ package com.enjoytrip.dto.attraction;
 public class AttractionDescription {
 	
 	//attraction table PK
-	private long attractionId;
+	private Long attractionId;
 	
 	//attraction_description table 관광지 홈페이지
 	private String homepage;
@@ -15,11 +15,11 @@ public class AttractionDescription {
 	//attraction_description table 관광지 전화 번호
 	private String telname;
 
-	public long getAttractionId() {
+	public Long getAttractionId() {
 		return attractionId;
 	}
 
-	public void setAttractionId(long attractionId) {
+	public void setAttractionId(Long attractionId) {
 		this.attractionId = attractionId;
 	}
 
@@ -52,6 +52,7 @@ public class AttractionDescription {
 		return "AttractionDescription [attractionId=" + attractionId + ", homepage=" + homepage + ", overview="
 				+ overview + ", telname=" + telname + "]";
 	}
+	
 	
 	
 }

@@ -1,17 +1,19 @@
 package com.enjoytrip.dto.attraction;
 
+import java.sql.Timestamp;
+
 //관광지 정보 수정 요청 테이블(attraction_modify_request)에 관한 DTO
 public class AttractionModifyRequest {
 	
 	//attraction table PK attraction_modify_request FK
-	private long attractionId;
+	private Long attractionId;
 	
 	//user table PK attraction_modify_request FK
-	private long userId;
+	private Long userId;
 	
 	//attraction_modify_request table
 	//관광지 정보 수청을 요청한 신청한 시간
-	private String requestAt;
+	private Timestamp requestAt;
 	
 	//attraction_modify_request table
 	//관광지 정보 수정 요청에서 수정을 원하는 내용
@@ -25,27 +27,27 @@ public class AttractionModifyRequest {
 	//관광지 정보 수정 요청에 대한 검토상태
 	private String requestStatus;
 
-	public long getAttractionId() {
+	public Long getAttractionId() {
 		return attractionId;
 	}
 
-	public void setAttractionId(long attractionId) {
+	public void setAttractionId(Long attractionId) {
 		this.attractionId = attractionId;
 	}
 
-	public long getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
-	public String getRequestAt() {
+	public Timestamp getRequestAt() {
 		return requestAt;
 	}
 
-	public void setRequestAt(String requestAt) {
+	public void setRequestAt(Timestamp requestAt) {
 		this.requestAt = requestAt;
 	}
 
@@ -75,9 +77,10 @@ public class AttractionModifyRequest {
 
 	@Override
 	public String toString() {
-		return "AttractionModifyRequest 관광지수정요청 [attractionId=" + attractionId + ", userId=" + userId + ", requestAt="
+		return "AttractionModifyRequest [attractionId=" + attractionId + ", userId=" + userId + ", requestAt="
 				+ requestAt + ", requestContent=" + requestContent + ", requestComment=" + requestComment
 				+ ", requestStatus=" + requestStatus + "]";
 	}
+	
 	
 }
