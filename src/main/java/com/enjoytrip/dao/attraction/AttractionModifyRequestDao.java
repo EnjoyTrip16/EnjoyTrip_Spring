@@ -1,5 +1,6 @@
 package com.enjoytrip.dao.attraction;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.enjoytrip.dto.attraction.AttractionModifyRequest;
@@ -10,16 +11,16 @@ public interface AttractionModifyRequestDao {
 	
 	//관광지 수정 요청을 생성함
 	//return 생성한 AttractionModifyRequest PK
-	public Long createRequest(AttractionModifyRequest req);
+	public Long createRequest(AttractionModifyRequest req) throws SQLException;
 	
 	//관광지 수정요청을 가져옴
 	//mybatis 동적 쿼리를 통해 요청에 대한 필터링(userId가 null일때 attractionId가 null일때)
-	public List<AttractionModifyRequest> retrieveRequest(Long requstId,Long userId,Long attractionId);
+	public List<AttractionModifyRequest> retrieveRequest(Long requstId,Long userId,Long attractionId) throws SQLException;
 	
 	//관광지 수정요청을 변경함
-	public void updateRequest(AttractionModifyRequest req);
+	public void updateRequest(AttractionModifyRequest req) throws SQLException;
 	
 	//관광지 수정요청을 삭제함
 	//userId와 attractionId가 PK이므로
-	public void deleteRequest(Long requestId, Long userId,Long attractionId);
+	public void deleteRequest(Long requestId, Long userId,Long attractionId) throws SQLException;
 }
