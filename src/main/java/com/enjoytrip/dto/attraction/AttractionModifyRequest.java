@@ -5,6 +5,20 @@ import java.sql.Timestamp;
 //관광지 정보 수정 요청 테이블(attraction_modify_request)에 관한 DTO
 public class AttractionModifyRequest {
 	
+	//attraction_modify_request table requestStatus에 들어갈값
+	//처리됨을 나타내는 상태 
+	public static final String STATUS_PROCESSED = "Processed";
+	
+	//attraction_modify_request table requestStatus에 들어갈값
+	//처리중임을 나타내는 상태
+	public static final String STATUS_PROCESSING = "Processing";	
+	
+	//attraction_modify_request table requestStatus에 들어갈값
+	//처리전임을 나타내는 상태
+	public static final String STATUS_READY = "Ready";
+	
+	private Long requestId;
+	
 	//attraction table PK attraction_modify_request FK
 	private Long attractionId;
 	
@@ -26,6 +40,16 @@ public class AttractionModifyRequest {
 	//attraction_modify_request table
 	//관광지 정보 수정 요청에 대한 검토상태
 	private String requestStatus;
+
+	
+	
+	public Long getRequestId() {
+		return requestId;
+	}
+
+	public void setRequestId(Long requestId) {
+		this.requestId = requestId;
+	}
 
 	public Long getAttractionId() {
 		return attractionId;
@@ -77,10 +101,11 @@ public class AttractionModifyRequest {
 
 	@Override
 	public String toString() {
-		return "AttractionModifyRequest [attractionId=" + attractionId + ", userId=" + userId + ", requestAt="
-				+ requestAt + ", requestContent=" + requestContent + ", requestComment=" + requestComment
-				+ ", requestStatus=" + requestStatus + "]";
+		return "AttractionModifyRequest 관광지수정요청 [requestId=" + requestId + ", attractionId=" + attractionId + ", userId="
+				+ userId + ", requestAt=" + requestAt + ", requestContent=" + requestContent + ", requestComment="
+				+ requestComment + ", requestStatus=" + requestStatus + "]";
 	}
+
 	
 	
 }
