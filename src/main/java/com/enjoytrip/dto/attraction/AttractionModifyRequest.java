@@ -53,7 +53,7 @@ public class AttractionModifyRequest {
 	
 	//attraction_modify_request table
 	//관광지 정보 수청을 요청한 신청한 시간
-	private Timestamp requestAt;
+	private Timestamp requestedAt;
 	
 	//attraction_modify_request table
 	//관광지 정보 수정 요청에서 수정을 원하는 내용
@@ -94,13 +94,15 @@ public class AttractionModifyRequest {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
+	
+	
 
-	public Timestamp getRequestAt() {
-		return requestAt;
+	public Timestamp getRequestedAt() {
+		return requestedAt;
 	}
 
-	public void setRequestAt(Timestamp requestAt) {
-		this.requestAt = requestAt;
+	public void setRequestedAt(Timestamp requestedAt) {
+		this.requestedAt = requestedAt;
 	}
 
 	public String getRequestContent() {
@@ -137,9 +139,10 @@ public class AttractionModifyRequest {
 
 	@Override
 	public String toString() {
-		return "AttractionModifyRequest 관광지 수정요청 [requestId=" + requestId + ", attractionId=" + attractionId + ", userId="
-				+ userId + ", requestAt=" + requestAt + ", requestContent=" + requestContent + ", requestComment="
+		return "AttractionModifyRequest [requestId=" + requestId + ", attractionId=" + attractionId + ", userId="
+				+ userId + ", requestedAt=" + requestedAt + ", requestContent=" + requestContent + ", requestComment="
 				+ requestComment + ", requestStatus=" + requestStatus + ", requestType=" + requestType + "]";
 	}
+
 	
 }
