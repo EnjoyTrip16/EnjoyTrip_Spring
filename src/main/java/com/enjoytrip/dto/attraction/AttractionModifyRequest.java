@@ -17,6 +17,32 @@ public class AttractionModifyRequest {
 	//처리전임을 나타내는 상태
 	public static final String STATUS_READY = "Ready";
 	
+	//attraction_modify_request table request_type에 들어갈값들
+	
+	//해당 요청이 관광지 사진에 대한 수정요청
+	public static final String TYPE_PHOTO = "photo";
+
+	//해당 요청이 관광지명에 대한 수정요청
+	public static final String TYPE_NAME = "name";
+	
+	//해당 요청이 관광지 주소에 대한 수정요청
+	public static final String TYPE_ADDRESS = "address";
+	
+	//해당 요청이 관광지 내용에 대한 수정요청
+	public static final String TYPE_CONTENT = "content";	
+	
+	//해당 요청이 관광지 위치에 대한 수정요청
+	public static final String TYPE_LOCATION = "location";
+	
+	//해당 요청이 관광지 연락처에 대한 수정요청
+	public static final String TYPE_TEL = "tel";
+	
+	//해당 요청이 관광지  홈페이지에 대한 수정요청
+	public static final String TYPE_HOMEPAGE = "homepage";
+	
+	//해당 요청이 위와 다른 정보에 대한 수정요청일 경우
+	public static final String TYPE_ETC = "etc";
+	
 	private Long requestId;
 	
 	//attraction table PK attraction_modify_request FK
@@ -41,7 +67,9 @@ public class AttractionModifyRequest {
 	//관광지 정보 수정 요청에 대한 검토상태
 	private String requestStatus;
 
-	
+	//attraction_modify_request table
+	//관광지 정보 수정 요청이 어떤 정보를 수정하는지에 대해 ex)내용,관광지명,위치
+	private String requestType;
 	
 	public Long getRequestId() {
 		return requestId;
@@ -99,13 +127,19 @@ public class AttractionModifyRequest {
 		this.requestStatus = requestStatus;
 	}
 
-	@Override
-	public String toString() {
-		return "AttractionModifyRequest 관광지수정요청 [requestId=" + requestId + ", attractionId=" + attractionId + ", userId="
-				+ userId + ", requestAt=" + requestAt + ", requestContent=" + requestContent + ", requestComment="
-				+ requestComment + ", requestStatus=" + requestStatus + "]";
+	public String getRequestType() {
+		return requestType;
 	}
 
-	
+	public void setRequestType(String requestType) {
+		this.requestType = requestType;
+	}
+
+	@Override
+	public String toString() {
+		return "AttractionModifyRequest 관광지 수정요청 [requestId=" + requestId + ", attractionId=" + attractionId + ", userId="
+				+ userId + ", requestAt=" + requestAt + ", requestContent=" + requestContent + ", requestComment="
+				+ requestComment + ", requestStatus=" + requestStatus + ", requestType=" + requestType + "]";
+	}
 	
 }
