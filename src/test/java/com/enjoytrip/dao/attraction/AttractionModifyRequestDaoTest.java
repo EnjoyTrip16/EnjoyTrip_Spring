@@ -52,24 +52,24 @@ public class AttractionModifyRequestDaoTest {
 		
 		expectResult1.setAttractionId(125266L);	
 		expectResult1.setUserId(userId);	
-		expectResult1.setRequestAt(new Timestamp(1684213714));	
+		expectResult1.setRequestedAt(new Timestamp(1684213714));	
 		expectResult1.setRequestContent("fff");	
 		expectResult1.setRequestComment(null);	
 		expectResult1.setRequestStatus(AttractionModifyRequest.STATUS_READY);	
 		expectResult1.setRequestId(1L);
-		
+		expectResult1.setRequestType("name");
 		amrList.add(expectResult1);
 		
 		//기대값 result2
 		AttractionModifyRequest expectResult2 = new AttractionModifyRequest();
 		expectResult2.setAttractionId(125267L);
 		expectResult2.setUserId(userId);		
-		expectResult2.setRequestAt(new Timestamp(1684214281));		
+		expectResult2.setRequestedAt(new Timestamp(1684214281));		
 		expectResult2.setRequestContent("test2");		
 		expectResult2.setRequestComment(null);		
 		expectResult2.setRequestStatus(AttractionModifyRequest.STATUS_READY);		
 		expectResult2.setRequestId(2L);
-		
+		expectResult2.setRequestType("address");
 		amrList.add(expectResult2);
 		
 		//DAO가 가져온 결과를 담을 객체
@@ -110,24 +110,24 @@ public class AttractionModifyRequestDaoTest {
 		
 		expectResult1.setAttractionId(125267L);
 		expectResult1.setUserId(1L);		
-		expectResult1.setRequestAt(new Timestamp(1684214281));		
+		expectResult1.setRequestedAt(new Timestamp(1684214281));		
 		expectResult1.setRequestContent("test2");		
 		expectResult1.setRequestComment(null);		
 		expectResult1.setRequestStatus(AttractionModifyRequest.STATUS_READY);		
 		expectResult1.setRequestId(2L);
-		
+		expectResult1.setRequestType("address");
 		amrList.add(expectResult1);
 		
 		//기대값 result2
 		AttractionModifyRequest expectResult2 = new AttractionModifyRequest();
 		expectResult2.setAttractionId(125267L);		
 		expectResult2.setUserId(2L);		
-		expectResult2.setRequestAt(new Timestamp(1684216939));		
+		expectResult2.setRequestedAt(new Timestamp(1684216939));		
 		expectResult2.setRequestContent("test3");		
 		expectResult2.setRequestComment(null);		
 		expectResult2.setRequestStatus(AttractionModifyRequest.STATUS_READY);		
 		expectResult2.setRequestId(3L);
-		
+		expectResult2.setRequestType("content");
 		amrList.add(expectResult2);
 		
 		//DAO가 가져온 결과를 담을 객체
@@ -167,12 +167,12 @@ public class AttractionModifyRequestDaoTest {
 		
 		expectResult1.setAttractionId(125267L);		
 		expectResult1.setUserId(1L);		
-		expectResult1.setRequestAt(new Timestamp(1684214281));		
+		expectResult1.setRequestedAt(new Timestamp(1684214281));		
 		expectResult1.setRequestContent("test2");		
 		expectResult1.setRequestComment(null);		
 		expectResult1.setRequestStatus(AttractionModifyRequest.STATUS_READY);		
 		expectResult1.setRequestId(2L);
-		
+		expectResult1.setRequestType("address");
 		amrList.add(expectResult1);
 		
 		//DAO가 가져온 결과를 담을 객체
