@@ -15,7 +15,7 @@ public interface AttractionModifyRequestDao {
 	
 	//관광지 수정요청을 가져옴
 	//mybatis 동적 쿼리를 통해 요청에 대한 필터링(userId가 null일때 attractionId가 null일때)
-	public List<AttractionModifyRequest> retrieveRequest(Long requstId,Long userId,Long attractionId) throws SQLException;
+	public List<AttractionModifyRequest> retrieveRequest(Long requestId,Long userId,Long attractionId) throws SQLException;
 	
 	//관광지 수정요청을 변경함
 	public void updateRequest(AttractionModifyRequest req) throws SQLException;
