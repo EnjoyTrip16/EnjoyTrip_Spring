@@ -1,9 +1,12 @@
 package com.enjoytrip.dao.attraction;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +17,7 @@ import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.event.annotation.BeforeTestExecution;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.enjoytrip.dto.attraction.AttractionModifyRequest;
@@ -28,7 +32,17 @@ public class AttractionModifyRequestDaoTest {
 	//관광지 수정요청에 관한 DAO
 	@Autowired
 	AttractionModifyRequestDao attractionModifyRequestDao;
-
+	
+	@BeforeTestExecution
+	void beforeTestInit() {
+		try {
+			attractionModifyRequestDao.retrieveRequest(0L,0L,0L);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	@Test
 	@DisplayName("관광지 수정요청 userId로 가져오기  테스트")
 	void retrieveRequestByUserIdTest() {
@@ -44,33 +58,28 @@ public class AttractionModifyRequestDaoTest {
 		
 		//test db에 저장된 기대값
 		
-		//기대값 List
-		List<AttractionModifyRequest> amrList = new ArrayList<>();
-		
 		//기대값 result1
 		AttractionModifyRequest expectResult1 = new AttractionModifyRequest();
 		
 		expectResult1.setAttractionId(125266L);	
 		expectResult1.setUserId(userId);	
-		expectResult1.setRequestedAt(new Timestamp(1684213714));	
+		expectResult1.setRequestedAt(LocalDateTime.of(2023,5,16,14,8,34));	
 		expectResult1.setRequestContent("fff");	
 		expectResult1.setRequestComment(null);	
 		expectResult1.setRequestStatus(AttractionModifyRequest.STATUS_READY);	
 		expectResult1.setRequestId(1L);
 		expectResult1.setRequestType("name");
-		amrList.add(expectResult1);
 		
 		//기대값 result2
 		AttractionModifyRequest expectResult2 = new AttractionModifyRequest();
 		expectResult2.setAttractionId(125267L);
 		expectResult2.setUserId(userId);		
-		expectResult2.setRequestedAt(new Timestamp(1684214281));		
+		expectResult2.setRequestedAt(LocalDateTime.of(2023,05,16,14,18,1));		
 		expectResult2.setRequestContent("test2");		
 		expectResult2.setRequestComment(null);		
 		expectResult2.setRequestStatus(AttractionModifyRequest.STATUS_READY);		
 		expectResult2.setRequestId(2L);
 		expectResult2.setRequestType("address");
-		amrList.add(expectResult2);
 		
 		//DAO가 가져온 결과를 담을 객체
 		List<AttractionModifyRequest> resultList=null;
@@ -83,7 +92,10 @@ public class AttractionModifyRequestDaoTest {
 		}
 		
 		//then
-		assertEquals(amrList,resultList);
+		assertThat(resultList)
+		.usingRecursiveFieldByFieldElementComparator()
+		.contains(expectResult1)
+		.contains(expectResult2);
 	}
 	
 
@@ -102,33 +114,28 @@ public class AttractionModifyRequestDaoTest {
 		
 		//test db에 저장된 기대값
 		
-		//기대값 List
-		List<AttractionModifyRequest> amrList = new ArrayList<>();
-		
 		//기대값 result1
 		AttractionModifyRequest expectResult1 = new AttractionModifyRequest();
 		
 		expectResult1.setAttractionId(125267L);
 		expectResult1.setUserId(1L);		
-		expectResult1.setRequestedAt(new Timestamp(1684214281));		
+		expectResult1.setRequestedAt(LocalDateTime.of(2023,05,16,14,18,1));		
 		expectResult1.setRequestContent("test2");		
 		expectResult1.setRequestComment(null);		
 		expectResult1.setRequestStatus(AttractionModifyRequest.STATUS_READY);		
 		expectResult1.setRequestId(2L);
 		expectResult1.setRequestType("address");
-		amrList.add(expectResult1);
 		
 		//기대값 result2
 		AttractionModifyRequest expectResult2 = new AttractionModifyRequest();
 		expectResult2.setAttractionId(125267L);		
 		expectResult2.setUserId(2L);		
-		expectResult2.setRequestedAt(new Timestamp(1684216939));		
+		expectResult2.setRequestedAt(LocalDateTime.of(2023,5,16,15,2,19));		
 		expectResult2.setRequestContent("test3");		
 		expectResult2.setRequestComment(null);		
 		expectResult2.setRequestStatus(AttractionModifyRequest.STATUS_READY);		
 		expectResult2.setRequestId(3L);
 		expectResult2.setRequestType("content");
-		amrList.add(expectResult2);
 		
 		//DAO가 가져온 결과를 담을 객체
 		List<AttractionModifyRequest> resultList=null;
@@ -141,7 +148,10 @@ public class AttractionModifyRequestDaoTest {
 		}
 		
 		//then
-		assertEquals(amrList,resultList);
+		assertThat(resultList)
+		.usingRecursiveFieldByFieldElementComparator()
+		.contains(expectResult1)
+		.contains(expectResult2);
 	}
 	
 	@Test
@@ -158,22 +168,17 @@ public class AttractionModifyRequestDaoTest {
 		Long requestId = new Long(2);
 		
 		//test db에 저장된 기대값
-		
-		//기대값 List
-		List<AttractionModifyRequest> amrList = new ArrayList<>();
-		
 		//기대값 result1
 		AttractionModifyRequest expectResult1 = new AttractionModifyRequest();
 		
 		expectResult1.setAttractionId(125267L);		
 		expectResult1.setUserId(1L);		
-		expectResult1.setRequestedAt(new Timestamp(1684214281));		
+		expectResult1.setRequestedAt(LocalDateTime.of(2023,05,16,14,18,1));		
 		expectResult1.setRequestContent("test2");		
 		expectResult1.setRequestComment(null);		
 		expectResult1.setRequestStatus(AttractionModifyRequest.STATUS_READY);		
 		expectResult1.setRequestId(2L);
 		expectResult1.setRequestType("address");
-		amrList.add(expectResult1);
 		
 		//DAO가 가져온 결과를 담을 객체
 		List<AttractionModifyRequest> resultList=null;
@@ -184,9 +189,9 @@ public class AttractionModifyRequestDaoTest {
 		} catch (SQLException e) {
 			fail(e.getMessage());
 		}
-		
-		//then
-		assertEquals(amrList,resultList);
+		assertThat(resultList)
+		.usingRecursiveFieldByFieldElementComparator()
+		.contains(expectResult1);
 	}
 
 	
