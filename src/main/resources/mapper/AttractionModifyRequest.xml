@@ -35,4 +35,24 @@
 		#{requestType}
 	)
 	</insert>
+	
+	<update id="updateRequest" parameterType="AttractionModifyRequest">
+		UPDATE attraction_modify_request
+		<set>
+			<trim prefixOverrides=",">
+				<if test="requestContent!=null">
+					,request_content=#{requestContent}
+				</if>
+				<if test="requestStatus!=null">
+					,request_status=#{requestStatus}
+				</if>
+				<if test="requestType!=null">
+					,request_type=#{requestType}
+				</if>
+			</trim>
+		</set>
+		<where>
+			request_id = #{requestId}
+		</where>
+	</update>
 </mapper>
