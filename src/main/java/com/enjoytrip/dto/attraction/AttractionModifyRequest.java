@@ -1,6 +1,8 @@
 package com.enjoytrip.dto.attraction;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 //관광지 정보 수정 요청 테이블(attraction_modify_request)에 관한 DTO
 public class AttractionModifyRequest {
@@ -53,7 +55,7 @@ public class AttractionModifyRequest {
 	
 	//attraction_modify_request table
 	//관광지 정보 수청을 요청한 신청한 시간
-	private Timestamp requestedAt;
+	private LocalDateTime requestedAt;
 	
 	//attraction_modify_request table
 	//관광지 정보 수정 요청에서 수정을 원하는 내용
@@ -94,14 +96,12 @@ public class AttractionModifyRequest {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-	
-	
 
-	public Timestamp getRequestedAt() {
+	public LocalDateTime getRequestedAt() {
 		return requestedAt;
 	}
 
-	public void setRequestedAt(Timestamp requestedAt) {
+	public void setRequestedAt(LocalDateTime requestedAt) {
 		this.requestedAt = requestedAt;
 	}
 
