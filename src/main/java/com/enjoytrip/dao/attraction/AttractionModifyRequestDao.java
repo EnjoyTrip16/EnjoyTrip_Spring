@@ -21,6 +21,6 @@ public interface AttractionModifyRequestDao {
 	public void updateRequest(AttractionModifyRequest req) throws SQLException;
 	
 	//관광지 수정요청을 삭제함
-	//userId와 attractionId가 PK이므로
-	public void deleteRequest(Long requestId, Long userId,Long attractionId) throws SQLException;
+	//해당 requestId에 해당하는 관광지 수정요청삭제
+	public void deleteRequest(Long requestId) throws SQLException;
 }
