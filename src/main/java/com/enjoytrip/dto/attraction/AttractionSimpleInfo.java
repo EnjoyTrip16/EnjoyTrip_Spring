@@ -1,7 +1,5 @@
 package com.enjoytrip.dto.attraction;
 
-import java.sql.Timestamp;
-
 public class AttractionSimpleInfo {
 	
 	//attraction table의 PK 관광지 ID
