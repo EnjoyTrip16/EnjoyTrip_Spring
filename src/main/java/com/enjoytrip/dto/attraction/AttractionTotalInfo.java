@@ -1,6 +1,6 @@
 package com.enjoytrip.dto.attraction;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 //관광지 정보 전체에 대한 DTO
 public class AttractionTotalInfo {
@@ -10,7 +10,7 @@ public class AttractionTotalInfo {
 	
 	//attraction table 관광지의 최종 수정일
 	//다른테이블에 있는 관광지 정보를 포함하여 모든 관광지 정보에 대한 수정 시간
-	private Timestamp updatedAt;
+	private LocalDateTime updatedAt;
 	
 	//attraction table 관광지명
 	private String title;
@@ -27,6 +27,9 @@ public class AttractionTotalInfo {
 	//관광지에 대한 상세정보를 조회했을때의 조회수
 	private Integer readCount;
 	
+	//attraction_info table 우편번호 
+	private String zipcode;
+		
 	//attraction_info table 관광지에 대한 간략한 주소
 	private String addr1;
 	
@@ -54,22 +57,18 @@ public class AttractionTotalInfo {
 	
 	//attraction_user_rating table
 	//유저가 관광지에 매긴 평점 점수의 평균 (0~5) 소수점 1자리수
-	private String rating;
-
+	private Double rating;
+	
+	private Integer bookmark;
+	
+	private Integer like;
+	
 	public Long getAttractionId() {
 		return attractionId;
 	}
 
 	public void setAttractionId(Long attractionId) {
 		this.attractionId = attractionId;
-	}
-
-	public Timestamp getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Timestamp updatedAt) {
-		this.updatedAt = updatedAt;
 	}
 
 	public String getTitle() {
@@ -168,12 +167,44 @@ public class AttractionTotalInfo {
 		this.telname = telname;
 	}
 
-	public String getRating() {
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
+	public Double getRating() {
 		return rating;
 	}
 
-	public void setRating(String rating) {
+	public void setRating(Double rating) {
 		this.rating = rating;
+	}
+
+	public Integer getBookmark() {
+		return bookmark;
+	}
+
+	public void setBookmark(Integer bookmark) {
+		this.bookmark = bookmark;
+	}
+
+	public Integer getLike() {
+		return like;
+	}
+
+	public void setLike(Integer like) {
+		this.like = like;
 	}
 
 	@Override
