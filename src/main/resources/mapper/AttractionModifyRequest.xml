@@ -16,4 +16,23 @@
 		    </if>
 	    </trim>
 	</select>
+	
+	<insert id="createRequest" parameterType="AttractionModifyRequest" useGeneratedKeys="true" keyProperty="requestId">
+	INSERT INTO attraction_modify_request(
+		attraction_id,
+		user_id,
+		request_content,
+		request_comment,
+		request_status,
+		request_type
+	)
+	VALUES(
+		#{attractionId},
+		#{userId},
+		#{requestContent},
+		#{requestComment},
+		#{requestStatus},
+		#{requestType}
+	)
+	</insert>
 </mapper>
