@@ -55,4 +55,11 @@
 			request_id = #{requestId}
 		</where>
 	</update>
+	
+	<delete id = "deleteRequest" parameterType="java.lang.Long">
+		DELETE FROM attraction_modify_request
+		<where>
+			request_id = #{requestId}
+		</where>
+	</delete>
 </mapper>
