@@ -39,9 +39,9 @@ public class AttractionSimpleInfo {
 	//attraction_info table 경도
 	private String longitude;
 
-	private int bookmark;
+	private Integer bookmark;
 	
-	private int like;
+	private Integer like;
 	
 	public Long getAttractionId() {
 		return attractionId;
