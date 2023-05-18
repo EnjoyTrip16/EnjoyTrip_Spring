@@ -1,4 +1,4 @@
-package com.enjoytrip.dao.attraction;
+package com.enjoytrip.dao.attraction.attractionmodifyrequestdao;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,28 +20,19 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.event.annotation.BeforeTestExecution;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.enjoytrip.dao.attraction.AttractionModifyRequestDao;
 import com.enjoytrip.dto.attraction.AttractionModifyRequest;
 
 //Mybatis에 대한 DAO 유닛테스트
 @MybatisTest
 @ActiveProfiles("test")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class AttractionModifyRequestDaoTest {
+public class AttractionModifyRequestDaoRetrieveTest {
 	
 	//테스트 대상 DAO
 	//관광지 수정요청에 관한 DAO
 	@Autowired
 	AttractionModifyRequestDao attractionModifyRequestDao;
-	
-	@BeforeTestExecution
-	void beforeTestInit() {
-		try {
-			attractionModifyRequestDao.retrieveRequest(0L,0L,0L);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 	
 	@Test
 	@DisplayName("관광지 수정요청 userId로 가져오기  테스트")
