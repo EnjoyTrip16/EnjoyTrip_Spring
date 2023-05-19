@@ -1,6 +1,6 @@
 package com.enjoytrip.dto.user;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 //사용자 역할 DTO
 public class UserGrade {
@@ -12,7 +12,7 @@ public class UserGrade {
 	private String grade;
 
 	// 변경 일시
-	private Timestamp updatedAt;
+	private LocalDateTime updatedAt;
 
 	public Long getUserId() {
 		return userId;
@@ -30,11 +30,11 @@ public class UserGrade {
 		this.grade = grade;
 	}
 
-	public Timestamp getUpdatedAt() {
+	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
 	}
 
-	public void setUpdatedAt(Timestamp updatedAt) {
+	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
 
