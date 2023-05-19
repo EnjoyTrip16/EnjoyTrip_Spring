@@ -8,9 +8,9 @@ import com.enjoytrip.dto.attraction.AttractionTotalInfo;
 
 public interface AttractionDao {
 	
-	List<AttractionSimpleInfo> retrieveAllAttractionSimpleInfo(AttractionSearchCondition attractionSearchCondition);
+	List<AttractionSimpleInfo> retrieveAttractionSimpleInfo(AttractionSearchCondition attractionSearchCondition);
 	
-	List<AttractionTotalInfo> retrieveAllAttractionTotalInfo(AttractionSearchCondition attractionSearchCondition);
+	List<AttractionTotalInfo> retrieveAttractionTotalInfo(AttractionSearchCondition attractionSearchCondition);
 	
 	AttractionTotalInfo retrieveAttractionTotalInfo(Long attractionId);
 	
