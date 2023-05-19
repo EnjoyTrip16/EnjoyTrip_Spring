@@ -41,7 +41,7 @@ public class AttractionSimpleInfo {
 
 	private Integer bookmark;
 	
-	private Integer like;
+	private Integer favor;
 	
 	public Long getAttractionId() {
 		return attractionId;
@@ -147,12 +147,16 @@ public class AttractionSimpleInfo {
 		this.bookmark = bookmark;
 	}
 
-	public int getLike() {
-		return like;
+	public Integer getFavor() {
+		return favor;
 	}
 
-	public void setLike(int like) {
-		this.like = like;
+	public void setFavor(Integer favor) {
+		this.favor = favor;
+	}
+
+	public void setBookmark(Integer bookmark) {
+		this.bookmark = bookmark;
 	}
 
 	@Override
@@ -160,7 +164,7 @@ public class AttractionSimpleInfo {
 		return "AttractionSimpleInfo [attractionId=" + attractionId + ", title=" + title + ", attractionTypeId="
 				+ attractionTypeId + ", attractionType=" + attractionType + ", rating=" + rating + ", addr1=" + addr1
 				+ ", zipcode=" + zipcode + ", tel=" + tel + ", firstImage=" + firstImage + ", latitude=" + latitude
-				+ ", longitude=" + longitude + ", bookmark=" + bookmark + ", like=" + like + "]";
+				+ ", longitude=" + longitude + ", bookmark=" + bookmark + ", favor=" + favor + "]";
 	}
 	
 }
