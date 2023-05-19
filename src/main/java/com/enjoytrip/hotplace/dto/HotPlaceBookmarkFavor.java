@@ -1,7 +1,7 @@
 package com.enjoytrip.hotplace.dto;
 
 //핫 플레이스 북마크 좋아요 DTO
-public class HotPlaceBookmarkLike {
+public class HotPlaceBookmarkFavor {
 
 	// 핫 플레이스 번호 (FK)
 	private Long hotPlaceId;
@@ -13,7 +13,7 @@ public class HotPlaceBookmarkLike {
 	private Integer bookmark;
 
 	// 좋아요
-	private Integer like;
+	private Integer favor;
 
 	public Long getHotPlaceId() {
 		return hotPlaceId;
@@ -39,18 +39,18 @@ public class HotPlaceBookmarkLike {
 		this.bookmark = bookmark;
 	}
 
-	public Integer getLike() {
-		return like;
+	public Integer getFavor() {
+		return favor;
 	}
 
-	public void setLike(Integer like) {
-		this.like = like;
+	public void setFavor(Integer favor) {
+		this.favor = favor;
 	}
 
 	@Override
 	public String toString() {
-		return "HotPlaceBookmarkLike [hotPlaceId=" + hotPlaceId + ", userId=" + userId + ", bookmark=" + bookmark
-				+ ", like=" + like + "]";
+		return "HotPlaceBookmarkFavor [hotPlaceId=" + hotPlaceId + ", userId=" + userId + ", bookmark=" + bookmark
+				+ ", favor=" + favor + "]";
 	}
 
 }
