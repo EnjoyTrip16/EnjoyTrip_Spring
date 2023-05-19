@@ -10,4 +10,6 @@ public interface AttractionDescriptionDao {
 	public Long deleteAttractionDescription(AttractionSearchCondition attractionSearchCondition);
 	
 	public Long updateAttractionDescription(AttractionDescription attractionDescription);
+	
+	public AttractionDescription retrieveAttractionDescription(AttractionSearchCondition attractionSearchCondition);
 }
