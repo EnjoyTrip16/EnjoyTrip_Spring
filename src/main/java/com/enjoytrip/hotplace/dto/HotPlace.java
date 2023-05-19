@@ -1,6 +1,6 @@
 package com.enjoytrip.hotplace.dto;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 //핫 플레이스 DTO
 public class HotPlace {
@@ -21,10 +21,10 @@ public class HotPlace {
 	private String image;
 
 	// 등록 시간
-	private Timestamp createdAt;
+	private LocalDateTime createdAt;
 
 	// 변경 시간
-	private Timestamp updatedAt;
+	private LocalDateTime updatedAt;
 
 	// 조회수
 	private Integer readCount;
@@ -69,19 +69,19 @@ public class HotPlace {
 		this.image = image;
 	}
 
-	public Timestamp getCreatedAt() {
+	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(Timestamp createdAt) {
+	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
 
-	public Timestamp getUpdatedAt() {
+	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
 	}
 
-	public void setUpdatedAt(Timestamp updatedAt) {
+	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
 
