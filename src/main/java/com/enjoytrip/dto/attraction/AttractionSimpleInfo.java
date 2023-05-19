@@ -47,6 +47,10 @@ public class AttractionSimpleInfo {
 	
 	private Integer favor;
 	
+	private Integer sidoCode;
+	
+	private Integer gugunCode;
+	
 	public Long getAttractionId() {
 		return attractionId;
 	}
@@ -162,13 +166,46 @@ public class AttractionSimpleInfo {
 	public void setBookmark(Integer bookmark) {
 		this.bookmark = bookmark;
 	}
+	
+	public Double getRatingAvg() {
+		return ratingAvg;
+	}
+
+	public void setRatingAvg(Double ratingAvg) {
+		this.ratingAvg = ratingAvg;
+	}
+
+	public Integer getRatingCount() {
+		return ratingCount;
+	}
+
+	public void setRatingCount(Integer ratingCount) {
+		this.ratingCount = ratingCount;
+	}
+
+	public Integer getSidoCode() {
+		return sidoCode;
+	}
+
+	public void setSidoCode(Integer sidoCode) {
+		this.sidoCode = sidoCode;
+	}
+
+	public Integer getGugunCode() {
+		return gugunCode;
+	}
+
+	public void setGugunCode(Integer gugunCode) {
+		this.gugunCode = gugunCode;
+	}
 
 	@Override
 	public String toString() {
 		return "AttractionSimpleInfo [attractionId=" + attractionId + ", title=" + title + ", attractionTypeId="
-				+ attractionTypeId + ", attractionType=" + attractionType + ", rating=" + ratingAvg + ", addr1=" + addr1
-				+ ", zipcode=" + zipcode + ", tel=" + tel + ", firstImage=" + firstImage + ", latitude=" + latitude
-				+ ", longitude=" + longitude + ", bookmark=" + bookmark + ", favor=" + favor + "]";
+				+ attractionTypeId + ", attractionType=" + attractionType + ", ratingAvg=" + ratingAvg
+				+ ", ratingCount=" + ratingCount + ", addr1=" + addr1 + ", zipcode=" + zipcode + ", tel=" + tel
+				+ ", firstImage=" + firstImage + ", latitude=" + latitude + ", longitude=" + longitude + ", bookmark="
+				+ bookmark + ", favor=" + favor + ", sidoCode=" + sidoCode + ", gugunCode=" + gugunCode + "]";
 	}
 	
 }
