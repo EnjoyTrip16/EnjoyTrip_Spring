@@ -26,7 +26,7 @@ import com.enjoytrip.dto.attraction.AttractionSimpleInfo;
 @MybatisTest
 @ActiveProfiles("test")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class AttractionRetrieveSearchConditionTest {
+public class AttractionSimpleInfoRetrieveSearchConditionTest {
 	
 	//테스트 대상 DAO
 	//관광지 CRUD에 관한 DAO

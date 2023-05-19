@@ -28,7 +28,7 @@ import com.enjoytrip.dto.attraction.AttractionSortOrder;
 @MybatisTest
 @ActiveProfiles("test")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class AttractionRetrieveSortOrderTest {
+public class AttractionSimpleInfoRetrieveSortOrderTest {
 	
 	//테스트 대상 DAO
 	//관광지 CRUD에 관한 DAO
