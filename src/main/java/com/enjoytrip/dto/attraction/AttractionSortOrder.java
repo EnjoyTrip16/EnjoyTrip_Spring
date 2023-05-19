@@ -10,7 +10,5 @@ public enum AttractionSortOrder {
 	FAVOR_ASC,
 	FAVOR_DESC,
 	RATING_ASC,
-	RATING_DESC,
-	COMMENT_ASC,
-	COMMENT_DESC
+	RATING_DESC
 }
