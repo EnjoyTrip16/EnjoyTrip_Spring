@@ -1,0 +1,25 @@
+package com.enjoytrip.dao;
+
+import java.util.List;
+
+import com.enjoytrip.dto.attraction.AttractionModifyRequest;
+
+//attraction_modify_request table DAO
+//관광지 수정 요청에 관한 data DAO
+public interface AttractionModifyRequestDao {
+	
+	//관광지 수정 요청을 생성함
+	//return 생성한 AttractionModifyRequest PK
+	public Long createRequest(AttractionModifyRequest req);
+	
+	//관광지 수정요청을 가져옴
+	//mybatis 동적 쿼리를 통해 요청에 대한 필터링(userId가 null일때 attractionId가 null일때)
+	public List<AttractionModifyRequest> retrieveRequest(Long userId,Long attractionId);
+	
+	//관광지 수정요청을 변경함
+	public void updateRequest(AttractionModifyRequest req);
+	
+	//관광지 수정요청을 삭제함
+	//userId와 attractionId가 PK이므로
+	public void deleteRequest(Long userId,Long attractionId);
+}
