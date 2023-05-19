@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.test.context.ActiveProfiles;
 
-import com.enjoytrip.dao.attraction.AttractionDao;
+import com.enjoytrip.dao.attraction.AttractionSimpleInfoDao;
 import com.enjoytrip.dto.attraction.AttractionSearchCondition;
 import com.enjoytrip.dto.attraction.AttractionSimpleInfo;
 
@@ -31,7 +31,7 @@ public class AttractionSimpleInfoRetrieveSearchConditionTest {
 	//테스트 대상 DAO
 	//관광지 CRUD에 관한 DAO
 	@Autowired
-	AttractionDao attractionDao;
+	AttractionSimpleInfoDao attractionDao;
 	
 	@Test
 	@DisplayName("검색조건(관광지ID) 메소드 테스트")

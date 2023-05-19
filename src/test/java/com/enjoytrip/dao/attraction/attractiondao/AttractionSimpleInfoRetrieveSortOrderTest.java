@@ -19,7 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.test.context.ActiveProfiles;
 
-import com.enjoytrip.dao.attraction.AttractionDao;
+import com.enjoytrip.dao.attraction.AttractionSimpleInfoDao;
 import com.enjoytrip.dto.attraction.AttractionSearchCondition;
 import com.enjoytrip.dto.attraction.AttractionSimpleInfo;
 import com.enjoytrip.dto.attraction.AttractionSortOrder;
@@ -33,7 +33,7 @@ public class AttractionSimpleInfoRetrieveSortOrderTest {
 	//테스트 대상 DAO
 	//관광지 CRUD에 관한 DAO
 	@Autowired
-	AttractionDao attractionDao;
+	AttractionSimpleInfoDao attractionDao;
 	
 	//Mysql의 String에 대한 특정 collation에 대한 정렬을 JAVA에서 검증하는 것은 매우어려움
 	//따라서 이에 대한 해결방안을 생각해야함
