@@ -2,6 +2,9 @@ package com.enjoytrip.dto.attraction;
 
 public class AttractionSearchCondition {
 	
+	//관광지에 해당하는 PK
+	private Long attractionId;
+	
 	//관광지에 해당하는 시도 코드
 	private Integer sidoCode;
 	
@@ -65,6 +68,14 @@ public class AttractionSearchCondition {
 
 	public void setSortOrder(AttractionSortOrder sortOrder) {
 		this.sortOrder = sortOrder;
+	}
+	
+	public Long getAttractionId() {
+		return attractionId;
+	}
+
+	public void setAttractionId(Long attractionId) {
+		this.attractionId = attractionId;
 	}
 
 	@Override
