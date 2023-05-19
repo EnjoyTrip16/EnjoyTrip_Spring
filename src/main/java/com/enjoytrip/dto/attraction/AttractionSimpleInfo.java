@@ -199,6 +199,8 @@ public class AttractionSimpleInfo {
 		this.gugunCode = gugunCode;
 	}
 
+	
+	
 	@Override
 	public String toString() {
 		return "AttractionSimpleInfo [attractionId=" + attractionId + ", title=" + title + ", attractionTypeId="
