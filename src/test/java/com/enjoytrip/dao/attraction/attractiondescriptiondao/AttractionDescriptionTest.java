@@ -53,5 +53,68 @@ public class AttractionDescriptionTest {
 		assertThat(resultAttractionDescriptionList)
 		.extracting("attractionId")
 		.containsOnly(searchConditionAttractionId);
+	}		
+	
+	@Test
+	@DisplayName("관광지 설명 수정 테스트")
+	public void updateAttractionDescriptionTest() {
+		//검색결과에 해당하는 관광지ID가 검색조건 관광지ID가 같아야함
+		
+		//give
+		
+		//수정대상인 관광지 ID
+		Long attractionId = 125266L;
+		
+		//수정 후 홈페이지 
+		String expectHomepage = "http://edu.ssafy.com/";
+		
+		//수정 후 관광지 설명
+		String expectOverview = "청태산이 뭐에용?";
+		
+		//검색조건 DTO
+		AttractionSearchCondition attractionSearchCondition = new AttractionSearchCondition();
+		attractionSearchCondition.setAttractionId(attractionId);
+		
+		//수정 전 관광지 설명 DTO
+		List<AttractionDescription> beforeAttractionDescription = attractionDescriptionDao.retrieveAttractionDescription(attractionSearchCondition);
+		
+		//테스트 대상 관광지 설명 DTO는 존재해야함
+		assertThat(beforeAttractionDescription)
+		.hasSize(1);
+		
+		//수정 전과 수정 후가 update전에 같으면 안됨
+		assertThat(beforeAttractionDescription)
+		.extracting("homepage")
+		.allMatch(homepage -> !homepage.equals(expectHomepage));
+		
+
+		assertThat(beforeAttractionDescription)
+		.extracting("overview")
+		.allMatch(overview -> !overview.equals(expectOverview));
+		
+		//결과로 기대하는 관광지 설명 DTO
+		AttractionDescription expectAttractionDescription = new AttractionDescription();
+		expectAttractionDescription.setAttractionId(attractionId);
+		expectAttractionDescription.setHomepage(expectHomepage);
+		expectAttractionDescription.setOverview(expectOverview);
+		
+		//when
+		
+		Long resultRow = attractionDescriptionDao.updateAttractionDescription(expectAttractionDescription);
+		List<AttractionDescription> afterAttractionDescription = attractionDescriptionDao.retrieveAttractionDescription(attractionSearchCondition);
+		
+		//then		
+		//수정 결과가 한 행에 대하여
+		assertThat(resultRow).isEqualTo(1L);
+		
+		//수정 전과 수정 후가 update전에 같으면 안됨
+		assertThat(afterAttractionDescription)
+		.extracting("homepage")
+		.allMatch(homepage -> homepage.equals(expectHomepage));
+		
+
+		assertThat(afterAttractionDescription)
+		.extracting("overview")
+		.allMatch(overview -> overview.equals(expectOverview));
 	}	
 }
