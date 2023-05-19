@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.enjoytrip.dao.attraction.AttractionDescriptionDao">
+	<select id="retrieveAttractionDescription" parameterType="AttractionSearchCondition" resultType="AttractionDescription">
+		select 
+			* 
+		from
+			attraction_description
+		<where>
+			attraction_id = #{attractionId}
+		</where>
+	</select>	
+	<update id="updateAttractionDescription" parameterType="AttractionDescription">
+		update 
+			attraction_description
+		<set>
+			<trim prefixOverrides=",">
+				<if test="homepage!=null">
+					,homepage=#{homepage}
+				</if>
+				<if test="overview!=null">
+					,overview=#{overview}
+				</if>
+			</trim>
+		</set>
+		<where>
+			attraction_id = #{attractionId}
+		</where>
+	</update>
+</mapper>
