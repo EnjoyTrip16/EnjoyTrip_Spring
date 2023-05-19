@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace = "com.enjoytrip.dao.attraction.AttractionDao">
+
+	<select id="retrieveAttractionSimpleInfo" parameterType="AttractionSearchCondition" resultType="AttractionSimpleInfo">
+		select 
+			attraction.attraction_id,
+			attraction.title,
+			attraction.attraction_type_id,
+			attraction_type.attraction_type,
+			attraction.read_count,
+			attraction_info.addr1,
+			attraction_info.zipcode,
+			attraction_info.tel,
+			attraction_info.first_image,
+			attraction_info.latitude,
+			attraction_info.longitude,
+			attraction_info.sido_code,
+			attraction_info.gugun_code,
+			COALESCE(bookmark_count, 0) AS bookmark,
+			COALESCE(favor_count, 0) AS favor,
+			COALESCE(rating_avg,0) as rating_avg,
+            COALESCE(rating_count, 0) as rating_count
+		from
+			attraction
+		left join
+			attraction_info
+		on
+			attraction.attraction_id = attraction_info.attraction_id
+		left join
+			attraction_type
+		on
+			attraction.attraction_type_id = attraction_type.attraction_type_id
+		left join
+			(
+				select attraction_user_bookmark_like.attraction_id,
+					   SUM(case when bookmark = true then 1 else 0 end) as bookmark_count,
+                          SUM(case when favor = true then 1 else 0 end) as favor_count
+				from
+					attraction_user_bookmark_like
+				group by
+					attraction_user_bookmark_like.attraction_id
+               )as attraction_user_bookmark_like
+		on
+			attraction.attraction_id = attraction_user_bookmark_like.attraction_id
+		left join
+			(
+				select attraction_user_rating.attraction_id,
+					   COUNT(rating) as rating_count,
+                       AVG(rating) as rating_avg
+				from
+					attraction_user_rating
+				group by
+					attraction_user_rating.attraction_id
+            )as attraction_user_rating
+		on
+			attraction_user_rating.attraction_id = attraction.attraction_id
+		<where>
+			<trim prefixOverrides="AND">
+				<if test="attractionId!=null">
+					AND attraction.attraction_id = #{attractionId}
+				</if>
+				<if test="sidoCode!=null">
+					AND sido_code = #{sidoCode}
+				</if>
+				<if test="gugunCode!=null">
+					AND gugun_code = #{gugunCode}
+				</if>
+				<if test="attractionTypeId!=null">
+					AND attraction.attraction_type_id = #{attractionTypeId}
+				</if>
+				<if test="keywordTitle!=null">
+					AND title like CONCAT('%',#{keywordTitle},'%')
+				</if>
+				<if test="keywordAttractionType!=null">
+					AND attraction_type.attraction_type like CONCAT('%',#{keywordAttractionType},'%')
+				</if>
+			</trim>
+		</where>
+		order by 
+		<choose>
+			<when test="sortOrder==null">
+				title ASC
+			</when>
+			<when test="sortOrder.name()=='DICTIONARY_ASC'">
+				title ASC
+			</when>
+			<when test="sortOrder.name()=='DICTIONARY_DESC'">
+				title DESC
+			</when>
+			<when test="sortOrder.name()=='READCOUNT_ASC'">
+				read_count ASC
+			</when>
+			<when test="sortOrder.name()=='READCOUNT_DESC'">
+				read_count DESC
+			</when>
+			<when test="sortOrder.name()=='BOOKMARK_ASC'">
+				bookmark ASC
+			</when>
+			<when test="sortOrder.name()=='BOOKMARK_DESC'">
+				bookmark DESC
+			</when>
+			<when test="sortOrder.name()=='FAVOR_ASC'">
+				favor ASC
+			</when>
+			<when test="sortOrder.name()=='FAVOR_DESC'">
+				favor DESC
+			</when>
+			<when test="sortOrder.name()=='RATING_ASC'">
+				rating_avg asc
+			</when>
+			<when test="sortOrder.name()=='RATING_DESC'">
+				rating_avg desc
+			</when>
+			<otherwise>
+				title ASC
+			</otherwise>
+		</choose>
+	</select>
+
+</mapper>
