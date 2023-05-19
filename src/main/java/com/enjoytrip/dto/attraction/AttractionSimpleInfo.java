@@ -18,7 +18,11 @@ public class AttractionSimpleInfo {
 
 	//attraction_user_rating table
 	//해당 관광지에 대한 유저들의 평점 평균(소수점 한자리수)
-	private Double rating;
+	private Double ratingAvg;
+	
+	//attraction_user_rating table
+	//해당 관광지에 대한 유저들의 평가 수
+	private Integer ratingCount;
 	
 	//attraction_info table 관광지에 대한 간략한 주소
 	private String addr1;
@@ -76,11 +80,11 @@ public class AttractionSimpleInfo {
 	}
 
 	public Double getRating() {
-		return rating;
+		return ratingAvg;
 	}
 
 	public void setRating(Double rating) {
-		this.rating = rating;
+		this.ratingAvg = rating;
 	}
 
 	public String getAddr1() {
@@ -162,7 +166,7 @@ public class AttractionSimpleInfo {
 	@Override
 	public String toString() {
 		return "AttractionSimpleInfo [attractionId=" + attractionId + ", title=" + title + ", attractionTypeId="
-				+ attractionTypeId + ", attractionType=" + attractionType + ", rating=" + rating + ", addr1=" + addr1
+				+ attractionTypeId + ", attractionType=" + attractionType + ", rating=" + ratingAvg + ", addr1=" + addr1
 				+ ", zipcode=" + zipcode + ", tel=" + tel + ", firstImage=" + firstImage + ", latitude=" + latitude
 				+ ", longitude=" + longitude + ", bookmark=" + bookmark + ", favor=" + favor + "]";
 	}
