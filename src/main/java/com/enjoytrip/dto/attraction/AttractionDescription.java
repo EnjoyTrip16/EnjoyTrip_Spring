@@ -11,10 +11,6 @@ public class AttractionDescription {
 	
 	//attraction_description table 관광지 상세 설명(10000자 제한)
 	private String overview;
-	
-	//attraction_description table 관광지 전화 번호
-	private String telname;
-
 	public Long getAttractionId() {
 		return attractionId;
 	}
@@ -38,19 +34,11 @@ public class AttractionDescription {
 	public void setOverview(String overview) {
 		this.overview = overview;
 	}
-
-	public String getTelname() {
-		return telname;
-	}
-
-	public void setTelname(String telname) {
-		this.telname = telname;
-	}
-
+	
 	@Override
 	public String toString() {
 		return "AttractionDescription [attractionId=" + attractionId + ", homepage=" + homepage + ", overview="
-				+ overview + ", telname=" + telname + "]";
+				+ overview + "]";
 	}
 	
 	
