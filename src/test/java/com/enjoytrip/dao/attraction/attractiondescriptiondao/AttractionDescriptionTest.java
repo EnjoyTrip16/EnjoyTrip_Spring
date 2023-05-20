@@ -117,4 +117,39 @@ public class AttractionDescriptionTest {
 		.extracting("overview")
 		.allMatch(overview -> overview.equals(expectOverview));
 	}	
+	
+	@Test
+	@DisplayName("관광지 설명 삭제 테스트")
+	public void deletettractionDescriptionTest() {
+		//검색결과에 해당하는 관광지ID가 검색조건 관광지ID가 같아야함
+		
+		//give
+		
+		//삭제대상인 관광지 ID
+		Long attractionId = 125266L;
+		
+		//삭제 조건 DTO
+		AttractionSearchCondition attractionSearchCondition = new AttractionSearchCondition();
+		attractionSearchCondition.setAttractionId(attractionId);
+		
+		//삭제 전 관광지 설명 DTO
+		List<AttractionDescription> beforeAttractionDescription = attractionDescriptionDao.retrieveAttractionDescription(attractionSearchCondition);
+		
+		//테스트 대상 관광지 설명 DTO는 존재해야함
+		assertThat(beforeAttractionDescription)
+		.hasSize(1);
+		
+		//when
+		
+		Long resultRow = attractionDescriptionDao.deleteAttractionDescription(attractionSearchCondition);
+		
+		//then		
+		//삭제 결과가 한 행에 대하여
+		assertThat(resultRow).isEqualTo(1L);
+		
+		//삭제 후 해당 DTO는 존재하면 안됨!
+		List<AttractionDescription> afterAttractionDescription  = attractionDescriptionDao.retrieveAttractionDescription(attractionSearchCondition);
+		assertThat(afterAttractionDescription)
+		.isEmpty();
+	}	
 }
