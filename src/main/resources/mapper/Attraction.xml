@@ -34,4 +34,27 @@
 			#{attractionTypeId}
 		)
 	</insert>
+	<update id="updateAttraction" parameterType="Attraction">
+		Update
+			attraction
+		<set>
+			<trim suffixOverrides=",">
+				<if test="updatedAt!=null">
+					,updated_at = #{updatedAt}
+				</if>
+				<if test="title!=null">
+					,title = #{title}
+				</if>
+				<if test="attractionTypeId!=null">
+					,attraction_type_id = #{attractionTypeId}
+				</if>
+				<if test="readCount!=null">
+					,readCount = #{readCount}
+				</if>
+			</trim>
+		</set>
+		<where>
+			attraction_id = #{attractionId}
+		</where>
+	</update>
 </mapper>
