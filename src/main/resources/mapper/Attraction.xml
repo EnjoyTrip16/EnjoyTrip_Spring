@@ -34,6 +34,7 @@
 			#{attractionTypeId}
 		)
 	</insert>
+	
 	<update id="updateAttraction" parameterType="Attraction">
 		Update
 			attraction
@@ -57,4 +58,14 @@
 			attraction_id = #{attractionId}
 		</where>
 	</update>
+	
+	
+	<delete id="deleteAttraction" parameterType="AttractionSearchCondition">
+		DELETE
+		FROM
+			Attraction
+		<where>
+			attraction_id = #{attractionId}
+		</where>
+	</delete>
 </mapper>
