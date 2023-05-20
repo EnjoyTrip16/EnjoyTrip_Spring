@@ -1,4 +1,4 @@
-package com.enjoytrip.hotplace.dto;
+package com.enjoytrip.dto.hotplace;
 
 //핫 플레이스 댓글 DTO
 public class HotPlaceComments {

@@ -1,4 +1,4 @@
-package com.enjoytrip.hotplace.dto;
+package com.enjoytrip.dto.hotplace;
 
 import java.time.LocalDateTime;
 

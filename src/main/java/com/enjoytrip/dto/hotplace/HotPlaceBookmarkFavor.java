@@ -1,4 +1,4 @@
-package com.enjoytrip.hotplace.dto;
+package com.enjoytrip.dto.hotplace;
 
 //핫 플레이스 북마크 좋아요 DTO
 public class HotPlaceBookmarkFavor {
