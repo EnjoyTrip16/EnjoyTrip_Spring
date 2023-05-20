@@ -28,7 +28,7 @@ public class AttracitonDaoTest {
 	AttractionDao attractionDao;
 	
 	@Test
-	@DisplayName("관광지 테이블 검색조건(관광지ID) 조회")
+	@DisplayName("관광지 DAO 검색조건(관광지ID) 조회")
 	public void retrieveAttractionByAttractionId() {
 		
 		//give
@@ -47,7 +47,7 @@ public class AttracitonDaoTest {
 	}	
 	
 	@Test
-	@DisplayName("관광지 테이블 검색조건(관광지 종류ID) 조회")
+	@DisplayName("관광지 DAO 검색조건(관광지 종류ID) 조회")
 	public void retrieveAttractionByAttractionTypeId() {
 		
 		//give
@@ -68,7 +68,7 @@ public class AttracitonDaoTest {
 	}	
 	
 	@Test
-	@DisplayName("관광지 테이블 검색조건(관광지명) 조회")
+	@DisplayName("관광지 DAO 검색조건(관광지명) 조회")
 	public void retrieveAttractionByTitle() {
 		
 		//give
@@ -92,7 +92,7 @@ public class AttracitonDaoTest {
 	}	
 	
 	@Test
-	@DisplayName("관광지 테이블 다중 검색조건 조회")
+	@DisplayName("관광지 DAO 다중 검색조건 조회")
 	public void retrieveAttractionByMultipleCondition() {
 		
 		//give
@@ -127,7 +127,7 @@ public class AttracitonDaoTest {
 	}	
 	
 	@Test
-	@DisplayName("관광지 테이블 삽입 테스트")
+	@DisplayName("관광지 DAO 삽입 테스트")
 	public void createAttractionTest() {
 		
 		//give
@@ -180,7 +180,7 @@ public class AttracitonDaoTest {
 	}	
 	
 	@Test
-	@DisplayName("관광지 테이블 수정 테스트")
+	@DisplayName("관광지 DAO 수정 테스트")
 	public void updateAttractionTest() {
 		
 		//give
@@ -244,10 +244,48 @@ public class AttracitonDaoTest {
 				conditionTitle.contains(afterTitle)
 		);		
 		
+		//오차를 감안하여 2초차이가 나는지
 		assertThat(resultAttraction.get(0).getUpdatedAt())
 		.isCloseTo(afterUpdatedAt,within(2,ChronoUnit.SECONDS));
 		
+	}	
+	
+	@Test
+	@DisplayName("관광지 DAO 삭제 테스트")
+	public void deleteAttractionTest() {
+		
+		//give
+		//삭제 대상 DTO PK
+		Long attractionId = 125266L;
+		
+		//수정 대상 미리 가져와서 확인
+		AttractionSearchCondition attractionSearchCondition = new AttractionSearchCondition();
+		attractionSearchCondition.setAttractionId(attractionId);
+		List<Attraction> beforeAttraction = attractionDao.retrieveAttraction(attractionSearchCondition);
+		
+		//테스트 삭제 대상 DTO가 존재해야함
+		assertThat(beforeAttraction)
+		.hasSize(1);
+		
+		//when
+		
+		//관광지 삭제 (resultRow = 영향받은 행의 개수 삭제한 행의 개수) 
+		Long resultRow = attractionDao.deleteAttraction(attractionSearchCondition);
+		
+		//then
+		//삭제한 행이 존재해야함
+		assertThat(resultRow)
+		.isNotNull()
+		.isGreaterThanOrEqualTo(1L);
+		
+		//삭제가 됐는지 확인하기위해 조회
+		List<Attraction> afterAttraction = attractionDao.retrieveAttraction(attractionSearchCondition);
+		
+		assertThat(afterAttraction)
+		.hasSize(0);
 		
 		
-	}
+		
+		
+	}	
 }
