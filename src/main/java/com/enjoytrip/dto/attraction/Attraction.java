@@ -21,7 +21,7 @@ public class Attraction {
 	private String title;
 	
 	//attraction_type table PK 관광지 종류 ID
-	private Long attractionType;
+	private Long attractionTypeId;
 
 	public Long getAttractionId() {
 		return attractionId;
@@ -63,18 +63,18 @@ public class Attraction {
 		this.title = title;
 	}
 
-	public Long getAttractionType() {
-		return attractionType;
+	public Long getattractionTypeId() {
+		return attractionTypeId;
 	}
 
-	public void setAttractionType(Long attractionType) {
-		this.attractionType = attractionType;
+	public void setattractionTypeId(Long attractionTypeId) {
+		this.attractionTypeId = attractionTypeId;
 	}
 
 	@Override
 	public String toString() {
 		return "Attraction [attractionId=" + attractionId + ", readCount=" + readCount + ", createdAt=" + createdAt
-				+ ", updatedAt=" + updatedAt + ", title=" + title + ", attractionType=" + attractionType + "]";
+				+ ", updatedAt=" + updatedAt + ", title=" + title + ", attractionTypeId=" + attractionTypeId + "]";
 	}
 
 }
