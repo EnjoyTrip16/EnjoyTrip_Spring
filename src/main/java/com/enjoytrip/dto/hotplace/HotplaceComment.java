@@ -1,7 +1,7 @@
 package com.enjoytrip.dto.hotplace;
 
 //핫 플레이스 댓글 DTO
-public class HotplaceComments {
+public class HotplaceComment {
 
 	// 핫 플레이스 댓글 번호 (PK)
 	private Long hotplaceCommentId;
