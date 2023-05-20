@@ -1,7 +1,10 @@
 package com.enjoytrip.dao.attraction.attractiondao;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.within;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
@@ -173,6 +176,78 @@ public class AttracitonDaoTest {
 				conditionTitle->
 				conditionTitle.contains(title)
 		);
+		
+	}	
+	
+	@Test
+	@DisplayName("관광지 테이블 수정 테스트")
+	public void updateAttractionTest() {
+		
+		//give
+		//수정 대상 DTO PK
+		Long attractionId = 125266L;
+		
+		//DTO에 수정에 사용할 필드
+		Long afterAttractionTypeId = 14L;
+		String afterTitle = "한국항공대학교";
+		LocalDateTime afterUpdatedAt = LocalDateTime.now();
+		//수정 전 수정 후 데이터는 달라야함
+		
+		//수정 대상 미리 가져와서 확인
+		AttractionSearchCondition attractionSearchCondition = new AttractionSearchCondition();
+		attractionSearchCondition.setAttractionId(attractionId);
+		List<Attraction> beforeAttraction = attractionDao.retrieveAttraction(attractionSearchCondition);
+		
+		assertThat(beforeAttraction)
+		.extracting("title")
+		.isNotEqualTo(afterTitle);
+		
+		assertThat(beforeAttraction)
+		.extracting("attractionTypeId")
+		.isNotEqualTo(afterAttractionTypeId);
+		
+		//수정후 DTO (기대값)
+		Attraction afterAttraction = new Attraction();
+		afterAttraction.setAttractionId(attractionId);
+		afterAttraction.setattractionTypeId(afterAttractionTypeId);
+		afterAttraction.setTitle(afterTitle);
+		afterAttraction.setUpdatedAt(afterUpdatedAt);
+		
+		
+		//when
+		
+		//수정한 행 가져오기
+		Long resultRow = attractionDao.updateAttraction(afterAttraction);
+		
+		//then
+		//수정한 행이 존재해야함
+		assertThat(resultRow)
+		.isNotNull()
+		.isGreaterThanOrEqualTo(1L);
+		
+		//수정 후 DTO 가져오기
+		List<Attraction> resultAttraction = attractionDao.retrieveAttraction(attractionSearchCondition);
+		
+		//가져온 DTO는 하나여야함
+		assertThat(resultAttraction)
+		.hasSize(1);
+		
+		//수정한 DTO는 기대값과 같아야함
+		assertThat(resultAttraction)
+		.extracting("attractionTypeId")
+		.containsOnly(afterAttractionTypeId);
+		
+		assertThat(resultAttraction)
+		.extracting(Attraction::getTitle)
+		.allMatch(
+				conditionTitle->
+				conditionTitle.contains(afterTitle)
+		);		
+		
+		assertThat(resultAttraction.get(0).getUpdatedAt())
+		.isCloseTo(afterUpdatedAt,within(2,ChronoUnit.SECONDS));
+		
+		
 		
 	}
 }
