@@ -33,16 +33,16 @@
 			attraction.attraction_type_id = attraction_type.attraction_type_id
 		left join
 			(
-				select attraction_user_bookmark_like.attraction_id,
+				select attraction_user_bookmark_favor.attraction_id,
 					   SUM(case when bookmark = true then 1 else 0 end) as bookmark_count,
                           SUM(case when favor = true then 1 else 0 end) as favor_count
 				from
-					attraction_user_bookmark_like
+					attraction_user_bookmark_favor
 				group by
-					attraction_user_bookmark_like.attraction_id
-               )as attraction_user_bookmark_like
+					attraction_user_bookmark_favor.attraction_id
+               )as attraction_user_bookmark_favor
 		on
-			attraction.attraction_id = attraction_user_bookmark_like.attraction_id
+			attraction.attraction_id = attraction_user_bookmark_favor.attraction_id
 		left join
 			(
 				select attraction_user_rating.attraction_id,

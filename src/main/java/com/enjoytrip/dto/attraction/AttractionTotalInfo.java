@@ -38,7 +38,11 @@ public class AttractionTotalInfo {
 	
 	//attraction_info table 관광지 사진
 	//사진에 해당하는 URL
-	private String first_image;
+	private String firstImage;	
+	
+	//attraction_info table 관광지 두번째 사진
+	//사진에 해당하는 URL
+	private String firstImage2;
 	
 	//attraction_info table 위도
 	private String latitude;
@@ -57,18 +61,30 @@ public class AttractionTotalInfo {
 	
 	//attraction_user_rating table
 	//유저가 관광지에 매긴 평점 점수의 평균 (0~5) 소수점 1자리수
-	private Double rating;
+	private Double ratingAvg;
+	
+	//attraction_user_rating table
+	//유저가 관광지에 매긴 평점 개수
+	private Integer ratingCount;
 	
 	private Integer bookmark;
 	
-	private Integer like;
-	
+	private Integer favor;
+
 	public Long getAttractionId() {
 		return attractionId;
 	}
 
 	public void setAttractionId(Long attractionId) {
 		this.attractionId = attractionId;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 
 	public String getTitle() {
@@ -103,6 +119,14 @@ public class AttractionTotalInfo {
 		this.readCount = readCount;
 	}
 
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
 	public String getAddr1() {
 		return addr1;
 	}
@@ -119,12 +143,20 @@ public class AttractionTotalInfo {
 		this.tel = tel;
 	}
 
-	public String getFirst_image() {
-		return first_image;
+	public String getFirstImage() {
+		return firstImage;
 	}
 
-	public void setFirst_image(String first_image) {
-		this.first_image = first_image;
+	public void setFirstImage(String firstImage) {
+		this.firstImage = firstImage;
+	}
+
+	public String getFirstImage2() {
+		return firstImage2;
+	}
+
+	public void setFirstImage2(String firstImage2) {
+		this.firstImage2 = firstImage2;
 	}
 
 	public String getLatitude() {
@@ -167,28 +199,20 @@ public class AttractionTotalInfo {
 		this.telname = telname;
 	}
 
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
+	public Double getRatingAvg() {
+		return ratingAvg;
 	}
 
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
+	public void setRatingAvg(Double ratingAvg) {
+		this.ratingAvg = ratingAvg;
 	}
 
-	public String getZipcode() {
-		return zipcode;
+	public Integer getRatingCount() {
+		return ratingCount;
 	}
 
-	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode;
-	}
-
-	public Double getRating() {
-		return rating;
-	}
-
-	public void setRating(Double rating) {
-		this.rating = rating;
+	public void setRatingCount(Integer ratingCount) {
+		this.ratingCount = ratingCount;
 	}
 
 	public Integer getBookmark() {
@@ -199,23 +223,22 @@ public class AttractionTotalInfo {
 		this.bookmark = bookmark;
 	}
 
-	public Integer getLike() {
-		return like;
+	public Integer getfavor() {
+		return favor;
 	}
 
-	public void setLike(Integer like) {
-		this.like = like;
+	public void setfavor(Integer favor) {
+		this.favor = favor;
 	}
 
 	@Override
 	public String toString() {
 		return "AttractionTotalInfo [attractionId=" + attractionId + ", updatedAt=" + updatedAt + ", title=" + title
 				+ ", attractionTypeId=" + attractionTypeId + ", attractionType=" + attractionType + ", readCount="
-				+ readCount + ", addr1=" + addr1 + ", tel=" + tel + ", first_image=" + first_image + ", latitude="
-				+ latitude + ", longitude=" + longitude + ", homepage=" + homepage + ", overview=" + overview
-				+ ", telname=" + telname + ", rating=" + rating + "]";
+				+ readCount + ", zipcode=" + zipcode + ", addr1=" + addr1 + ", tel=" + tel + ", firstImage="
+				+ firstImage + ", firstImage2=" + firstImage2 + ", latitude=" + latitude + ", longitude=" + longitude
+				+ ", homepage=" + homepage + ", overview=" + overview + ", telname=" + telname + ", ratingAvg="
+				+ ratingAvg + ", ratingCount=" + ratingCount + ", bookmark=" + bookmark + ", favor=" + favor + "]";
 	}
-	
-	
 	
 }
