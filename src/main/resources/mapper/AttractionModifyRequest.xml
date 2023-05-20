@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.enjoytrip.dao.attraction.AttractionModifyRequestDao">
+	<select id="retrieveRequest" resultType="AttractionModifyRequest" parameterType="java.lang.Long">
+		select *
+		from attraction_modify_request
+		<trim prefix="WHERE" prefixOverrides="AND |OR "> 
+		    <if test="requestId!=null">
+		         AND request_id = #{requestId}
+		    </if> 
+		    <if test="userId != null">
+		        AND user_id = #{userId}
+		    </if>
+		    <if test="attractionId != null">
+		        AND attraction_id = #{attractionId}
+		    </if>
+	    </trim>
+	</select>
+	
+	<insert id="createRequest" parameterType="AttractionModifyRequest" useGeneratedKeys="true" keyProperty="requestId">
+	INSERT INTO attraction_modify_request(
+		attraction_id,
+		user_id,
+		request_content,
+		request_comment,
+		request_status,
+		request_type
+	)
+	VALUES(
+		#{attractionId},
+		#{userId},
+		#{requestContent},
+		#{requestComment},
+		#{requestStatus},
+		#{requestType}
+	)
+	</insert>
+	
+	<update id="updateRequest" parameterType="AttractionModifyRequest">
+		UPDATE attraction_modify_request
+		<set>
+			<trim prefixOverrides=",">
+				<if test="requestContent!=null">
+					,request_content=#{requestContent}
+				</if>
+				<if test="requestStatus!=null">
+					,request_status=#{requestStatus}
+				</if>
+				<if test="requestType!=null">
+					,request_type=#{requestType}
+				</if>
+			</trim>
+		</set>
+		<where>
+			request_id = #{requestId}
+		</where>
+	</update>
+	
+	<delete id = "deleteRequest" parameterType="java.lang.Long">
+		DELETE FROM attraction_modify_request
+		<where>
+			request_id = #{requestId}
+		</where>
+	</delete>
+</mapper>
