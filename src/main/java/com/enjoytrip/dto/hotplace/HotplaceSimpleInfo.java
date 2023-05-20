@@ -32,6 +32,9 @@ public class HotplaceSimpleInfo {
 	// 댓글 수
 	private Integer commentCount;
 
+	// 최초 등록 시간
+	private LocalDateTime createdAt;
+
 	// 마지막 변경 시간
 	private LocalDateTime updatedAt;
 
@@ -107,6 +110,14 @@ public class HotplaceSimpleInfo {
 		this.commentCount = commentCount;
 	}
 
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
 	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
 	}
@@ -120,7 +131,7 @@ public class HotplaceSimpleInfo {
 		return "HotplaceSimpleInfo [hotplaceId=" + hotplaceId + ", attractionType=" + attractionType + ", image="
 				+ image + ", title=" + title + ", username=" + username + ", readCount=" + readCount
 				+ ", bookmarkCount=" + bookmarkCount + ", favorCount=" + favorCount + ", commentCount=" + commentCount
-				+ ", updatedAt=" + updatedAt + "]";
+				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
 
 }
