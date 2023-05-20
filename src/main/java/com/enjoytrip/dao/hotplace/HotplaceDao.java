@@ -9,15 +9,15 @@ import com.enjoytrip.dto.hotplace.HotplaceSearchCondition;
 public interface HotplaceDao {
 
 	// hotplace table 조회
-	public List<Hotplace> searchHotplace(HotplaceSearchCondition hotplaceSearchCondifion);
-	
+	public List<Hotplace> searchHotplace(HotplaceSearchCondition hotplaceSearchCondition);
+
 	// hotplace 삽입
 	public Long createHotplace(Hotplace hotplace);
-	
+
 	// hotplace 수정
 	public Long updateHotplace(Hotplace hotplace);
-	
+
 	// hotplace 삭제
-	public Long deleteHotplace(Long hotplaceId);
-	
+	public Long deleteHotplace(HotplaceSearchCondition hotplaceSearchCondition);
+
 }
