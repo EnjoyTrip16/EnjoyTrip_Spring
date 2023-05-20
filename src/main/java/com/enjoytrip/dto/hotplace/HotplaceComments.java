@@ -1,13 +1,13 @@
 package com.enjoytrip.dto.hotplace;
 
 //핫 플레이스 댓글 DTO
-public class HotPlaceComments {
+public class HotplaceComments {
 
 	// 핫 플레이스 댓글 번호 (PK)
-	private Long hotPlaceCommentId;
+	private Long hotplaceCommentId;
 
 	// 핫 플레이스 번호 (FK)
-	private Long hotPlaceId;
+	private Long hotplaceId;
 
 	// 댓글 작성자 번호 (FK)
 	private Long userId;
@@ -15,20 +15,20 @@ public class HotPlaceComments {
 	// 댓글 내용
 	private String content;
 
-	public Long getHotPlaceCommentId() {
-		return hotPlaceCommentId;
+	public Long getHotplaceCommentId() {
+		return hotplaceCommentId;
 	}
 
-	public void setHotPlaceCommentId(Long hotPlaceCommentId) {
-		this.hotPlaceCommentId = hotPlaceCommentId;
+	public void setHotplaceCommentId(Long hotplaceCommentId) {
+		this.hotplaceCommentId = hotplaceCommentId;
 	}
 
-	public Long getHotPlaceId() {
-		return hotPlaceId;
+	public Long getHotplaceId() {
+		return hotplaceId;
 	}
 
-	public void setHotPlaceId(Long hotPlaceId) {
-		this.hotPlaceId = hotPlaceId;
+	public void setHotplaceId(Long hotplaceId) {
+		this.hotplaceId = hotplaceId;
 	}
 
 	public Long getUserId() {
@@ -49,7 +49,7 @@ public class HotPlaceComments {
 
 	@Override
 	public String toString() {
-		return "HotPlaceComments [hotPlaceCommentId=" + hotPlaceCommentId + ", hotPlaceId=" + hotPlaceId + ", userId="
+		return "HotplaceComments [hotplaceCommentId=" + hotplaceCommentId + ", hotplaceId=" + hotplaceId + ", userId="
 				+ userId + ", content=" + content + "]";
 	}
 
