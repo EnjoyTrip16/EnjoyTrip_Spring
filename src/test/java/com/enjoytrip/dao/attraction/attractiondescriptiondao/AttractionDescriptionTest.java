@@ -151,5 +151,46 @@ public class AttractionDescriptionTest {
 		List<AttractionDescription> afterAttractionDescription  = attractionDescriptionDao.retrieveAttractionDescription(attractionSearchCondition);
 		assertThat(afterAttractionDescription)
 		.isEmpty();
+	}		
+	
+	@Test
+	@DisplayName("관광지 설명 생성 테스트")
+	public void createAttractionDescription() {
+		//검색결과에 해당하는 관광지ID가 검색조건 관광지ID가 같아야함
+		
+		//give
+		
+		//DB에 생성할 DTO
+		AttractionDescription attractionDescription = new AttractionDescription();
+		attractionDescription.setAttractionId(20000000L);
+		attractionDescription.setHomepage("http://kau.ac.kr");
+		attractionDescription.setOverview("한국항공대입니다!");
+		
+		//when
+		
+		Long resultRow = attractionDescriptionDao.createAttractionDescription(attractionDescription);
+		System.out.println(resultRow);
+		
+		//then		
+		//삽입 결과로 1L이 정상적으로 반환
+		assertThat(resultRow).isEqualTo(1L);
+		
+		//null이 아닌PK로 조회시 row가 존재
+		AttractionSearchCondition attractionSearchCondition = new AttractionSearchCondition();
+		attractionSearchCondition.setAttractionId(attractionDescription.getAttractionId());
+		
+		List<AttractionDescription> resultAttractionDescription  = 
+				attractionDescriptionDao
+				.retrieveAttractionDescription(attractionSearchCondition);
+		
+		//조회시 해당 행이 존재하며 삽입한 attractionDescription DTO와 조회한 DTO가 같아야함
+		assertThat(resultAttractionDescription)
+		.hasSize(1);
+		
+		assertThat(resultAttractionDescription)
+		.usingRecursiveFieldByFieldElementComparator()
+		.containsOnly(attractionDescription);
+		
+		
 	}	
 }

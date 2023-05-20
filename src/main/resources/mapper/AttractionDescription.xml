@@ -27,4 +27,28 @@
 			attraction_id = #{attractionId}
 		</where>
 	</update>
+	<delete id = "deleteAttractionDescription" parameterType="AttractionSearchCondition">
+		delete
+		from
+			attraction_description
+		<where>
+			attraction_id = #{attractionId}
+		</where>
+	</delete>
+	<insert id="createAttractionDescription" parameterType="AttractionDescription">
+	INSERT
+	INTO
+		attraction_description
+		(
+			attraction_id,
+			homepage,
+			overview
+		)
+	VALUES
+	(
+		#{attractionId},
+		#{homepage},
+		#{overview}
+	)
+	</insert>
 </mapper>
