@@ -26,6 +26,9 @@ public class HotPlace {
 	// 변경 시간
 	private LocalDateTime updatedAt;
 
+	// 관광지 ID
+	private Long attractionId;
+	
 	// 조회수
 	private Integer readCount;
 
