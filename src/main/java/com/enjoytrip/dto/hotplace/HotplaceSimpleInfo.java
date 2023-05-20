@@ -2,6 +2,7 @@ package com.enjoytrip.dto.hotplace;
 
 import java.time.LocalDateTime;
 
+// 핫 플레이스 목록에 보일 간단한 정보 DTO
 public class HotplaceSimpleInfo {
 
 	// 핫 플레이스 번호 (PK)
