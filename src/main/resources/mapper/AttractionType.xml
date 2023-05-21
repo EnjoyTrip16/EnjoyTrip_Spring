@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.enjoytrip.dao.attraction.AttractionTypeDao">
+	<select id = "retrieveAttractionType" parameterType="AttractionSearchCondition" resultType="AttractionType">
+		select 
+			*
+		from
+			attraction_type
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="attractionTypeId!=null">
+					AND attraction_type_id = #{attractionTypeId}
+				</if>
+				<if test="keywordAttractionType!=null">
+					AND attraction_type like CONCAT('%',#{keywordAttractionType},'%')
+				</if>
+			</trim>
+		</where>
+	</select>
+	<insert id ="createAttractionType" parameterType="AttractionType" useGeneratedKeys="true" keyProperty="attractionTypeId">
+		insert
+		into
+			attraction_type(attraction_type)
+		values(
+			#{attractionType}
+		)	
+	</insert>
+	<update id ="updateAttractionType" parameterType="AttractionType">
+		update
+			attraction_type
+		<set>
+			<trim suffixOverrides=",">
+				<if test="attractionType!=null">
+					, attraction_type = #{attractionType}
+				</if>
+			</trim>
+		</set>
+		<where>
+			<trim suffixOverrides=",">
+				<if test="attractionTypeId!=null">
+					AND attraction_type_id = #{attractionTypeId}
+				</if>
+			</trim>
+		</where>
+	</update>
+	<delete id ="deleteAttractionType" parameterType="AttractionSearchCondition">
+		delete
+		from
+			attraction_type
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="attractionTypeId!=null">
+					AND attraction_type_id = #{attractionTypeId}
+				</if>
+			</trim>
+		</where>
+	</delete>
+</mapper>
