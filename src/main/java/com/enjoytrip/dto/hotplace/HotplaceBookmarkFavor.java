@@ -1,10 +1,10 @@
-package com.enjoytrip.hotplace.dto;
+package com.enjoytrip.dto.hotplace;
 
 //핫 플레이스 북마크 좋아요 DTO
-public class HotPlaceBookmarkFavor {
+public class HotplaceBookmarkFavor {
 
 	// 핫 플레이스 번호 (FK)
-	private Long hotPlaceId;
+	private Long hotplaceId;
 
 	// 사용자 번호 (FK)
 	private Long userId;
@@ -15,12 +15,12 @@ public class HotPlaceBookmarkFavor {
 	// 좋아요
 	private Integer favor;
 
-	public Long getHotPlaceId() {
-		return hotPlaceId;
+	public Long getHotplaceId() {
+		return hotplaceId;
 	}
 
-	public void setHotPlaceId(Long hotPlaceId) {
-		this.hotPlaceId = hotPlaceId;
+	public void setHotplaceId(Long hotplaceId) {
+		this.hotplaceId = hotplaceId;
 	}
 
 	public Long getUserId() {
@@ -49,7 +49,7 @@ public class HotPlaceBookmarkFavor {
 
 	@Override
 	public String toString() {
-		return "HotPlaceBookmarkFavor [hotPlaceId=" + hotPlaceId + ", userId=" + userId + ", bookmark=" + bookmark
+		return "HotplaceBookmarkFavor [hotplaceId=" + hotplaceId + ", userId=" + userId + ", bookmark=" + bookmark
 				+ ", favor=" + favor + "]";
 	}
 

@@ -1,0 +1,14 @@
+package com.enjoytrip.dto.hotplace;
+
+public enum HotplaceSortOrder {
+	DICTIONARY_ASC,
+	DICTIONARY_DESC,
+	READCOUNT_ASC,
+	READCOUNT_DESC,
+	COMMENT_ASC,
+	COMMENT_DESC,
+	BOOKMARK_ASC,
+	BOOKMARK_DESC,
+	FAVOR_ASC,
+	FAVOR_DESC,
+}
