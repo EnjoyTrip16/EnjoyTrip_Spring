@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.enjoytrip.dao.attraction.AttractionInfoDao">
+	<select id ="retrieveAttractionInfo" parameterType="AttractionSearchCondition" resultType="AttractionInfo">
+		select 
+			*
+		from
+			attraction_info
+		<where>
+			<trim prefixOverrides="AND">
+				<if test="attractionId!=null">
+					attraction_id = #{attractionId}
+				</if>
+			</trim>
+		</where>
+	</select>	
+	<insert id = "createAttractionInfo" parameterType="AttractionInfo">
+		INSERT
+		INTO
+			attraction_info(
+				attraction_id,
+				addr1,
+				addr2,
+				zipcode,
+				tel,
+				first_image,
+				first_image2,
+				latitude,
+				longitude,
+				sido_code,
+				gugun_code
+			)			
+		VALUES(
+			#{attractionId},
+			#{addr1},
+			#{addr2},
+			#{zipcode},
+			#{tel},
+			#{firstImage},
+			#{firstImage2},
+			#{latitude},
+			#{longitude},
+			#{sidoCode},
+			#{gugunCode}
+			
+		)
+	</insert>
+	<update id ="updateAttractionInfo" parameterType="AttractionInfo">
+		update
+			attraction_info
+		<set>
+			<trim prefixOverrides=",">
+				<if test="addr1!=null">
+					,addr1 = #{addr1}
+				</if>
+				<if test="addr2!=null">
+					,addr2 = #{addr2}
+				</if>
+				<if test="zipcode!=null">
+					,zipcode = #{zipcode}
+				</if>
+				<if test="tel!=null">
+					,tel = #{tel}
+				</if>
+				<if test="firstImage!=null">
+					,first_image = #{firstImage}
+				</if>
+				<if test="firstImage2!=null">
+					,first_image2 = #{firstImage2}
+				</if>
+				<if test="latitude!=null">
+					,latitude = #{latitude}
+				</if>
+				<if test="longitude!=null">
+					,longitude = #{longitude}
+				</if>
+				<if test="sidoCode!=null">
+					,sido_code = #{sidoCode}
+				</if>
+				<if test="gugunCode!=null">
+					,gugun_code = #{gugunCode}
+				</if>
+			</trim>
+		</set>
+	</update>
+	
+	<delete id ="deleteAttractionInfo" parameterType="AttractionSearchCondition">
+		delete
+		from
+			attraction_info
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="attractionId!=null">
+					AND attraction_id = #{attractionId}
+				</if>
+			</trim>
+		</where>
+	</delete>
+</mapper>
