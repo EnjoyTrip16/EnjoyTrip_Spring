@@ -2,15 +2,17 @@ package com.enjoytrip.dao.attraction;
 
 import java.util.List;
 
+import com.enjoytrip.dto.attraction.AttractionUserBookmarkFavor;
+import com.enjoytrip.dto.attraction.AttractionUserSearchCondition;
+
 public interface AttractionUserBookmarkFavorDao {
 	
-	public List<AttractionUserBookmarkFavorDao> retrieveAttractionUserBookmarkFavor(Long userId,Long attractionId);
+	public List<AttractionUserBookmarkFavor> retrieveAttractionUserBookmarkFavor(AttractionUserSearchCondition aUserSearchCondition);
 	
-	public Long updateAttractionUserBookmarkFavor(Long userId,Long attractionId);
+	public Long updateAttractionUserBookmarkFavor(AttractionUserBookmarkFavor attractionUserBookmarkFavor);
 	
-	public Long deleteAttractionUserBookmarkFavor(Long userId,Long attractionId);
+	public Long deleteAttractionUserBookmarkFavor(AttractionUserSearchCondition aUserSearchCondition);
 	
-	public Long createAttractionUserBookmarkFavor(Long userId,Long attractionId);
-	
+	public Long createAttractionUserBookmarkFavor(AttractionUserBookmarkFavor attractionUserBookmarkFavor);
 	
 }
