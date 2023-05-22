@@ -13,7 +13,7 @@ public class PlanAttraction {
 	private Long attractionId;
 	
 	//plan_attraction 여행계획에서의 관광지 방문 순서
-	private Integer order;
+	private Long sequence;
 	
 	//plan_attraction 여행계획에서 해당 관광지를 추가한 시간
 	private LocalDateTime addedAt;
@@ -34,12 +34,12 @@ public class PlanAttraction {
 		this.attractionId = attractionId;
 	}
 
-	public Integer getOrder() {
-		return order;
+	public Long getSequence() {
+		return sequence;
 	}
 
-	public void setOrder(Integer order) {
-		this.order = order;
+	public void setSequence(Long sequence) {
+		this.sequence = sequence;
 	}
 	
 	public LocalDateTime getAddedAt() {
@@ -52,7 +52,7 @@ public class PlanAttraction {
 
 	@Override
 	public String toString() {
-		return "PlanAttraction [planId=" + planId + ", attractionId=" + attractionId + ", order=" + order + ", addedAt="
+		return "PlanAttraction [planId=" + planId + ", attractionId=" + attractionId + ", order=" + sequence + ", addedAt="
 				+ addedAt + "]";
 	}
 	
