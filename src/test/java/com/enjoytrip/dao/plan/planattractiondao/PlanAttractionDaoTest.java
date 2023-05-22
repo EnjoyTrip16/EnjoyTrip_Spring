@@ -2,6 +2,7 @@ package com.enjoytrip.dao.plan.planattractiondao;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
@@ -58,7 +59,9 @@ public class PlanAttractionDaoTest {
 		expectPlanAttraction.setAttractionId(attractionId);
 		
 		PlanSearchCondition planSearchCondition = new PlanSearchCondition();
-		planSearchCondition.setAttractionId(attractionId);
+		List<Long> attractionIdList = new ArrayList<>();
+		attractionIdList.add(attractionId);
+		planSearchCondition.setAttractionIdList(attractionIdList);
 		planSearchCondition.setPlanId(planId);
 
 		List<PlanAttraction> planAttractionList = planAttractionDao.retrievePlanAttraction(planSearchCondition);
@@ -96,7 +99,9 @@ public class PlanAttractionDaoTest {
 		expectPlanAttraction.setAttractionId(attractionId);
 		
 		PlanSearchCondition planSearchCondition = new PlanSearchCondition();
-		planSearchCondition.setAttractionId(attractionId);
+		List<Long> attractionIdList = new ArrayList<>();
+		attractionIdList.add(attractionId);
+		planSearchCondition.setAttractionIdList(attractionIdList);
 		planSearchCondition.setPlanId(planId);
 		
 		//when
@@ -125,7 +130,9 @@ public class PlanAttractionDaoTest {
 		Long attractionId = 125266L;
 		PlanSearchCondition planSearchCondition = new PlanSearchCondition();
 		planSearchCondition.setPlanId(planId);
-		planSearchCondition.setAttractionId(attractionId);
+		List<Long> attractionIdList = new ArrayList<>();
+		attractionIdList.add(attractionId);
+		planSearchCondition.setAttractionIdList(attractionIdList);
 		
 		//행이 존재해야함
 		List<PlanAttraction> planAttractionList = planAttractionDao.retrievePlanAttraction(planSearchCondition);

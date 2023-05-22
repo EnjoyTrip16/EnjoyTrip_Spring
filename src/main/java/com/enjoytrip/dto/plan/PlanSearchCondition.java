@@ -1,31 +1,31 @@
 package com.enjoytrip.dto.plan;
 
+import java.util.List;
+
 public class PlanSearchCondition {
 	
 	private Long authorUserId;
 	
 	private Long planId;
 	
-	private String tagName;
+	private List<String> tagNameList;
 	
-	private Long tagId;
+	private List<Long> tagIdList;
 	
 	private Long memberUserId;
 	
 	private String planName;
 	
-	private Long attractionId;
-	
-	private String attractionName;
+	private List<Long> attractionIdList;
 	
 	private PlanVisibility visibility;
 	
-	private Integer index;
+	private Integer index=0;
 	
-	private Integer pageSize;
+	private Integer pageSize=10;
 	
 	private PlanSearchOrder planSearchOrder = PlanSearchOrder.DICTIONARY_ASC;
-	
+
 	public Long getAuthorUserId() {
 		return authorUserId;
 	}
@@ -42,20 +42,20 @@ public class PlanSearchCondition {
 		this.planId = planId;
 	}
 
-	public String getTagName() {
-		return tagName;
+	public List<String> getTagNameList() {
+		return tagNameList;
 	}
 
-	public void setTagName(String tagName) {
-		this.tagName = tagName;
+	public void setTagNameList(List<String> tagNameList) {
+		this.tagNameList = tagNameList;
 	}
 
-	public Long getTagId() {
-		return tagId;
+	public List<Long> getTagIdList() {
+		return tagIdList;
 	}
 
-	public void setTagId(Long tagId) {
-		this.tagId = tagId;
+	public void setTagIdList(List<Long> tagIdList) {
+		this.tagIdList = tagIdList;
 	}
 
 	public Long getMemberUserId() {
@@ -74,20 +74,12 @@ public class PlanSearchCondition {
 		this.planName = planName;
 	}
 
-	public Long getAttractionId() {
-		return attractionId;
+	public List<Long> getAttractionIdList() {
+		return attractionIdList;
 	}
 
-	public void setAttractionId(Long attractionId) {
-		this.attractionId = attractionId;
-	}
-
-	public String getAttractionName() {
-		return attractionName;
-	}
-
-	public void setAttractionName(String attractionName) {
-		this.attractionName = attractionName;
+	public void setAttractionIdList(List<Long> attractionIdList) {
+		this.attractionIdList = attractionIdList;
 	}
 
 	public PlanVisibility getVisibility() {
@@ -124,10 +116,12 @@ public class PlanSearchCondition {
 
 	@Override
 	public String toString() {
-		return "PlanSearchCondition [authorUserId=" + authorUserId + ", planId=" + planId + ", tagName=" + tagName
-				+ ", tagId=" + tagId + ", memberUserId=" + memberUserId + ", planName=" + planName + ", attractionId="
-				+ attractionId + ", attractionName=" + attractionName + ", visibility=" + visibility + ", index="
-				+ index + ", pageSize=" + pageSize + ", planSearchOrder=" + planSearchOrder + "]";
+		return "PlanSearchCondition [authorUserId=" + authorUserId + ", planId=" + planId + ", tagNameList="
+				+ tagNameList + ", tagIdList=" + tagIdList + ", memberUserId=" + memberUserId + ", planName=" + planName
+				+ ", attractionIdList=" + attractionIdList + ","
+				+ ", visibility=" + visibility + ", index=" + index + ", pageSize=" + pageSize + ", planSearchOrder="
+				+ planSearchOrder + "]";
 	}
+	
 	
 }

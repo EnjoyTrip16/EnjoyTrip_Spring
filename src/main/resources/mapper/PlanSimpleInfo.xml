@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace = "com.enjoytrip.dao.plan.PlanSimpleInfoDao">
+	<select id = "retrievePlanSimpleInfo" parameterType="PlanSearchCondition" resultType="PlanSimpleInfo">
+		select 
+			plan.plan_id,
+			plan.plan_name,
+			plan.created_at,
+			plan.visibility,
+			plan.user_id,
+			user.id as author,
+			COALESCE(bookmark_count, 0) AS bookmark,
+			COALESCE(favor_count, 0) AS favor,
+			COALESCE(comment_count, 0) AS comment
+		from
+			plan
+		left join
+			user
+		on
+			plan.user_id = user.user_id
+		left join
+			(
+				select plan_user_bookmark_favor.plan_id,
+					   SUM(case when bookmark = true then 1 else 0 end) as bookmark_count,
+                          SUM(case when favor = true then 1 else 0 end) as favor_count
+				from
+					plan_user_bookmark_favor
+				group by
+					plan_user_bookmark_favor.plan_id
+               )as plan_user_bookmark_favor
+		on
+			plan.plan_id = plan_user_bookmark_favor.plan_id
+		left join
+			(
+				select plan_comment.plan_id,
+					count(plan_comment.plan_id) as comment_count
+				from
+					plan_comment
+				group by
+					plan_comment.plan_id
+              )as plan_comment
+		on
+			plan.plan_id = plan_comment.plan_id
+		<where>
+			<trim prefixOverrides="AND">
+				<if test="attractionIdList!=null">
+					AND (select count(*) from plan_attraction where plan_attraction.plan_id = plan.plan_id 
+						and
+						plan_attraction.attraction_id in
+						<foreach collection="attractionIdList" item="attractionId" open="(" close=")">
+							#{attractionId}
+						</foreach>
+					 ) = #{attractionIdList.size()}
+				</if>
+				<if test="visibility!=null">
+					AND plan.visibility=#{visibility}
+				</if>
+				<if test="planName!=null">
+					AND plan.plan_name=#{planName}
+				</if>
+				<if test="memberUserId!=null">
+					AND EXISTS( select 1 from plan_member where user_Id=#{memberUserId} and plan.plan_id = plan_member.plan_id)
+				</if>
+				<if test="authorUserId!=null">
+					AND plan.user_id = #{authorUserId}
+				</if>
+				<if test="planId!=null">
+					AND plan.plan_id = #{planId}
+				</if>
+			</trim>
+		</where>
+		order by 
+		<choose>
+			<when test="planSearchOrder.name()=='DICTIONARY_ASC'">
+				plan.plan_name ASC
+			</when>
+			<when test="planSearchOrder.name()=='DICTIONARY_DESC'">
+				plan.plan_name DESC
+			</when>
+			<when test="planSearchOrder.name()=='READCOUNT_ASC'">
+				read_count ASC
+			</when>
+			<when test="planSearchOrder.name()=='READCOUNT_DESC'">
+				read_count DESC
+			</when>
+			<when test="planSearchOrder.name()=='BOOKMARK_ASC'">
+				bookmark ASC
+			</when>
+			<when test="planSearchOrder.name()=='BOOKMARK_DESC'">
+				bookmark DESC
+			</when>
+			<when test="planSearchOrder.name()=='FAVOR_ASC'">
+				favor ASC
+			</when>
+			<when test="planSearchOrder.name()=='FAVOR_DESC'">
+				favor DESC
+			</when>
+			<when test="planSearchOrder.name()=='COMMENT_ASC'">
+				comment asc
+			</when>
+			<when test="planSearchOrder.name()=='COMMENT_DESC'">
+				comment desc
+			</when>
+			<otherwise>
+				plan.plan_name ASC
+			</otherwise>
+		</choose>
+		limit #{index},#{pageSize}
+	</select>
+</mapper>

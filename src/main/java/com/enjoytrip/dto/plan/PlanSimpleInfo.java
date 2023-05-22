@@ -27,6 +27,8 @@ public class PlanSimpleInfo {
 	private Long bookmark;
 	
 	private Long favor;
+	
+	private Long comment;
 
 	public Long getPlanId() {
 		return planId;
@@ -99,6 +101,20 @@ public class PlanSimpleInfo {
 	public void setFavor(Long favor) {
 		this.favor = favor;
 	}
-	
+
+	public Long getComment() {
+		return comment;
+	}
+
+	public void setComment(Long comment) {
+		this.comment = comment;
+	}
+
+	@Override
+	public String toString() {
+		return "PlanSimpleInfo [planId=" + planId + ", planName=" + planName + ", planImage=" + planImage
+				+ ", createdAt=" + createdAt + ", userId=" + userId + ", author=" + author + ", visibility="
+				+ visibility + ", bookmark=" + bookmark + ", favor=" + favor + ", comment=" + comment + "]";
+	}
 	
 }

@@ -11,8 +11,11 @@
 				<if test="planId!=null">
 					AND plan_id = #{planId}
 				</if>
-				<if test="attractionId!=null">
-					AND attraction_id = #{attractionId}
+				<if test="attractionIdList!=null">
+					AND attraction_id in 
+					<foreach collection="attractionIdList" item="attractionId" open="(" close=")">
+						#{attractionId}
+					</foreach>
 				</if>
 			</trim>
 		</where>
@@ -44,7 +47,14 @@
 			sequence = #{sequence}
 		</set>
 		<where>
-			plan_id = #{planId} AND attraction_id = #{attractionId}
+			<trim suffixOverrides="AND">
+				<if test="planId!=null">
+					AND plan_id = #{planId}
+				</if>
+				<if test="attractionId!=null">
+					AND attraction_id = #{attractionId}
+				</if>
+			</trim>
 		</where>
 	</update>
 	
@@ -55,8 +65,11 @@
 			plan_attraction
 		<where>
 			<trim suffixOverrides="AND">
-				<if test="attractionId!=null">
-					AND attraction_id = #{attractionId}
+				<if test="attractionIdList!=null">
+					AND attraction_id in
+				   <foreach item="attractionId" index="index" collection="attractionIdList" open="(" close=")" separator=",">
+				   		#{attractionId}
+				   </foreach>
 				</if>
 				<if test="planId!=null">
 					AND plan_id = #{planId}
