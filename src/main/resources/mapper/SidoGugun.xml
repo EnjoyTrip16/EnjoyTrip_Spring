@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace = "com.enjoytrip.dao.attraction.SidoGugunDao">
+	<select id = "retrieveSido" resultType="Sido">
+		select
+			*
+		from sido
+	</select>	
+	
+	<select id = "retrieveGugun" parameterType="java.lang.Long" resultType="Gugun">
+		select
+			*
+		from gugun
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="sidoCode!=null">
+					AND sido_code = #{sidoCode}
+				</if>
+				<if test="gugunCode!=null">
+					AND gugun_code = #{gugunCode}
+				</if>
+			</trim>
+		</where>
+	</select>
+</mapper>
