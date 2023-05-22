@@ -1,6 +1,6 @@
 package com.enjoytrip.dto.attraction;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 //관광지 정보 전체에 대한 DTO
 public class AttractionTotalInfo {
@@ -10,7 +10,7 @@ public class AttractionTotalInfo {
 	
 	//attraction table 관광지의 최종 수정일
 	//다른테이블에 있는 관광지 정보를 포함하여 모든 관광지 정보에 대한 수정 시간
-	private Timestamp updatedAt;
+	private LocalDateTime updatedAt;
 	
 	//attraction table 관광지명
 	private String title;
@@ -27,6 +27,9 @@ public class AttractionTotalInfo {
 	//관광지에 대한 상세정보를 조회했을때의 조회수
 	private Integer readCount;
 	
+	//attraction_info table 우편번호 
+	private String zipcode;
+		
 	//attraction_info table 관광지에 대한 간략한 주소
 	private String addr1;
 	
@@ -35,7 +38,11 @@ public class AttractionTotalInfo {
 	
 	//attraction_info table 관광지 사진
 	//사진에 해당하는 URL
-	private String first_image;
+	private String firstImage;	
+	
+	//attraction_info table 관광지 두번째 사진
+	//사진에 해당하는 URL
+	private String firstImage2;
 	
 	//attraction_info table 위도
 	private String latitude;
@@ -54,7 +61,15 @@ public class AttractionTotalInfo {
 	
 	//attraction_user_rating table
 	//유저가 관광지에 매긴 평점 점수의 평균 (0~5) 소수점 1자리수
-	private String rating;
+	private Double ratingAvg;
+	
+	//attraction_user_rating table
+	//유저가 관광지에 매긴 평점 개수
+	private Integer ratingCount;
+	
+	private Integer bookmark;
+	
+	private Integer favor;
 
 	public Long getAttractionId() {
 		return attractionId;
@@ -64,11 +79,11 @@ public class AttractionTotalInfo {
 		this.attractionId = attractionId;
 	}
 
-	public Timestamp getUpdatedAt() {
+	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
 	}
 
-	public void setUpdatedAt(Timestamp updatedAt) {
+	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
 
@@ -104,6 +119,14 @@ public class AttractionTotalInfo {
 		this.readCount = readCount;
 	}
 
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
 	public String getAddr1() {
 		return addr1;
 	}
@@ -120,12 +143,20 @@ public class AttractionTotalInfo {
 		this.tel = tel;
 	}
 
-	public String getFirst_image() {
-		return first_image;
+	public String getFirstImage() {
+		return firstImage;
 	}
 
-	public void setFirst_image(String first_image) {
-		this.first_image = first_image;
+	public void setFirstImage(String firstImage) {
+		this.firstImage = firstImage;
+	}
+
+	public String getFirstImage2() {
+		return firstImage2;
+	}
+
+	public void setFirstImage2(String firstImage2) {
+		this.firstImage2 = firstImage2;
 	}
 
 	public String getLatitude() {
@@ -168,23 +199,46 @@ public class AttractionTotalInfo {
 		this.telname = telname;
 	}
 
-	public String getRating() {
-		return rating;
+	public Double getRatingAvg() {
+		return ratingAvg;
 	}
 
-	public void setRating(String rating) {
-		this.rating = rating;
+	public void setRatingAvg(Double ratingAvg) {
+		this.ratingAvg = ratingAvg;
+	}
+
+	public Integer getRatingCount() {
+		return ratingCount;
+	}
+
+	public void setRatingCount(Integer ratingCount) {
+		this.ratingCount = ratingCount;
+	}
+
+	public Integer getBookmark() {
+		return bookmark;
+	}
+
+	public void setBookmark(Integer bookmark) {
+		this.bookmark = bookmark;
+	}
+
+	public Integer getfavor() {
+		return favor;
+	}
+
+	public void setfavor(Integer favor) {
+		this.favor = favor;
 	}
 
 	@Override
 	public String toString() {
 		return "AttractionTotalInfo [attractionId=" + attractionId + ", updatedAt=" + updatedAt + ", title=" + title
 				+ ", attractionTypeId=" + attractionTypeId + ", attractionType=" + attractionType + ", readCount="
-				+ readCount + ", addr1=" + addr1 + ", tel=" + tel + ", first_image=" + first_image + ", latitude="
-				+ latitude + ", longitude=" + longitude + ", homepage=" + homepage + ", overview=" + overview
-				+ ", telname=" + telname + ", rating=" + rating + "]";
+				+ readCount + ", zipcode=" + zipcode + ", addr1=" + addr1 + ", tel=" + tel + ", firstImage="
+				+ firstImage + ", firstImage2=" + firstImage2 + ", latitude=" + latitude + ", longitude=" + longitude
+				+ ", homepage=" + homepage + ", overview=" + overview + ", telname=" + telname + ", ratingAvg="
+				+ ratingAvg + ", ratingCount=" + ratingCount + ", bookmark=" + bookmark + ", favor=" + favor + "]";
 	}
-	
-	
 	
 }
