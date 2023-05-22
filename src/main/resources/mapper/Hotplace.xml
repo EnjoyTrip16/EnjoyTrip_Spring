@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.enjoytrip.dao.hotplace.HotplaceDao">
+
+	<select id="searchHotplace"
+		parameterType="HotplaceSearchCondition" resultType="Hotplace">
+		select
+			hotplace.hotplace_id,
+			hotplace.user_id,
+			title,
+			hotplace.content,
+			image,
+			created_at,
+			updated_at,
+			attraction_id,
+			read_count
+		from hotplace
+		
+		<where>
+			<trim prefixOverrides="AND">
+				<if test="hotplaceId!=null">
+					AND hotplace.hotplace_id = #{hotplaceId}
+				</if>
+				<if test="userId!=null">
+					AND hotplace.user_id = #{userId}
+				</if>
+				<if test="keywordTitle">
+					AND hotplace.title like CONCAT('%',#{keywordTitle},'%')
+				</if>
+				<!-- 
+				<if test="sidoCode!=null">
+					AND sido_code = #{sidoCode}
+				</if>
+				<if test="gugunCode!=null">
+					AND gugun_code = #{gugunCode}
+				</if>
+				<if test="attractionTypeId!=null">
+					AND attraction.attraction_type_id = #{attractionTypeId}
+				</if>
+				<if test="keywordAttractionType!=null">
+					AND attraction.attraction_type like CONCAT('%',#{keywordAttractionType},'%')
+				</if>
+				<if test="keywordAttractionTitle!=null">
+					AND attraction.title like CONCAT('%',#{keywordAttractionTitle},'%')
+				</if>
+				 -->
+			</trim>
+		</where>
+		<choose>
+			<when test="sortOrder==null">
+				order by updated_at ASC
+			</when>
+			<when test="sortOrder.name()=='DICTIONARY_ASC'">
+				order by title ASC
+			</when>
+			<when test="sortOrder.name()=='DICTIONARY_DESC'">
+				order by title DESC
+			</when>
+			<when test="sortOrder.name()=='READCOUNT_ASC'">
+				order by read_count ASC
+			</when>
+			<when test="sortOrder.name()=='READCOUNT_DESC'">
+				order by read_count DESC
+			</when>
+			
+			<when test="sortOrder.name()=='COMMENT_ASC'">
+				LEFT JOIN hotplace_comments
+				ON hotplace.hotplace_id = hotplace_comments.hotplace_id
+				GROUP BY hotplace.hotplace_id
+				ORDER BY COUNT(hotplace_comments.hotplace_id) ASC
+			</when>
+			<when test="sortOrder.name()=='COMMENT_DESC'">
+				LEFT JOIN hotplace_comments
+				ON hotplace.hotplace_id = hotplace_comments.hotplace_id
+				GROUP BY hotplace.hotplace_id
+				ORDER BY COUNT(hotplace_comments.hotplace_id) DESC
+			</when>
+			
+			<when test="sortOrder.name()=='BOOKMARK_ASC'">
+				INNER JOIN hotplace_bookmark_like
+				ON hotplace.hotplace_id = hotplace_bookmark_like.hotplace_id
+				WHERE hotplace_bookmark_like.bookmark = 1
+				GROUP BY hotplace.hotplace_id
+				ORDER BY COUNT(hotplace_bookmark_like.hotplace_id) ASC
+			</when>
+			<when test="sortOrder.name()=='BOOKMARK_DESC'">
+				INNER JOIN hotplace_bookmark_like
+				ON hotplace.hotplace_id = hotplace_bookmark_like.hotplace_id
+				WHERE hotplace_bookmark_like.bookmark = 1
+				GROUP BY hotplace.hotplace_id
+				ORDER BY COUNT(hotplace_bookmark_like.hotplace_id) DESC
+			</when>
+			
+			<when test="sortOrder.name()=='FAVOR_ASC'">
+				INNER JOIN hotplace_bookmark_like
+				ON hotplace.hotplace_id = hotplace_bookmark_like.hotplace_id
+				WHERE hotplace_bookmark_like.like = 1
+				GROUP BY hotplace.hotplace_id
+				ORDER BY COUNT(hotplace_bookmark_like.hotplace_id) ASC
+			</when>
+			<when test="sortOrder.name()=='FAVOR_DESC'">
+				INNER JOIN hotplace_bookmark_like
+				ON hotplace.hotplace_id = hotplace_bookmark_like.hotplace_id
+				WHERE hotplace_bookmark_like.like = 1
+				GROUP BY hotplace.hotplace_id
+				ORDER BY COUNT(hotplace_bookmark_like.hotplace_id) DESC
+			</when>
+			
+			 
+		</choose>
+	</select>
+
+</mapper>

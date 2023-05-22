@@ -15,19 +15,19 @@ public class HotplaceSearchCondition {
 	private String keywordTitle;
 
 	// 관광지에 해당하는 시도 코드
-	private Integer sidoCode;
+	private Integer sidoCode; //
 
 	// 관광지에 해당하는 구군 코드
-	private Integer gugunCode;
+	private Integer gugunCode; //
 
 	// 관광지 종류에 해당하는 코드
-	private Long attractionTypeId;
+	private Long attractionTypeId; //
 
 	// 관광지 종류명 검색 키워드
-	private String keywordAttractionType;
+	private String keywordAttractionType; //
 
 	// 관광지명 검색 키워드
-	private String keywordAttractionTitle;
+	private String keywordAttractionTitle; //
 
 	private HotplaceSortOrder sortOrder;
 
