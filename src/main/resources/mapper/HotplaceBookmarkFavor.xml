@@ -15,7 +15,7 @@
 			#{hotplaceId},
 			#{userId},
 			#{bookmark},
-			#{favor},
+			#{favor}
 		)
 	</insert>
 	
