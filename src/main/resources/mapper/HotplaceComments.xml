@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.enjoytrip.dao.hotplace.HotplaceCommentsDao">
+
+	<insert id="createHotplaceComment" parameterType="HotplaceComment">
+		INSERT INTO hotplace_comments(
+			hotplace_id,
+			user_id,
+			conten,
+		)
+		VALUES (
+			#{hotplaceId},
+			#{userId},
+			#{content}
+		)
+	</insert>
+	
+	<update id="updateHotplaceComment">
+		UPDATE hotplace_bookmark_favor
+		SET
+			content = #{content}
+		<where>
+			hotplace_id = #{hotplaceId}
+			AND user_id = #{userId}
+		</where>
+	</update>
+	
+	<select id="searchHotplaceComments" parameterType="java.lang.Long" resultType="HotplaceComment">
+		select
+			hotplace_comment_id,
+			hotplace_id,
+			user_id,
+			content
+		from
+			hotplace_comments
+		where 
+			hotplace_comment_id = #{hotplaceCommentId}
+	</select>
+	
+	<select id="searchCommentByHotplace" parameterType="java.lang.Long">
+		select count(*)
+		from hotplace_comments
+		where hotplace_id = #{hotplaceId}
+	</select>
+	
+	<select id="searchCommentByUser" parameterType="java.lang.Long">
+		select count(*)
+		from hotplace_comments
+		where user_id = #{userId}
+	</select>
+	
+	<delete id="deleteHotplaceComment" parameterType="HotplaceComment">
+		DELETE FROM hotplace_comments
+		<where>
+			hotplace_comment_id = #{hotplaceCommentId}
+			AND hotplace_id = #{hotplaceId}
+			AND user_id = #{userId}
+		</where>
+	</delete>
+	
+</mapper>
