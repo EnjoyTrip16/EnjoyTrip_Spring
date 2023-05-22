@@ -1,7 +1,10 @@
 package com.enjoytrip.dao.hotplace;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.enjoytrip.dto.hotplace.HotplaceBookmarkFavor;
 
+@Mapper
 // 핫 플레이스 북마크, 좋아요 DAO
 public interface HotplaceBookmarkFavorDao {
 
