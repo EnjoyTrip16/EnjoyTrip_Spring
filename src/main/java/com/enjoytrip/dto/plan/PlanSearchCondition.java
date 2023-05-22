@@ -8,6 +8,8 @@ public class PlanSearchCondition {
 	
 	private Long planId;
 	
+	private List<Long> planIdList;
+	
 	private List<String> tagNameList;
 	
 	private List<Long> tagIdList;
@@ -26,6 +28,8 @@ public class PlanSearchCondition {
 	
 	private PlanSearchOrder planSearchOrder = PlanSearchOrder.DICTIONARY_ASC;
 
+	private Long commentId;
+	
 	public Long getAuthorUserId() {
 		return authorUserId;
 	}
@@ -114,14 +118,29 @@ public class PlanSearchCondition {
 		this.planSearchOrder = planSearchOrder;
 	}
 
+	public List<Long> getPlanIdList() {
+		return planIdList;
+	}
+
+	public void setPlanIdList(List<Long> planIdList) {
+		this.planIdList = planIdList;
+	}
+
+	public Long getCommentId() {
+		return commentId;
+	}
+
+	public void setCommentId(Long commentId) {
+		this.commentId = commentId;
+	}
+
 	@Override
 	public String toString() {
-		return "PlanSearchCondition [authorUserId=" + authorUserId + ", planId=" + planId + ", tagNameList="
-				+ tagNameList + ", tagIdList=" + tagIdList + ", memberUserId=" + memberUserId + ", planName=" + planName
-				+ ", attractionIdList=" + attractionIdList + ","
-				+ ", visibility=" + visibility + ", index=" + index + ", pageSize=" + pageSize + ", planSearchOrder="
-				+ planSearchOrder + "]";
+		return "PlanSearchCondition [authorUserId=" + authorUserId + ", planId=" + planId + ", planIdList=" + planIdList
+				+ ", tagNameList=" + tagNameList + ", tagIdList=" + tagIdList + ", memberUserId=" + memberUserId
+				+ ", planName=" + planName + ", attractionIdList=" + attractionIdList + ", visibility=" + visibility
+				+ ", index=" + index + ", pageSize=" + pageSize + ", planSearchOrder=" + planSearchOrder
+				+ ", commentId=" + commentId + "]";
 	}
-	
 	
 }

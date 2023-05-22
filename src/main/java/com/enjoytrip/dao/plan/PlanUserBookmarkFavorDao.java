@@ -15,5 +15,4 @@ public interface PlanUserBookmarkFavorDao {
 	
 	public Long createPlanUserBookmarkFavor(PlanUserBookmarkFavor PlanUserBookmarkFavor);
 	
-
 }

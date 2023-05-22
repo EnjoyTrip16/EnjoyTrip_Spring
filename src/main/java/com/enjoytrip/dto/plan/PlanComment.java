@@ -1,5 +1,7 @@
 package com.enjoytrip.dto.plan;
 
+import java.time.LocalDateTime;
+
 //여행 계획에 대한 댓글 정보 DTO
 public class PlanComment {
 
@@ -17,14 +19,16 @@ public class PlanComment {
 	
 	//plan_comment PK plan_comment FK (recursive relationship)
 	//답글대상의 ID
-	private Long reply_id;
-
-	public Long getComment_id() {
+	private Long replyId;
+	
+	private LocalDateTime createdAt;
+	
+	public Long getCommentId() {
 		return commentId;
 	}
 
-	public void setComment_id(Long comment_id) {
-		this.commentId = comment_id;
+	public void setCommentId(Long commentId) {
+		this.commentId = commentId;
 	}
 
 	public Long getPlanId() {
@@ -51,19 +55,29 @@ public class PlanComment {
 		this.content = content;
 	}
 
-	public Long getReply_id() {
-		return reply_id;
+	public Long getReplyId() {
+		return replyId;
 	}
 
-	public void setReply_id(Long reply_id) {
-		this.reply_id = reply_id;
+	public void setReplyId(Long replyId) {
+		this.replyId = replyId;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
 	}
 
 	@Override
 	public String toString() {
-		return "PlanComment [comment_id=" + commentId + ", planId=" + planId + ", userId=" + userId + ", content="
-				+ content + ", reply_id=" + reply_id + "]";
+		return "PlanComment [commentId=" + commentId + ", planId=" + planId + ", userId=" + userId + ", content="
+				+ content + ", replyId=" + replyId + ", createdAt=" + createdAt + "]";
 	}
+	
+	
 
 	
 }

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.enjoytrip.dao.plan.PlanCommentDao">
+	<select id = "retrievePlanComment" parameterType="PlanSearchCondition" resultType="PlanComment">
+		select 
+			*
+		from
+			plan_comment
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="planId!=null">
+					AND plan_id = #{planId}
+				</if>
+				<if test="authorUserId!=null">
+					AND user_id = #{authorUserId}
+				</if>
+				<if test="commentId!=null">
+					AND comment_id = #{commentId}
+				</if>
+			</trim>
+		</where>
+	</select>
+	
+	<insert id = "createPlanComment" parameterType="PlanComment" useGeneratedKeys="true" keyProperty="commentId">
+		insert
+		into
+			plan_comment
+			(
+				plan_id,
+				user_id,
+				content,
+				reply_id
+			)
+		values
+		(
+			#{planId},
+			#{userId},
+			#{content},
+			#{replyId}
+		)
+	</insert>
+	
+	<update id = "updatePlanComment" parameterType="PlanComment">
+		update
+			plan_comment
+		<set>
+			content = #{content}
+		</set>
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="commentId!=null">
+					AND comment_id = #{commentId}
+				</if>
+			</trim>
+		</where>
+	</update>
+	
+	
+	<delete id = "deletePlanComment" parameterType="PlanSearchCondition">
+		delete
+		from
+			plan_comment
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="commentId!=null">
+					AND comment_id = #{commentId}
+				</if>
+			</trim>
+		</where>
+	</delete>
+</mapper>

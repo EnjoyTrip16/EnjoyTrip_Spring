@@ -39,12 +39,12 @@ public class PlanUserBookmarkFavor {
 		this.bookmark = bookmark;
 	}
 
-	public Boolean getLike() {
+	public Boolean getFavor() {
 		return favor;
 	}
 
-	public void setLike(Boolean like) {
-		this.favor = like;
+	public void setFavor(Boolean favor) {
+		this.favor = favor;
 	}
 
 	@Override

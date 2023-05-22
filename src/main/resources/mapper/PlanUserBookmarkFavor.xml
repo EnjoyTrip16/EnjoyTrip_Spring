@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.enjoytrip.dao.plan.PlanUserBookmarkFavorDao">
+	<select id = "retrievePlanUserBookmarkFavor" parameterType="PlanSearchCondition" resultType="PlanUserBookmarkFavor">
+		select
+			*
+		from 
+			plan_user_bookmark_favor
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="authorUserId!=null">
+					AND user_id = #{authorUserId}
+				</if>
+				<if test="planIdList!=null">
+					AND plan_id in
+				   <foreach item="iplanId" collection="planIdList" open="(" close=")" separator=",">
+				   		#{iplanId}
+				   </foreach>
+				</if>
+				<if test="planId!=null">
+					AND plan_id = #{planId}
+				</if>
+			</trim>
+		</where>
+	</select>	
+	
+	<update id = "updatePlanUserBookmarkFavor" parameterType="PlanUserBookmarkFavor">
+		update
+			plan_user_bookmark_favor
+		<set>
+			<trim suffixOverrides=",">
+				<if test="bookmark!=null">
+					,bookmark = #{bookmark}
+				</if>
+				<if test="favor!=null">
+					,favor = #{favor}
+				</if>
+			</trim>
+		</set>
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="userId!=null">
+					AND user_id = #{userId}
+				</if>
+				<if test="planId!=null">
+					AND plan_id = #{planId}
+				</if>
+			</trim>
+		</where>
+	</update>	
+	
+	<delete id = "deletePlanUserBookmarkFavor" parameterType="PlanSearchCondition">
+		delete
+		from
+			Plan_user_bookmark_favor
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="authorUserId!=null">
+					AND user_id = #{authorUserId}
+				</if>
+				<if test="planIdList!=null">
+					AND plan_id in
+				   <foreach item="iplanId" collection="planIdList" open="(" close=")" separator=",">
+				   		#{iplanId}
+				   </foreach>
+				</if>
+				<if test="planId!=null">
+					AND plan_id = #{planId}
+				</if>
+			</trim>
+		</where>
+	</delete>	
+	
+	<insert id = "createPlanUserBookmarkFavor" parameterType="PlanUserBookmarkFavor" >
+		insert
+		into
+			Plan_user_bookmark_favor
+			(
+				user_id,
+				plan_id,
+				bookmark,
+				favor
+			)
+			
+		values(
+			#{userId},
+			#{planId},
+			#{bookmark},
+			#{favor}
+		)
+	</insert>
+	
+</mapper>
