@@ -11,7 +11,7 @@ public class AttractionUserRating {
 	
 	//attraction_user_rating table
 	//유저가 관광지에 매긴 평점 점수 (0~5) 소수점 1자리수
-	private String rating;
+	private Double rating;
 
 	public Long getAttractionId() {
 		return attractionId;
@@ -29,11 +29,11 @@ public class AttractionUserRating {
 		this.userId = userId;
 	}
 
-	public String getRating() {
+	public Double getRating() {
 		return rating;
 	}
 
-	public void setRating(String rating) {
+	public void setRating(Double rating) {
 		this.rating = rating;
 	}
 
