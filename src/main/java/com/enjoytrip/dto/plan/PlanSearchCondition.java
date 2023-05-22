@@ -23,7 +23,6 @@ public class PlanSearchCondition {
 	private Integer index;
 	
 	private Integer pageSize;
-
 	
 	private PlanSearchOrder planSearchOrder = PlanSearchOrder.DICTIONARY_ASC;
 	
@@ -113,6 +112,22 @@ public class PlanSearchCondition {
 
 	public void setPageSize(Integer pageSize) {
 		this.pageSize = pageSize;
+	}
+
+	public PlanSearchOrder getPlanSearchOrder() {
+		return planSearchOrder;
+	}
+
+	public void setPlanSearchOrder(PlanSearchOrder planSearchOrder) {
+		this.planSearchOrder = planSearchOrder;
+	}
+
+	@Override
+	public String toString() {
+		return "PlanSearchCondition [authorUserId=" + authorUserId + ", planId=" + planId + ", tagName=" + tagName
+				+ ", tagId=" + tagId + ", memberUserId=" + memberUserId + ", planName=" + planName + ", attractionId="
+				+ attractionId + ", attractionName=" + attractionName + ", visibility=" + visibility + ", index="
+				+ index + ", pageSize=" + pageSize + ", planSearchOrder=" + planSearchOrder + "]";
 	}
 	
 }
