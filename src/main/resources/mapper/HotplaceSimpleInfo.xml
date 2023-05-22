@@ -28,11 +28,8 @@
     		attraction_type ON attraction.attraction_type_id = attraction_type.attraction_type_id
         LEFT JOIN
     		user ON hotplace.user_id = user.user_id
-    	Group by
-    		hotplace.hotplace_id, attraction_type.attraction_type
-    		        	
-		having hotplace.title is not null
-		<where>
+    	
+    	<where>
 			<trim prefixOverrides="AND">
 				<if test="hotplaceId!=null">
 					AND hotplace.hotplace_id = #{hotplaceId}
@@ -62,6 +59,10 @@
 				 -->
 			</trim>
 		</where>
+		Group by
+    		hotplace.hotplace_id, attraction_type.attraction_type
+    		        	
+		having hotplace.title is not null
 		<choose>
 			<when test="sortOrder==null">
 				order by updated_at ASC
