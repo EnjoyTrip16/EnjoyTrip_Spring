@@ -1,6 +1,7 @@
 package com.enjoytrip.dto.plan;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 //여행계획에 해당하는 관광지에 대한 정보를 담는 DTO
 public class PlanAttraction {
@@ -15,7 +16,7 @@ public class PlanAttraction {
 	private Integer order;
 	
 	//plan_attraction 여행계획에서 해당 관광지를 추가한 시간
-	private Timestamp addedAt;
+	private LocalDateTime addedAt;
 
 	public Long getPlanId() {
 		return planId;
@@ -40,12 +41,12 @@ public class PlanAttraction {
 	public void setOrder(Integer order) {
 		this.order = order;
 	}
-
-	public Timestamp getAddedAt() {
+	
+	public LocalDateTime getAddedAt() {
 		return addedAt;
 	}
 
-	public void setAddedAt(Timestamp addedAt) {
+	public void setAddedAt(LocalDateTime addedAt) {
 		this.addedAt = addedAt;
 	}
 

@@ -1,7 +1,7 @@
 package com.enjoytrip.dto.plan;
 
 //여행계획에 대해 유저가 좋아요나 북마크를 누른 여부
-public class PlanUserBookmarkLike {
+public class PlanUserBookmarkFavor {
 	
 	//plan PK plan_user_bookmark_like FK
 	private Long planId;
@@ -13,7 +13,7 @@ public class PlanUserBookmarkLike {
 	private Boolean bookmark;
 	
 	//plan_user_bookmark_like 좋아요 여부
-	private Boolean like;
+	private Boolean favor;
 
 	public Long getPlanId() {
 		return planId;
@@ -40,17 +40,17 @@ public class PlanUserBookmarkLike {
 	}
 
 	public Boolean getLike() {
-		return like;
+		return favor;
 	}
 
 	public void setLike(Boolean like) {
-		this.like = like;
+		this.favor = like;
 	}
 
 	@Override
 	public String toString() {
 		return "PlanUserBookmarkLike [planId=" + planId + ", userId=" + userId + ", bookmark=" + bookmark + ", like="
-				+ like + "]";
+				+ favor + "]";
 	}
 	
 }

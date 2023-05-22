@@ -4,7 +4,7 @@ package com.enjoytrip.dto.plan;
 public class PlanComment {
 
 	//plan_comment table PK
-	private Long comment_id;
+	private Long commentId;
 	
 	//plan table PK plan_comment table FK
 	private Long planId;
@@ -20,11 +20,11 @@ public class PlanComment {
 	private Long reply_id;
 
 	public Long getComment_id() {
-		return comment_id;
+		return commentId;
 	}
 
 	public void setComment_id(Long comment_id) {
-		this.comment_id = comment_id;
+		this.commentId = comment_id;
 	}
 
 	public Long getPlanId() {
@@ -61,7 +61,7 @@ public class PlanComment {
 
 	@Override
 	public String toString() {
-		return "PlanComment [comment_id=" + comment_id + ", planId=" + planId + ", userId=" + userId + ", content="
+		return "PlanComment [comment_id=" + commentId + ", planId=" + planId + ", userId=" + userId + ", content="
 				+ content + ", reply_id=" + reply_id + "]";
 	}
 
