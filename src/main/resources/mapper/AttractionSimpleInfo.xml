@@ -60,6 +60,12 @@
 				<if test="attractionId!=null">
 					AND attraction.attraction_id = #{attractionId}
 				</if>
+				<if test="attractionIdList!=null">
+					AND attraction.attraction_id in
+					<foreach collection="attractionIdList" item="iattractionId" separator="," open="("  close=")">
+						#{iattractionId}
+					</foreach>	
+				</if>
 				<if test="sidoCode!=null">
 					AND sido_code = #{sidoCode}
 				</if>

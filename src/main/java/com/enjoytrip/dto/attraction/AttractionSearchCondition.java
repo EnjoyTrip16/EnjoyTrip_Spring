@@ -1,9 +1,13 @@
 package com.enjoytrip.dto.attraction;
 
+import java.util.List;
+
 public class AttractionSearchCondition {
 	
 	//관광지에 해당하는 PK
 	private Long attractionId;
+	
+	private List<Long> attractionIdList;
 	
 	//관광지에 해당하는 시도 코드
 	private Integer sidoCode;
@@ -78,11 +82,20 @@ public class AttractionSearchCondition {
 		this.attractionId = attractionId;
 	}
 
+	public List<Long> getAttractionIdList() {
+		return attractionIdList;
+	}
+
+	public void setAttractionIdList(List<Long> attractionIdList) {
+		this.attractionIdList = attractionIdList;
+	}
+
 	@Override
 	public String toString() {
-		return "AttractionSearchCondition [sidoCode=" + sidoCode + ", gugunCode=" + gugunCode + ", attractionTypeId="
-				+ attractionTypeId + ", keywordTitle=" + keywordTitle + ", keywordAttractionType="
-				+ keywordAttractionType + ", sortOrder=" + sortOrder + "]";
+		return "AttractionSearchCondition [attractionId=" + attractionId + ", attractionIdList=" + attractionIdList
+				+ ", sidoCode=" + sidoCode + ", gugunCode=" + gugunCode + ", attractionTypeId=" + attractionTypeId
+				+ ", keywordTitle=" + keywordTitle + ", keywordAttractionType=" + keywordAttractionType + ", sortOrder="
+				+ sortOrder + "]";
 	}
 	
 }

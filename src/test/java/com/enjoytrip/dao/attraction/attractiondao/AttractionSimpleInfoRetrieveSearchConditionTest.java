@@ -248,7 +248,6 @@ public class AttractionSimpleInfoRetrieveSearchConditionTest {
 		List<AttractionSimpleInfo> resultAttractionSimpleInfoList = attractionDao.retrieveAttractionSimpleInfo(attractionSearchCondition);
 		
 		//then
-		
 		//검색조건에 해당하는 관광지는 1개는 넘음
 		assertThat(resultAttractionSimpleInfoList)
 		.hasSizeGreaterThan(1);
@@ -270,6 +269,60 @@ public class AttractionSimpleInfoRetrieveSearchConditionTest {
 				attractionType ->
 				attractionType.contains(searchConditionKeywordAttractionType)
 		);
+		System.out.println(resultAttractionSimpleInfoList);
+	}
+	
+	@Test
+	@DisplayName("다중 검색조건에 대한 검색결과 관광지ID 메소드 테스트")
+	public void retireveAttractionSimpleInfoByMultipleConditionAndIdTest() {
+		//give
+
+		//검색조건인 관광지명
+		String searchConditionKeywordTitle = "숲";
 		
+		//검색조건인 시도코드
+		Integer searchConditionSidoCode = 31;
+		
+		//검색조건인 관광지 종류명
+		String searchConditionKeywordAttractionType = "관광";
+		
+		List<Long> attractionIdList = new ArrayList<>();
+		attractionIdList.add(2763785L);
+		attractionIdList.add(2383470L);
+		
+		//검색조건 DTO
+		AttractionSearchCondition attractionSearchCondition = new AttractionSearchCondition();
+		attractionSearchCondition.setKeywordAttractionType(searchConditionKeywordAttractionType);
+		attractionSearchCondition.setKeywordTitle(searchConditionKeywordTitle);
+		attractionSearchCondition.setSidoCode(searchConditionSidoCode);
+		attractionSearchCondition.setAttractionIdList(attractionIdList);
+		
+		//when
+		
+		List<AttractionSimpleInfo> resultAttractionSimpleInfoList = attractionDao.retrieveAttractionSimpleInfo(attractionSearchCondition);
+		
+		//then
+		//검색조건에 해당하는 관광지는 1개는 넘음
+		assertThat(resultAttractionSimpleInfoList)
+		.hasSizeGreaterThan(1);
+		
+		//검색조건의 시도코드와 결과 관광지들에 시도코드는 일치해야함
+		assertThat(resultAttractionSimpleInfoList)
+		.extracting("sidoCode")
+		.containsOnly(searchConditionSidoCode);
+		
+		//검색조건의 관광지명이 결과 관광지들의 관광지명에 포함되어야함
+		assertThat(resultAttractionSimpleInfoList)
+		.extracting(AttractionSimpleInfo::getTitle)
+		.allMatch(title->title.contains(searchConditionKeywordTitle));
+		
+		//결과에 해당하는 관광지들의 관광지 종류명은 '관광'이 포함되어야함
+		assertThat(resultAttractionSimpleInfoList)
+		.extracting(AttractionSimpleInfo::getAttractionType)
+		.allMatch(
+				attractionType ->
+				attractionType.contains(searchConditionKeywordAttractionType)
+		);
+		System.out.println(resultAttractionSimpleInfoList);
 	}
 }
