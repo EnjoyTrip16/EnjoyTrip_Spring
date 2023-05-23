@@ -90,10 +90,10 @@
 		</choose>
 	</select>
 
-	<insert id="createHotplace" parameterType="Hotplace">
+	<insert id="createHotplace" useGeneratedKeys="true" parameterType="Hotplace">
 		INSERT INTO
 			hotplace (user_id, title, content, image, created_at, updated_at, attraction_id, read_count)
-		VALUES (#{userId}, #{title}, #{content}, #{image}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, #{attractionId}, #{readCount})
+		VALUES (#{userId}, #{title}, #{content}, #{image}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, #{attractionId}, 0)
 	</insert>
 	
 	<update id="updateHotplace" parameterType="Hotplace">

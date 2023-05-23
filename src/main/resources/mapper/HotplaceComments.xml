@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.enjoytrip.dao.hotplace.HotplaceCommentsDao">
 
-	<insert id="createHotplaceComment" parameterType="HotplaceComment">
+	<insert id="createHotplaceComment" useGeneratedKeys="true" parameterType="HotplaceComment">
 		INSERT INTO hotplace_comments(
 			hotplace_id,
 			user_id,
