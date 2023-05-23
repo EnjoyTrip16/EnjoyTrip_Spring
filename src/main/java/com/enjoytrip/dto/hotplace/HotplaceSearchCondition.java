@@ -1,7 +1,5 @@
 package com.enjoytrip.dto.hotplace;
 
-import java.time.LocalDateTime;
-
 // 핫 플레이스 검색 조건 DTO
 public class HotplaceSearchCondition {
 
@@ -30,6 +28,14 @@ public class HotplaceSearchCondition {
 	private String keywordAttractionTitle; //
 
 	private HotplaceSortOrder sortOrder;
+
+	public Long getHotplaceId() {
+		return hotplaceId;
+	}
+
+	public void setHotplaceId(Long hotplaceId) {
+		this.hotplaceId = hotplaceId;
+	}
 
 	public Long getUserId() {
 		return userId;
