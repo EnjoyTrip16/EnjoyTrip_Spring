@@ -2,9 +2,12 @@ package com.enjoytrip.dao.hotplace;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.enjoytrip.dto.hotplace.Hotplace;
 import com.enjoytrip.dto.hotplace.HotplaceSearchCondition;
 
+@Mapper
 // 핫 플레이스 테이블 DAO
 public interface HotplaceDao {
 

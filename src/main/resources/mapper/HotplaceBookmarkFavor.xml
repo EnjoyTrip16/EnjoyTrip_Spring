@@ -38,20 +38,6 @@
 		AND favor = 1
 	</select>
 	
-	<select id="countBookmarkByUser" parameterType="java.lang.Long">
-		SELECT COUNT(*)
-		FROM hotplace_bookmark_favor
-		WHERE user_id = #{userId}
-		AND bookmark = 1
-	</select>
-	
-	<select id="countFavorByUser" parameterType="java.lang.Long">
-		SELECT COUNT(*)
-		FROM hotplace_bookmark_favor
-		WHERE user_id = #{userId}
-		AND favor = 1
-	</select>
-	
 	<update id="updateHotplaceBookmarkFavor" parameterType="HotplaceBookmarkFavor">
 		UPDATE hotplace_bookmark_favor
 		SET

@@ -28,7 +28,7 @@ public class Hotplace {
 
 	// 관광지 ID
 	private Long attractionId;
-	
+
 	// 조회수
 	private Integer readCount;
 
@@ -88,6 +88,14 @@ public class Hotplace {
 		this.updatedAt = updatedAt;
 	}
 
+	public Long getAttractionId() {
+		return attractionId;
+	}
+
+	public void setAttractionId(Long attractionId) {
+		this.attractionId = attractionId;
+	}
+
 	public Integer getReadCount() {
 		return readCount;
 	}
@@ -99,8 +107,8 @@ public class Hotplace {
 	@Override
 	public String toString() {
 		return "Hotplace [hotplaceId=" + hotplaceId + ", userId=" + userId + ", title=" + title + ", content=" + content
-				+ ", image=" + image + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", readCount="
-				+ readCount + "]";
+				+ ", image=" + image + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", attractionId="
+				+ attractionId + ", readCount=" + readCount + "]";
 	}
 
 }

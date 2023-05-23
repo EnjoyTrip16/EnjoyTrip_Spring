@@ -1,7 +1,10 @@
 package com.enjoytrip.dao.hotplace;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.enjoytrip.dto.hotplace.HotplaceBookmarkFavor;
 
+@Mapper
 // 핫 플레이스 북마크, 좋아요 DAO
 public interface HotplaceBookmarkFavorDao {
 
@@ -16,12 +19,6 @@ public interface HotplaceBookmarkFavorDao {
 	
 	// 핫 플레이스에 대한 좋아요 수 조회
 	public Integer countFavorByHotplace(Long hotplaceId);
-	
-	// 사용자가 작성한 북마크 수 조회
-	public Integer countBookmarkByUser(Long userId);
-	
-	// 사용자가 작성한 좋아요 수 조회
-	public Integer countFavorByUser(Long userId);
 
 	// 북마크, 좋아요 수정
 	public Long updateHotplaceBookmarkFavor(HotplaceBookmarkFavor hotplaceBookmarkFavor);

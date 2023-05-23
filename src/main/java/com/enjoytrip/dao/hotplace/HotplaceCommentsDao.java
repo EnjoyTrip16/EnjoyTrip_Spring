@@ -2,8 +2,11 @@ package com.enjoytrip.dao.hotplace;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.enjoytrip.dto.hotplace.HotplaceComment;
 
+@Mapper
 // 핫 플레이스 댓글 DAO
 public interface HotplaceCommentsDao {
 
