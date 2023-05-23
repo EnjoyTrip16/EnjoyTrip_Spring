@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.enjoytrip.dao.plan.PlanMemberDao">
+	<select id = "retrievePlanMember" parameterType="PlanSearchCondition" resultType="PlanMember">
+		select 
+			*
+		from
+			plan_member
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="planId!=null">
+					AND plan_id = #{planId}
+				</if>
+				<if test="memberUserId!=null">
+					AND user_id = #{memberUserId}
+				</if>
+			</trim>
+		</where>
+	</select>
+	
+	<insert id = "createPlanMember" parameterType="PlanMember">
+		insert
+		into
+			plan_member
+			(
+				plan_id,
+				user_id,
+				role
+			)
+		values
+		(
+			#{planId},
+			#{userId},
+			#{role}
+		)
+	</insert>
+	
+	<update id = "updatePlanMember" parameterType="PlanMember">
+		update
+			plan_member
+		<set>
+			role = #{role}
+		</set>
+		<where>
+			plan_id = #{planId} AND
+			user_id = #{userId}
+		</where>
+	</update>
+	
+	
+	<delete id = "deletePlanMember" parameterType="PlanSearchCondition">
+		delete
+		from
+			plan_member
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="planId!=null">
+					AND plan_id = #{planId}
+				</if>
+				<if test="memberUserId!=null">
+					AND user_id = #{memberUserId}
+				</if>
+			</trim>
+		</where>
+	</delete>
+</mapper>

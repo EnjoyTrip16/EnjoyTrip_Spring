@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.enjoytrip.dao.hotplace.HotplaceBookmarkFavorDao">
+
+	<!-- 북마크 좋아요 생성 -->
+	<insert id="createHotplaceBookmarkFavor"
+		parameterType="HotplaceBookmarkFavor">
+		INSERT INTO hotplace_bookmark_favor(
+			hotplace_id,
+			user_id,
+			bookmark,
+			favor
+		)
+		VALUES(
+			#{hotplaceId},
+			#{userId},
+			#{bookmark},
+			#{favor}
+		)
+	</insert>
+	
+	<!-- 북마크 좋아요 조회 -->
+	<select id="searchHotplaceBookmarkFavor" parameterType="HotplaceBookmarkFavor" resultType="HotplaceBookmarkFavor">
+	select * from hotplace_bookmark_favor 
+	</select>
+	
+	<select id="countBookmarkByHotplace" parameterType="java.lang.Long">
+		SELECT COUNT(*)
+		FROM hotplace_bookmark_favor
+		WHERE hotplace_id = #{hotplaceId}
+		AND bookmark = 1
+	</select>
+	
+	<select id="countFavorByHotplace" parameterType="java.lang.Long">
+		SELECT COUNT(*)
+		FROM hotplace_bookmark_favor
+		WHERE hotplace_id = #{hotplaceId}
+		AND favor = 1
+	</select>
+	
+	<select id="countBookmarkByUser" parameterType="java.lang.Long">
+		SELECT COUNT(*)
+		FROM hotplace_bookmark_favor
+		WHERE user_id = #{userId}
+		AND bookmark = 1
+	</select>
+	
+	<select id="countFavorByUser" parameterType="java.lang.Long">
+		SELECT COUNT(*)
+		FROM hotplace_bookmark_favor
+		WHERE user_id = #{userId}
+		AND favor = 1
+	</select>
+	
+	<update id="updateHotplaceBookmarkFavor" parameterType="HotplaceBookmarkFavor">
+		UPDATE hotplace_bookmark_favor
+		SET
+			bookmark = #{bookmark},
+			favor = #{favor}
+		<where>
+			hotplace_id = #{hotplaceId}
+			AND user_id = #{userId}
+		</where>
+	</update>
+	
+	<delete id="deleteHotplaceBookmarkFavor" parameterType="HotplaceBookmarkFavor">
+		DELETE FROM hotplace_bookmark_favor
+		<where>
+			hotplace_id = #{hotplaceId}
+			AND user_id = #{userId}
+		</where>
+	</delete>
+	
+	
+</mapper>

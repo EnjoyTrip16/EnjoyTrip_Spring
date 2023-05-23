@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.enjoytrip.dao.attraction.AttractionUserRatingDao">
+	<select id="retrieveAttractionUserRating" parameterType="AttractionUserSearchCondition" resultType="AttractionUserRating">
+		select
+			*
+		from
+			attraction_user_rating
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="attractionIdList!=null">
+					AND attraction_id in
+				   <foreach item="attractionId" index="index" collection="attractionIdList" open="(" close=")" separator=",">
+				   		#{attractionId}
+				   </foreach>
+				</if>
+				<if test="userId!=null">
+					AND user_id = #{userId}
+				</if>
+			</trim>
+		</where>
+	</select>	
+	
+	<update id="updateAttractionUserRating" parameterType="AttractionUserRating">
+		update
+			attraction_user_rating
+		<set>
+			<if test ="rating!=null">
+				rating = #{rating}
+			</if>
+		</set>
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="attractionId!=null">
+					AND attraction_id = #{attractionId}
+				</if>
+				<if test="userId!=null">
+					AND user_id = #{userId}
+				</if>
+			</trim>
+		</where>
+	</update>	
+	
+	<insert id="createAttractionUserRating" parameterType="AttractionUserRating">
+		insert
+		into
+			attraction_user_rating
+		VALUES(
+			#{attractionId},
+			#{userId},
+			#{rating}
+		)
+	</insert>	
+	
+	<delete id="deleteAttractionUserRating" parameterType="AttractionUserSearchCondition">
+		delete
+		from
+			attraction_user_rating
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="attractionIdList!=null">
+					AND attraction_id in
+				   <foreach item="attractionId" index="index" collection="attractionIdList" open="(" close=")" separator=",">
+				   		#{attractionId}
+				   </foreach>
+				</if>
+				<if test="userId!=null">
+					AND user_id = #{userId}
+				</if>
+			</trim>
+		</where>
+	</delete>
+</mapper>
