@@ -1,8 +1,11 @@
 package com.enjoytrip.dao.user;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.enjoytrip.dto.user.User;
 import com.enjoytrip.dto.user.UserSearch;
 
+@Mapper
 // user table DAO
 // 사용자 테이블에 관한 DAO
 public interface UserDao {

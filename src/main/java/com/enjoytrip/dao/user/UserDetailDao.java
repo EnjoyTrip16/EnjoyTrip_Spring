@@ -1,5 +1,8 @@
 package com.enjoytrip.dao.user;
 
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
 // 사용자의 북마크 및 좋아요 정보에 대한 DAO
 public interface UserDetailDao {
 
