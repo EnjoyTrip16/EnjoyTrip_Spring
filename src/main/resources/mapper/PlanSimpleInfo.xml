@@ -56,7 +56,7 @@
 					AND plan.visibility=#{visibility}
 				</if>
 				<if test="planName!=null">
-					AND plan.plan_name=#{planName}
+					AND plan.plan_name like CONCAT('%',#{planName},'%')
 				</if>
 				<if test="memberUserId!=null">
 					AND EXISTS( select 1 from plan_member where user_Id=#{memberUserId} and plan.plan_id = plan_member.plan_id)

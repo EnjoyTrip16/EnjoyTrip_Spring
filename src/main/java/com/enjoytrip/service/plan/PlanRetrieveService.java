@@ -67,7 +67,14 @@ public class PlanRetrieveService {
 			planSearchCondition.setAuthorUserId(
 						planThumbnailRequest.getAuthorUserId()
 					);
+		}	
+		
+		if(planThumbnailRequest.getVisibility()!=null) {
+			planSearchCondition.setVisibility(
+						planThumbnailRequest.getVisibility()
+					);
 		}
+		
 		
 		if(planThumbnailRequest.getAttractionIdList()!=null) {
 			planSearchCondition.setAttractionIdList(

@@ -62,6 +62,9 @@
 			plan_comment
 		<where>
 			<trim suffixOverrides="AND">
+				<if test="planId!=null">
+					AND plan_id = #{planId}
+				</if>
 				<if test="commentId!=null">
 					AND comment_id = #{commentId}
 				</if>

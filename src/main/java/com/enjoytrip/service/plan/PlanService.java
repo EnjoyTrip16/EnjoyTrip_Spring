@@ -47,7 +47,7 @@ public class PlanService {
 	
 	@Transactional
 	public Long createPlan(Plan plan) throws BadParameterException,PlanException {
-		if(plan.getUserId()==null || plan.getPlanId()==null || 
+		if(plan.getUserId()==null ||
 				plan.getPlanName()==null || plan.getVisibility()==null) {
 			throw new BadParameterException("userId planId planName이 필요합니다.");
 		}
@@ -60,15 +60,17 @@ public class PlanService {
 	
 	@Transactional
 	public Long updataePlan(Plan plan) {
-		if(plan.getUserId()==null || plan.getPlanId()==null) return 0L;
+		if(plan.getPlanId()==null) {
+			throw new BadParameterException("planId가 필요합니다.");
+		}
 		return planDao.updatePlan(plan);
 	}
 	
 	@Transactional
 	public void deletePlan(Plan plan) throws BadParameterException{
 		
-		if(plan.getUserId()==null || plan.getPlanId()==null) 
-			throw new BadParameterException("plan값의 userId 또는 planId가 잘못됨");
+		if(plan.getPlanId()==null) 
+			throw new BadParameterException("plan값의 planId가 잘못됨");
 		PlanSearchCondition planSearchCondition = new PlanSearchCondition();
 		planSearchCondition.setPlanId(plan.getPlanId());
 		try {
