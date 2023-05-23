@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.enjoytrip.dao.user.UserGradeDao">
+
+	<insert id="createUserGrade" parameterType="UserGrade">
+		INSERT INTO user_grade
+			(user_id, grade, updated_at)
+		VALUES
+			(#{userId}, #{grade}, CURRENT_TIMESTAMP)
+	</insert>
+
+	<select id="searchUserGrade" parameterType="java.lang.Long">
+		SELECT grade
+		FROM user_grade
+		WHERE user_id = #{userId}
+	</select>
+
+	<update id="updateUserGrade" parameterType="UserGrade">
+		UPDATE user_grade
+		SET
+			grade = #{grade},
+			updated_at = CURRENT_TIMESTAMP
+		WHERE
+			user_id = #{userId}
+	</update>
+
+	<delete id="deleteUserGrade" parameterType="java.lang.Long">
+		DELETE from user_grade
+		WHERE user_id = #{userId}
+	</delete>
+
+</mapper>

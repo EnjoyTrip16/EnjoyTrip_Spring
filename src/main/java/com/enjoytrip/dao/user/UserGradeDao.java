@@ -1,7 +1,9 @@
 package com.enjoytrip.dao.user;
 
-import com.enjoytrip.dto.user.UserGrade;
+import org.apache.ibatis.annotations.Mapper;
 
+import com.enjoytrip.dto.user.UserGrade;
+@Mapper
 // user_grade DAO
 // 사용자 역할 테이블에 관한 DAO
 public interface UserGradeDao {
