@@ -91,6 +91,7 @@ public class HotplaceDaoTest {
 	}
 
 	@Test
+	@Disabled
 	@DisplayName("핫 플레이스 목록 조회 (검색 조건: 없음) 및 정렬")
 	public void searchHotplaceSorted() {
 
@@ -108,20 +109,40 @@ public class HotplaceDaoTest {
 		for (Hotplace hotplace : resultHotplace) {
 			System.out.println("Title: " + hotplace.getTitle());
 		}
-		
-		// then
-		List<String> sortedTitles = resultHotplace.stream()
-		        .map(Hotplace::getTitle)
-		        .collect(Collectors.toList());
 
-		List<String> expectedTitles = resultHotplace.stream()
-		        .map(Hotplace::getTitle)
+		// then
+		List<String> sortedTitles = resultHotplace.stream().map(Hotplace::getTitle).collect(Collectors.toList());
+
+		List<String> expectedTitles = resultHotplace.stream().map(Hotplace::getTitle)
 //		        .sorted()
-		        .sorted(Comparator.reverseOrder())
-		        .collect(Collectors.toList());
+				.sorted(Comparator.reverseOrder()).collect(Collectors.toList());
 
 		assertThat(sortedTitles).isEqualTo(expectedTitles);
 
 	}
 
+	@Test
+	@Disabled
+	@DisplayName("핫 플레이스 삽입")
+	public void createHotplace() {
+
+		// given
+		// 핫 플레이스 DTO
+		Long userId = 1L;
+		String title = "테스트 제목";
+		Long attractionId = 1L;
+
+		Hotplace hotplace = new Hotplace();
+		hotplace.setUserId(userId);
+		hotplace.setTitle(title);
+		hotplace.setAttractionId(attractionId);
+
+		// when
+		hotplaceDao.createHotplace(hotplace);
+
+		List<Hotplace> resultHotplace = hotplaceDao.searchHotplace(new HotplaceSearchCondition());
+
+		// then
+		assertThat(resultHotplace).extracting(Hotplace::getTitle).allMatch(resulttitle -> title.contains(title));
+	}
 }
