@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.enjoytrip.dao.plan.PlanMemoDao">
+	<select id = "retrievePlanMemo" parameterType="PlanSearchCondition" resultType="PlanMemo">
+		select 
+			plan_memo.plan_id,
+			plan_memo.user_id,
+			plan_memo.content,
+			plan_memo.tag_id,
+			plan_memo.created_at,
+			plan_memo.updated_at,
+			plan_memo.plan_memo_id,
+			plan_memo_tag.tag_name
+		from
+			plan_memo
+		left join
+			plan_memo_tag
+		on
+			plan_memo.tag_id = plan_memo_tag.tag_id	
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="planId!=null">
+					AND plan_id = #{planId}
+				</if>
+				<if test="memberUserId!=null">
+					AND user_id = #{memberUserId}
+				</if>
+				<if test="planMemoId!=null">
+					AND plan_memo_id = #{planMemoId}
+				</if>
+				<if test="tagId!=null">
+					AND tag_id = #{tagId}
+				</if>
+			</trim>
+		</where>
+	</select>
+	
+	<insert id = "createPlanMemo" parameterType="PlanMemo" useGeneratedKeys="true" keyProperty="planMemoId">
+		insert
+		into
+			plan_memo
+			(
+				plan_id,
+				user_id,
+				content,
+				tag_id
+			)
+		values
+		(
+				#{planId},
+				#{userId},
+				#{content},
+				#{tagId}
+		)
+	</insert>
+	
+	<update id = "updatePlanMemo" parameterType="PlanMemo">
+		update
+			plan_memo
+		<set>
+			<trim suffixOverrides=",">
+				<if test="content!=null">
+					, content=#{content}
+				</if>
+				<if test="tagId!=null">
+					, tag_id=#{tagId}
+				</if>
+			</trim>
+		</set>
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="planId!=null">
+					AND plan_id = #{planId}
+				</if>
+				<if test="userId!=null">
+					AND user_id = #{userId}
+				</if>
+				<if test="planMemoId!=null">
+					AND plan_memo_id = #{planMemoId}
+				</if>
+			</trim>
+		</where>
+	</update>
+	
+	
+	<delete id = "deletePlanMemo" parameterType="PlanSearchCondition">
+		delete
+		from
+			plan_memo
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="planId!=null">
+					AND plan_id = #{planId}
+				</if>
+				<if test="memberUserId!=null">
+					AND user_id = #{memberUserId}
+				</if>
+				<if test="planMemoId!=null">
+					AND plan_memo_id = #{planMemoId}
+				</if>
+				<if test="tagId!=null">
+					AND tag_id = #{tagId}
+				</if>
+			</trim>
+		</where>
+	</delete>
+</mapper>

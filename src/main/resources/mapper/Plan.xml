@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace = "com.enjoytrip.dao.plan.PlanDao">
+	<select id="retrievePlan" parameterType="PlanSearchCondition" resultType="Plan">
+		select
+			*
+		from
+			plan
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="planId!=null">
+					AND plan_id = #{planId}
+				</if>
+				<if test="authorUserId!=null">
+					AND user_id = #{authorUserId}
+				</if>
+				<if test="planName!=null">
+					AND plan_name like concat('%',#{planName},'%')
+				</if>
+				<if test="visibility!=null">
+					AND visibility = #{visibility}
+				</if>
+			</trim>
+		</where>
+	</select>
+	
+	<insert id = "createPlan" parameterType="Plan" useGeneratedKeys="true" keyProperty="planId">
+		insert
+		into Plan
+			(
+				user_id,
+				visibility,
+				plan_name
+			)
+		VALUES
+			(
+				#{userId},
+				#{visibility},
+				#{planName}
+				
+			)
+	</insert>
+	
+	<update id = "updatePlan" parameterType="Plan">
+		update
+			Plan
+		<set>
+			<trim suffixOverrides=",">
+				<if test="userId!=null">
+					, user_id = #{userId}
+				</if>
+				<if test="visibility!=null">
+					, visibility = #{visibility}
+				</if>
+				<if test="planName!=null">
+					, plan_name = #{planName}
+				</if>
+			</trim>
+		</set>
+		<where>
+			plan_id = #{planId}
+		</where>
+	</update>
+	
+	<delete id = "deletePlan" parameterType="PlanSearchCondition">
+		delete
+		from
+			Plan
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="planId!=null">
+					AND plan_id = #{planId}
+				</if>
+				<if test="authorUserId!=null">
+					AND user_id = #{authorUserId}
+				</if>
+			</trim>
+		</where>
+	</delete>
+</mapper>

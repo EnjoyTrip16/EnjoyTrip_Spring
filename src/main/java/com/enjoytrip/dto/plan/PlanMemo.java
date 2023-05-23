@@ -1,10 +1,13 @@
 package com.enjoytrip.dto.plan;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 //여행 계획에 멤버들이 작성할 메모를 저장할 객체
 public class PlanMemo {
 
+	private Long planMemoId;
+	
 	//plan table PK
 	private Long planId;
 	
@@ -18,11 +21,13 @@ public class PlanMemo {
 	private Long tagId;
 	
 	//메모 생성시간
-	private Timestamp createdAt;
+	private LocalDateTime createdAt;
 	
 	//메모 수정시간
-	private Timestamp updatedAt;
+	private LocalDateTime updatedAt;
 
+	private String tagName;
+	
 	public Long getPlanId() {
 		return planId;
 	}
@@ -55,27 +60,43 @@ public class PlanMemo {
 		this.tagId = tagId;
 	}
 
-	public Timestamp getCreatedAt() {
+	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(Timestamp createdAt) {
+	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
 
-	public Timestamp getUpdatedAt() {
+	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
 	}
 
-	public void setUpdatedAt(Timestamp updatedAt) {
+	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+
+	public Long getPlanMemoId() {
+		return planMemoId;
+	}
+
+	public void setPlanMemoId(Long planMemoId) {
+		this.planMemoId = planMemoId;
+	}
+
+	public String getTagName() {
+		return tagName;
+	}
+
+	public void setTagName(String tagName) {
+		this.tagName = tagName;
 	}
 
 	@Override
 	public String toString() {
-		return "PlanMemo [planId=" + planId + ", userId=" + userId + ", content=" + content + ", tagId=" + tagId
-				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+		return "PlanMemo [planMemoId=" + planMemoId + ", planId=" + planId + ", userId=" + userId + ", content="
+				+ content + ", tagId=" + tagId + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", tagName="
+				+ tagName + "]";
 	}
-	
 	
 }

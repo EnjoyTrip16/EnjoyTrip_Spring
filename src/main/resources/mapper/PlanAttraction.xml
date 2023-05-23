@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.enjoytrip.dao.plan.PlanAttractionDao">
+	<select id = "retrievePlanAttraction" parameterType="PlanSearchCondition" resultType="PlanAttraction">
+		select 
+			*
+		from
+			plan_attraction
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="planId!=null">
+					AND plan_id = #{planId}
+				</if>
+				<if test="attractionIdList!=null">
+					AND attraction_id in 
+					<foreach collection="attractionIdList" item="attractionId" open="(" close=")">
+						#{attractionId}
+					</foreach>
+				</if>
+			</trim>
+		</where>
+		ORDER BY
+			sequence asc
+	</select>
+	
+	<insert id = "createPlanAttraction" parameterType="PlanAttraction">
+		insert
+		into
+			plan_attraction
+			(
+				plan_id,
+				attraction_id,
+				sequence
+			)
+		values
+		(
+			#{planId},
+			#{attractionId},
+			#{sequence}
+		)
+	</insert>
+	
+	<update id = "updatePlanAttraction" parameterType="PlanAttraction">
+		update
+			plan_attraction
+		<set>
+			sequence = #{sequence}
+		</set>
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="planId!=null">
+					AND plan_id = #{planId}
+				</if>
+				<if test="attractionId!=null">
+					AND attraction_id = #{attractionId}
+				</if>
+			</trim>
+		</where>
+	</update>
+	
+	
+	<delete id = "deletePlanAttraction" parameterType="PlanSearchCondition">
+		delete
+		from
+			plan_attraction
+		<where>
+			<trim suffixOverrides="AND">
+				<if test="attractionIdList!=null">
+					AND attraction_id in
+				   <foreach item="attractionId" index="index" collection="attractionIdList" open="(" close=")" separator=",">
+				   		#{attractionId}
+				   </foreach>
+				</if>
+				<if test="planId!=null">
+					AND plan_id = #{planId}
+				</if>
+			</trim>
+		</where>
+	</delete>
+</mapper>
