@@ -12,6 +12,10 @@ public class PlanSearchCondition {
 	
 	private List<String> tagNameList;
 	
+	private Long tagId;
+	
+	private String tagName;
+	
 	private List<Long> tagIdList;
 	
 	private Long memberUserId;
@@ -29,6 +33,8 @@ public class PlanSearchCondition {
 	private PlanSearchOrder planSearchOrder = PlanSearchOrder.DICTIONARY_ASC;
 
 	private Long commentId;
+	
+	private Long planMemoId;
 	
 	public Long getAuthorUserId() {
 		return authorUserId;
@@ -134,13 +140,39 @@ public class PlanSearchCondition {
 		this.commentId = commentId;
 	}
 
+	public Long getTagId() {
+		return tagId;
+	}
+
+	public void setTagId(Long tagId) {
+		this.tagId = tagId;
+	}
+
+	public Long getPlanMemoId() {
+		return planMemoId;
+	}
+
+	public void setPlanMemoId(Long planMemoId) {
+		this.planMemoId = planMemoId;
+	}
+
+	public String getTagName() {
+		return tagName;
+	}
+
+	public void setTagName(String tagName) {
+		this.tagName = tagName;
+	}
+
 	@Override
 	public String toString() {
 		return "PlanSearchCondition [authorUserId=" + authorUserId + ", planId=" + planId + ", planIdList=" + planIdList
-				+ ", tagNameList=" + tagNameList + ", tagIdList=" + tagIdList + ", memberUserId=" + memberUserId
-				+ ", planName=" + planName + ", attractionIdList=" + attractionIdList + ", visibility=" + visibility
-				+ ", index=" + index + ", pageSize=" + pageSize + ", planSearchOrder=" + planSearchOrder
-				+ ", commentId=" + commentId + "]";
+				+ ", tagNameList=" + tagNameList + ", tagId=" + tagId + ", tagName=" + tagName + ", tagIdList="
+				+ tagIdList + ", memberUserId=" + memberUserId + ", planName=" + planName + ", attractionIdList="
+				+ attractionIdList + ", visibility=" + visibility + ", index=" + index + ", pageSize=" + pageSize
+				+ ", planSearchOrder=" + planSearchOrder + ", commentId=" + commentId + ", planMemoId=" + planMemoId
+				+ "]";
 	}
+	
 	
 }
