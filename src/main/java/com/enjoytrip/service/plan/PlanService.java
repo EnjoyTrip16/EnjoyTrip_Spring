@@ -1,6 +1,7 @@
 package com.enjoytrip.service.plan;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.enjoytrip.dao.plan.PlanAttractionDao;
@@ -12,10 +13,10 @@ import com.enjoytrip.dao.plan.PlanMemoTagDao;
 import com.enjoytrip.dao.plan.PlanUserBookmarkFavorDao;
 import com.enjoytrip.dto.plan.Plan;
 import com.enjoytrip.dto.plan.PlanSearchCondition;
-import com.enjoytrip.dto.plan.request.PlanTotalRequest;
 import com.enjoytrip.exception.BadParameterException;
 import com.enjoytrip.exception.PlanException;
 
+@Service
 public class PlanService {
 	
 	private PlanDao planDao;
