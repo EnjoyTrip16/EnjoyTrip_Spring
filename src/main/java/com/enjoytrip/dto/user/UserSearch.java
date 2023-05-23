@@ -1,8 +1,8 @@
 package com.enjoytrip.dto.user;
-
+	
 // 사용자 검색 DTO
 public class UserSearch {
-	
+
 	// 사용자 번호
 	private Long userId;
 
