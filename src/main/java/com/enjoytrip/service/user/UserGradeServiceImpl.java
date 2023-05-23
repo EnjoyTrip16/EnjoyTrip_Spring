@@ -2,9 +2,12 @@ package com.enjoytrip.service.user;
 
 import java.sql.SQLException;
 
+import org.springframework.stereotype.Service;
+
 import com.enjoytrip.dao.user.UserGradeDao;
 import com.enjoytrip.dto.user.UserGrade;
 
+@Service
 public class UserGradeServiceImpl implements UserGradeService {
 
 	private UserGradeDao userGradeDao;
