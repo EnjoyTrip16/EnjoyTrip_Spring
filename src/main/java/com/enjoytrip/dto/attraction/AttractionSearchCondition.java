@@ -26,6 +26,9 @@ public class AttractionSearchCondition {
 	
 	private AttractionSortOrder sortOrder;
 	
+	private Long index = 0L;
+	private Long limit = 10L;
+	
 	public Integer getSidoCode() {
 		return sidoCode;
 	}
@@ -88,6 +91,24 @@ public class AttractionSearchCondition {
 
 	public void setAttractionIdList(List<Long> attractionIdList) {
 		this.attractionIdList = attractionIdList;
+	}
+	
+	
+
+	public Long getIndex() {
+		return index;
+	}
+
+	public void setIndex(Long index) {
+		this.index = index;
+	}
+
+	public Long getLimit() {
+		return limit;
+	}
+
+	public void setLimit(Long limit) {
+		this.limit = limit;
 	}
 
 	@Override

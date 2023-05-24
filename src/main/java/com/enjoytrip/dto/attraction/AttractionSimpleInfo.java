@@ -107,14 +107,6 @@ public class AttractionSimpleInfo {
 		this.tel = tel;
 	}
 
-	public String getfirstImage() {
-		return firstImage;
-	}
-
-	public void setfirstImage(String firstImage) {
-		this.firstImage = firstImage;
-	}
-
 	public String getLatitude() {
 		return latitude;
 	}
@@ -198,9 +190,6 @@ public class AttractionSimpleInfo {
 	public void setGugunCode(Integer gugunCode) {
 		this.gugunCode = gugunCode;
 	}
-
-	
-	
 	@Override
 	public String toString() {
 		return "AttractionSimpleInfo [attractionId=" + attractionId + ", title=" + title + ", attractionTypeId="

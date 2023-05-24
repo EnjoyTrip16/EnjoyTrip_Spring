@@ -16,6 +16,7 @@ import com.enjoytrip.dto.attraction.AttractionSearchCondition;
 import com.enjoytrip.dto.attraction.AttractionSimpleInfo;
 import com.enjoytrip.dto.plan.response.AttractionTotalInfo;
 import com.enjoytrip.exception.AttractionException;
+import com.enjoytrip.exception.BadParameterException;
 
 @Service
 public class AttractionService {
@@ -39,7 +40,11 @@ public class AttractionService {
 
 
 	@Transactional
-	public Long createAttraction(AttractionTotalInfo attractionTotalInfo) throws AttractionException{
+	public Long createAttraction(AttractionTotalInfo attractionTotalInfo) throws AttractionException,BadParameterException{
+		
+		if(attractionTotalInfo.getAttractionDescription()==null || attractionTotalInfo.getAttractionSimpleInfo()==null) {
+			throw new BadParameterException("관광지 생성에 필요한 정보가 존재하지 않습니다");
+		}
 		
 		AttractionSimpleInfo attractionSimpleInfo = attractionTotalInfo.getAttractionSimpleInfo();
 		Attraction attraction = new Attraction();
