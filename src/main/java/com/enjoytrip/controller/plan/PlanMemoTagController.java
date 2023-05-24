@@ -1,10 +1,9 @@
 package com.enjoytrip.controller.plan;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,46 +18,38 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.enjoytrip.dto.plan.Plan;
-import com.enjoytrip.dto.plan.PlanComment;
-import com.enjoytrip.dto.plan.PlanSearchCondition;
-import com.enjoytrip.dto.plan.request.PlanThumbnailRequest;
-import com.enjoytrip.dto.plan.response.PlanThumbnail;
+import com.enjoytrip.dto.plan.PlanAttraction;
+import com.enjoytrip.dto.plan.PlanMemo;
+import com.enjoytrip.dto.plan.PlanMemoTag;
+import com.enjoytrip.dto.plan.request.PlanTotalRequest;
 import com.enjoytrip.exception.BadParameterException;
 import com.enjoytrip.exception.PlanException;
-import com.enjoytrip.service.plan.PlanCommentService;
-import com.enjoytrip.service.plan.PlanMemberService;
 import com.enjoytrip.service.plan.PlanMemoService;
 import com.enjoytrip.service.plan.PlanMemoTagService;
-import com.enjoytrip.service.plan.PlanRetrieveService;
 import com.enjoytrip.service.plan.PlanService;
-import com.enjoytrip.service.plan.PlanUserBookmarkFavorService;
 
 @RestController
-@RequestMapping("/plans")
-public class PlanController {
-	private static final Logger logger = LoggerFactory.getLogger(PlanController.class);
+@RequestMapping("/plans/memos/tags")
+public class PlanMemoTagController {
 	
+	private PlanMemoTagService planMemoTagService;
 	private PlanService planService;
-	
-	private PlanUserBookmarkFavorService planUserBookmarkFavorService;
-	
-	private PlanRetrieveService planRetrieveService;
-	
-	
+
 	@Autowired
-	public PlanController(PlanService planService, PlanUserBookmarkFavorService planUserBookmarkFavorService,
-			PlanRetrieveService planRetrieveService) {
+	public PlanMemoTagController(PlanMemoTagService planMemoTagService, PlanService planService) {
 		super();
+		this.planMemoTagService = planMemoTagService;
 		this.planService = planService;
-		this.planUserBookmarkFavorService = planUserBookmarkFavorService;
-		this.planRetrieveService = planRetrieveService;
 	}
 
+	//tagName으로 태그명검색지원
 	@GetMapping
-	public ResponseEntity<?> retrievePlanThumbnailByCondition(@ModelAttribute PlanThumbnailRequest planThumbnailRequest) {
+	public ResponseEntity<?> retrievePlanMemoTag(@ModelAttribute PlanTotalRequest planTotalRequest) {
 		try {
-			List<PlanThumbnail> planThumbnails = planRetrieveService.getPlanThumbnail(planThumbnailRequest);
-			return ResponseEntity.ok().body(planThumbnails);
+			List<PlanMemoTag> planMemoTags =  
+					planMemoTagService.retrievePlanMemoTag(planTotalRequest);
+		    // 생성된 리소스의 URI 생성
+			return ResponseEntity.ok().body(planMemoTags);
 		}
 		catch(BadParameterException be) {
 			return ResponseEntity.badRequest().body(be.getMessage());
@@ -67,16 +58,20 @@ public class PlanController {
 			return ResponseEntity.internalServerError().body(pe.getMessage());
 		}
 	}
+
 	
-	@GetMapping("/{planId}")
-	public ResponseEntity<?> retrievePlanThumbnailByCondition(
-			@ModelAttribute PlanThumbnailRequest planThumbnailRequest,
-			@PathVariable Long planId
+	@GetMapping("/{tagId}")
+	public ResponseEntity<?> retrievePlanMemo(
+			@PathVariable("tagId") Long tagId
 			) {
 		try {
-			planThumbnailRequest.setPlanId(planId);
-			List<PlanThumbnail> planThumbnails = planRetrieveService.getPlanThumbnail(planThumbnailRequest);
-			return ResponseEntity.ok().body(planThumbnails);
+			PlanTotalRequest planTotalRequest = new PlanTotalRequest();
+			planTotalRequest.setTagId(tagId);
+
+			List<PlanMemoTag> planMemoTags =  
+					planMemoTagService.retrievePlanMemoTag(planTotalRequest);
+		    // 생성된 리소스의 URI 생성
+			return ResponseEntity.ok().body(planMemoTags);
 		}
 		catch(BadParameterException be) {
 			return ResponseEntity.badRequest().body(be.getMessage());
@@ -85,15 +80,34 @@ public class PlanController {
 			return ResponseEntity.internalServerError().body(pe.getMessage());
 		}
 	}
-
+	
 	@PostMapping
-	public ResponseEntity<?> createPlan(@RequestBody Plan plan) {
+	public ResponseEntity<?> createPlanMemoTag(@RequestBody PlanMemoTag planMemoTag) {
 		try {
-			Long planId = planService.createPlan(plan);
+			Long tagId = planMemoTagService.createPlanMemoTag(planMemoTag);
 			String currentContextUri = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
-			String resourceUri = currentContextUri + "/plans/"+planId;
+			String resourceUri = currentContextUri + "/plans/memos/tags/"+tagId;
 		    // 생성된 리소스의 URI 생성
-			return ResponseEntity.created(URI.create(resourceUri)).body(planId);
+			return ResponseEntity.created(URI.create(resourceUri)).build();
+		}
+		catch(BadParameterException be) {
+			return ResponseEntity.badRequest().body(be.getMessage());
+		}
+		catch(PlanException pe) {
+			return ResponseEntity.internalServerError().body(pe.getMessage());
+		}
+	}	
+	
+	@PatchMapping("/{tagId}")
+	public ResponseEntity<?> updatePlanMemo(
+			@RequestBody PlanMemoTag planMemoTag,
+			@PathVariable("tagId") Long tagId
+			) {
+		try {
+			planMemoTag.setTagId(tagId);
+		    // 생성된 리소스의 URI 생성
+			planMemoTagService.updatePlanMemoTag(planMemoTag);
+			return ResponseEntity.accepted().body(planMemoTag);
 		}
 		catch(BadParameterException be) {
 			return ResponseEntity.badRequest().body(be.getMessage());
@@ -102,13 +116,14 @@ public class PlanController {
 			return ResponseEntity.internalServerError().body(pe.getMessage());
 		}
 	}
-
-	@PatchMapping("/{planId}")
-	public ResponseEntity<?> updatePlan(@RequestBody Plan plan,@PathVariable("planId") Long planId) {
+	@DeleteMapping("/{tagId}")
+	public ResponseEntity<?> deletePlanAttraction(
+			@PathVariable("tagId") Long tagId
+			) {
 		try {
-			logger.debug("ㅗ몸");
-			plan.setPlanId(planId);
-			planService.updataePlan(plan);
+			PlanTotalRequest planTotalRequest = new PlanTotalRequest();
+			planTotalRequest.setTagId(tagId);
+			planMemoTagService.deletePlanMemoTag(planTotalRequest);
 		    // 생성된 리소스의 URI 생성
 			return ResponseEntity.accepted().build();
 		}
@@ -119,21 +134,5 @@ public class PlanController {
 			return ResponseEntity.internalServerError().body(pe.getMessage());
 		}
 	}
-
-	@DeleteMapping("/{planId}")
-	public ResponseEntity<?> deletePlan(@PathVariable("planId") Long planId) {
-		try {
-			Plan plan = new Plan();
-			plan.setPlanId(planId);
-			planService.deletePlan(plan);
-		    // 생성된 리소스의 URI 생성
-			return ResponseEntity.accepted().build();
-		}
-		catch(BadParameterException be) {
-			return ResponseEntity.badRequest().body(be.getMessage());
-		}
-		catch(PlanException pe) {
-			return ResponseEntity.internalServerError().body(pe.getMessage());
-		}
-	}
+	
 }

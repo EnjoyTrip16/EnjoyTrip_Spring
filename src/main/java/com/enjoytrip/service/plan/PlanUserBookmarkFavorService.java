@@ -75,8 +75,8 @@ public class PlanUserBookmarkFavorService {
 
 	@Transactional
 	public void deletePlanUserBookmarkFavor(PlanTotalRequest planTotalRequest) throws PlanException,BadParameterException {
-		if(planTotalRequest.getPlanId()==null || planTotalRequest.getAuthorUserId()!=null) {
-			throw new BadParameterException("PlanId혹은 AttractionId가 필요합니다.");
+		if(planTotalRequest.getPlanId()==null && planTotalRequest.getAuthorUserId()==null) {
+			throw new BadParameterException("PlanId혹은 userId가 필요합니다.");
 		}
 		PlanSearchCondition planSearchCondition = new PlanSearchCondition();
 		planSearchCondition.setAuthorUserId(planTotalRequest.getAuthorUserId());

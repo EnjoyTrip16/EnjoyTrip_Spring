@@ -94,6 +94,12 @@ public class PlanRetrieveService {
 			);
 		}
 		
+		if(planThumbnailRequest.getPlanId()!=null) {
+			planSearchCondition.setPlanId(
+					planThumbnailRequest.getPlanId()
+					);
+		}
+		
 		if(planThumbnailRequest.getIndex()!=null) {
 			planSearchCondition.setIndex(
 					planThumbnailRequest.getIndex()

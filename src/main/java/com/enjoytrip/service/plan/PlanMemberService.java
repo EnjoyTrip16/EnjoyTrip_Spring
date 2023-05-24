@@ -32,7 +32,7 @@ public class PlanMemberService {
 	@Transactional
 	public void createPlanMember(PlanMember planMember) throws PlanException,BadParameterException {
 		if(planMember.getPlanId()==null || planMember.getUserId()==null) {
-			throw new BadParameterException("PlanId혹은 AttractionId가 필요합니다.");
+			throw new BadParameterException("PlanId와 userId가 필요합니다.");
 		}
 		PlanSearchCondition planSearchCondition = new PlanSearchCondition();
 		planSearchCondition.setPlanId(planMember.getPlanId());

@@ -21,7 +21,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.enjoytrip.dto.plan.Plan;
 import com.enjoytrip.dto.plan.PlanComment;
 import com.enjoytrip.dto.plan.PlanSearchCondition;
+import com.enjoytrip.dto.plan.PlanUserBookmarkFavor;
 import com.enjoytrip.dto.plan.request.PlanThumbnailRequest;
+import com.enjoytrip.dto.plan.request.PlanTotalRequest;
 import com.enjoytrip.dto.plan.response.PlanThumbnail;
 import com.enjoytrip.exception.BadParameterException;
 import com.enjoytrip.exception.PlanException;
@@ -34,49 +36,28 @@ import com.enjoytrip.service.plan.PlanService;
 import com.enjoytrip.service.plan.PlanUserBookmarkFavorService;
 
 @RestController
-@RequestMapping("/plans")
-public class PlanController {
-	private static final Logger logger = LoggerFactory.getLogger(PlanController.class);
-	
-	private PlanService planService;
+@RequestMapping("/users/{userId}/bookmarks/plans")
+public class PlanUserBookmarkFavorController {
+	private static final Logger logger = LoggerFactory.getLogger(PlanUserBookmarkFavorController.class);
+
 	
 	private PlanUserBookmarkFavorService planUserBookmarkFavorService;
 	
-	private PlanRetrieveService planRetrieveService;
-	
 	
 	@Autowired
-	public PlanController(PlanService planService, PlanUserBookmarkFavorService planUserBookmarkFavorService,
-			PlanRetrieveService planRetrieveService) {
+	public PlanUserBookmarkFavorController(PlanUserBookmarkFavorService planUserBookmarkFavorService) {
 		super();
-		this.planService = planService;
 		this.planUserBookmarkFavorService = planUserBookmarkFavorService;
-		this.planRetrieveService = planRetrieveService;
 	}
 
 	@GetMapping
-	public ResponseEntity<?> retrievePlanThumbnailByCondition(@ModelAttribute PlanThumbnailRequest planThumbnailRequest) {
+	public ResponseEntity<?> retrievePlanUserBookmark(@PathVariable("userId") Long userId) {
 		try {
-			List<PlanThumbnail> planThumbnails = planRetrieveService.getPlanThumbnail(planThumbnailRequest);
-			return ResponseEntity.ok().body(planThumbnails);
-		}
-		catch(BadParameterException be) {
-			return ResponseEntity.badRequest().body(be.getMessage());
-		}
-		catch(PlanException pe) {
-			return ResponseEntity.internalServerError().body(pe.getMessage());
-		}
-	}
-	
-	@GetMapping("/{planId}")
-	public ResponseEntity<?> retrievePlanThumbnailByCondition(
-			@ModelAttribute PlanThumbnailRequest planThumbnailRequest,
-			@PathVariable Long planId
-			) {
-		try {
-			planThumbnailRequest.setPlanId(planId);
-			List<PlanThumbnail> planThumbnails = planRetrieveService.getPlanThumbnail(planThumbnailRequest);
-			return ResponseEntity.ok().body(planThumbnails);
+			PlanTotalRequest planTotalRequest = new PlanTotalRequest();
+			planTotalRequest.setAuthorUserId(userId);
+			List<PlanUserBookmarkFavor> planUserBookmarkFavors =
+					planUserBookmarkFavorService.retrievePlanUserBookmarkFavor(planTotalRequest);
+			return ResponseEntity.ok().body(planUserBookmarkFavors);
 		}
 		catch(BadParameterException be) {
 			return ResponseEntity.badRequest().body(be.getMessage());
@@ -86,14 +67,36 @@ public class PlanController {
 		}
 	}
 
-	@PostMapping
-	public ResponseEntity<?> createPlan(@RequestBody Plan plan) {
+	@GetMapping("/{planId}")
+	public ResponseEntity<?> retrievePlanUserBookmark(@PathVariable("userId") Long userId,
+			@PathVariable("planId") Long planId) {
 		try {
-			Long planId = planService.createPlan(plan);
-			String currentContextUri = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
-			String resourceUri = currentContextUri + "/plans/"+planId;
+			PlanTotalRequest planTotalRequest = new PlanTotalRequest();
+			planTotalRequest.setAuthorUserId(userId);
+			planTotalRequest.setPlanId(planId);
+			List<PlanUserBookmarkFavor> planUserBookmarkFavors =
+					planUserBookmarkFavorService.retrievePlanUserBookmarkFavor(planTotalRequest);
+			return ResponseEntity.ok().body(planUserBookmarkFavors);
+		}
+		catch(BadParameterException be) {
+			return ResponseEntity.badRequest().body(be.getMessage());
+		}
+		catch(PlanException pe) {
+			return ResponseEntity.internalServerError().body(pe.getMessage());
+		}
+	}
+
+	@PostMapping("/{planId}")
+	public ResponseEntity<?> createPlanUserBookmark(@PathVariable("userId") Long userId,
+			@PathVariable("planId") Long planId,
+			@RequestBody PlanUserBookmarkFavor planUserBookmarkFavor) {
+		try { 
+			planUserBookmarkFavor.setUserId(userId);
+			planUserBookmarkFavor.setPlanId(planId);
+			planUserBookmarkFavorService
+					.createPlanUserBookmarkFavorDao(planUserBookmarkFavor);
 		    // 생성된 리소스의 URI 생성
-			return ResponseEntity.created(URI.create(resourceUri)).body(planId);
+			return ResponseEntity.accepted().build();
 		}
 		catch(BadParameterException be) {
 			return ResponseEntity.badRequest().body(be.getMessage());
@@ -104,11 +107,31 @@ public class PlanController {
 	}
 
 	@PatchMapping("/{planId}")
-	public ResponseEntity<?> updatePlan(@RequestBody Plan plan,@PathVariable("planId") Long planId) {
+	public ResponseEntity<?> updatePlanUserBookmark(@RequestBody PlanUserBookmarkFavor planUserBookmarkFavor,
+			@PathVariable("planId") Long planId,
+			@PathVariable("userId") Long userId) {
 		try {
-			logger.debug("ㅗ몸");
-			plan.setPlanId(planId);
-			planService.updataePlan(plan);
+			planUserBookmarkFavor.setPlanId(planId);
+			planUserBookmarkFavor.setUserId(userId);
+			planUserBookmarkFavorService.updatePlanUserBookmarkFavor(planUserBookmarkFavor);
+		    // 생성된 리소스의 URI 생성
+			return ResponseEntity.accepted().build();
+		}
+		catch(BadParameterException be) {
+			return ResponseEntity.badRequest().body(be.getMessage());
+		}
+		catch(PlanException pe) {
+			return ResponseEntity.internalServerError().body(pe.getMessage());
+		}
+	}
+	
+	@DeleteMapping
+	public ResponseEntity<?> deletePlanUserBookmark(
+			@PathVariable("userId") Long userId) {
+		try {
+			PlanTotalRequest planTotalRequest = new PlanTotalRequest();
+			planTotalRequest.setAuthorUserId(userId);
+			planUserBookmarkFavorService.deletePlanUserBookmarkFavor(planTotalRequest);
 		    // 생성된 리소스의 URI 생성
 			return ResponseEntity.accepted().build();
 		}
@@ -121,11 +144,15 @@ public class PlanController {
 	}
 
 	@DeleteMapping("/{planId}")
-	public ResponseEntity<?> deletePlan(@PathVariable("planId") Long planId) {
+	public ResponseEntity<?> deletePlanUserBookmark(
+			@PathVariable("planId") Long planId,
+			@PathVariable("userId") Long userId
+			) {
 		try {
-			Plan plan = new Plan();
-			plan.setPlanId(planId);
-			planService.deletePlan(plan);
+			PlanTotalRequest planTotalRequest = new PlanTotalRequest();
+			planTotalRequest.setPlanId(planId);
+			planTotalRequest.setAuthorUserId(userId);
+			planUserBookmarkFavorService.deletePlanUserBookmarkFavor(planTotalRequest);
 		    // 생성된 리소스의 URI 생성
 			return ResponseEntity.accepted().build();
 		}

@@ -21,6 +21,8 @@ public class PlanThumbnailRequest {
 	
 	private PlanVisibility visibility;
 	
+	private Long planId;
+	
 	private Integer index=0;
 	
 	private Integer pageSize=10;
@@ -107,12 +109,22 @@ public class PlanThumbnailRequest {
 		this.planSearchOrder = planSearchOrder;
 	}
 
+	public Long getPlanId() {
+		return planId;
+	}
+
+	public void setPlanId(Long planId) {
+		this.planId = planId;
+	}
+
 	@Override
 	public String toString() {
 		return "PlanThumbnailRequest [authorUserId=" + authorUserId + ", tagNameList=" + tagNameList + ", tagIdList="
 				+ tagIdList + ", memberUserId=" + memberUserId + ", planName=" + planName + ", attractionIdList="
-				+ attractionIdList + ", visibility=" + visibility + ", index=" + index + ", pageSize=" + pageSize
-				+ ", planSearchOrder=" + planSearchOrder + "]";
+				+ attractionIdList + ", visibility=" + visibility + ", planId=" + planId + ", index=" + index
+				+ ", pageSize=" + pageSize + ", planSearchOrder=" + planSearchOrder + "]";
 	}
+	
+	
 	
 }

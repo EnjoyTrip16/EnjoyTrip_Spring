@@ -70,8 +70,8 @@ public class PlanMemoTagService {
 	}
 
 	@Transactional
-	public void deletePlanAttraction(PlanTotalRequest planTotalRequest) throws PlanException,BadParameterException {
-		if(planTotalRequest.getPlanId()==null && planTotalRequest.getAttractionIdList()==null) {
+	public void deletePlanMemoTag(PlanTotalRequest planTotalRequest) throws PlanException,BadParameterException {
+		if(planTotalRequest.getTagId()==null) {
 			throw new BadParameterException("PlanId혹은 AttractionId가 필요합니다.");
 		}
 		PlanSearchCondition planSearchCondition = new PlanSearchCondition();

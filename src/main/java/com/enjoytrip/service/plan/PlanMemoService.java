@@ -76,12 +76,13 @@ public class PlanMemoService {
 
 	@Transactional
 	public void deletePlanMemo(PlanTotalRequest planTotalRequest) throws PlanException,BadParameterException {
-		if(planTotalRequest.getPlanMemoId()!=null) {
+		if(planTotalRequest.getPlanMemoId()==null && planTotalRequest.getPlanId()==null) {
 			throw new BadParameterException("planMemoId가 필요합니다.");
 		}
 		PlanSearchCondition planSearchCondition = new PlanSearchCondition();
 		
-		planSearchCondition.setAttractionIdList(planTotalRequest.getAttractionIdList());
+		
+		planSearchCondition.setPlanId(planTotalRequest.getPlanId());
 		planSearchCondition.setPlanMemoId(planTotalRequest.getPlanMemoId());
 		Long resultRow = planMemoDao.deletePlanMemo(planSearchCondition);
 		if(resultRow == 0L || resultRow==null) {
