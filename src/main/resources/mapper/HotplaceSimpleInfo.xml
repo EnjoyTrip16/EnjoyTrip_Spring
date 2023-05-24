@@ -81,48 +81,23 @@
 			</when>
 			
 			<when test="sortOrder.name()=='COMMENT_ASC'">
-				LEFT JOIN hotplace_comments
-				ON hotplace.hotplace_id = hotplace_comments.hotplace_id
-				GROUP BY hotplace.hotplace_id
-				ORDER BY COUNT(hotplace_comments.hotplace_id) ASC
+				ORDER BY COUNT(comments.hotplace_id) ASC
 			</when>
 			<when test="sortOrder.name()=='COMMENT_DESC'">
-				LEFT JOIN hotplace_comments
-				ON hotplace.hotplace_id = hotplace_comments.hotplace_id
-				GROUP BY hotplace.hotplace_id
-				ORDER BY COUNT(hotplace_comments.hotplace_id) DESC
+				ORDER BY COUNT(comments.hotplace_id) DESC
 			</when>
-			
 			<when test="sortOrder.name()=='BOOKMARK_ASC'">
-				INNER JOIN hotplace_bookmark_like
-				ON hotplace.hotplace_id = hotplace_bookmark_like.hotplace_id
-				WHERE hotplace_bookmark_like.bookmark = 1
-				GROUP BY hotplace.hotplace_id
-				ORDER BY COUNT(hotplace_bookmark_like.hotplace_id) ASC
+				ORDER BY COUNT(hotplace_bookmark_favor.hotplace_id) ASC
 			</when>
 			<when test="sortOrder.name()=='BOOKMARK_DESC'">
-				INNER JOIN hotplace_bookmark_like
-				ON hotplace.hotplace_id = hotplace_bookmark_like.hotplace_id
-				WHERE hotplace_bookmark_like.bookmark = 1
-				GROUP BY hotplace.hotplace_id
-				ORDER BY COUNT(hotplace_bookmark_like.hotplace_id) DESC
+				ORDER BY COUNT(hotplace_bookmark_favor.hotplace_id) DESC
 			</when>
-			
 			<when test="sortOrder.name()=='FAVOR_ASC'">
-				INNER JOIN hotplace_bookmark_like
-				ON hotplace.hotplace_id = hotplace_bookmark_like.hotplace_id
-				WHERE hotplace_bookmark_like.like = 1
-				GROUP BY hotplace.hotplace_id
-				ORDER BY COUNT(hotplace_bookmark_like.hotplace_id) ASC
+				ORDER BY COUNT(hotplace_bookmark_favor.hotplace_id) ASC
 			</when>
 			<when test="sortOrder.name()=='FAVOR_DESC'">
-				INNER JOIN hotplace_bookmark_like
-				ON hotplace.hotplace_id = hotplace_bookmark_like.hotplace_id
-				WHERE hotplace_bookmark_like.like = 1
-				GROUP BY hotplace.hotplace_id
-				ORDER BY COUNT(hotplace_bookmark_like.hotplace_id) DESC
+				ORDER BY COUNT(hotplace_bookmark_favor.hotplace_id) DESC
 			</when>
-			
 			 
 		</choose>
 	</select>
