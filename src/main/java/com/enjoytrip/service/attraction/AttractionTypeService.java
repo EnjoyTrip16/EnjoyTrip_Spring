@@ -1,5 +1,7 @@
 package com.enjoytrip.service.attraction;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,8 +50,8 @@ public class AttractionTypeService {
 	}
 	
 	@Transactional
-	public void retrieveAttractionType(AttractionSearchCondition attractionSearchCondition) throws BadParameterException{
-		attractionTypeDao.retrieveAttractionType(attractionSearchCondition);
+	public List<AttractionType> retrieveAttractionType(AttractionSearchCondition attractionSearchCondition) throws BadParameterException{
+		return attractionTypeDao.retrieveAttractionType(attractionSearchCondition);
 	}
 
 

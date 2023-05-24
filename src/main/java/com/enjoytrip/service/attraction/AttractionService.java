@@ -66,6 +66,7 @@ public class AttractionService {
 		}
 		
 		AttractionDescription attractionDescription = attractionTotalInfo.getAttractionDescription();
+		attractionDescription.setAttractionId(attractionId);
 		attractionDescriptionDao.createAttractionDescription(attractionDescription);
 		
 		AttractionInfo attractionInfo = new AttractionInfo();
