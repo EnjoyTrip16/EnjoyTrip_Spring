@@ -16,6 +16,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.enjoytrip.dto.attraction.AttractionSearchCondition;
 import com.enjoytrip.dto.attraction.AttractionSimpleInfo;
+import com.enjoytrip.dto.attraction.Gugun;
+import com.enjoytrip.dto.attraction.Sido;
 import com.enjoytrip.dto.plan.response.AttractionTotalInfo;
 import com.enjoytrip.exception.AttractionException;
 import com.enjoytrip.exception.BadParameterException;
@@ -81,6 +83,54 @@ public class AttractionController {
 			String currentContextUri = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
 			String resourceUri = currentContextUri + "/attractions/"+attractionId;
 			return ResponseEntity.created(URI.create(resourceUri)).body(attractionId);
+		}
+		catch(BadParameterException be) {
+			return ResponseEntity.badRequest().body(be.getMessage());
+		}
+		catch(AttractionException pe) {
+			return ResponseEntity.internalServerError().body(pe.getMessage());
+		}
+	}
+	
+	@GetMapping("/areas/sido")
+	public ResponseEntity<?> retrieveSido(
+			) {
+		try {
+			List<Sido> sidoList = attractionService.retrieveSido();
+			return ResponseEntity.ok().body(sidoList);
+		}
+		catch(BadParameterException be) {
+			return ResponseEntity.badRequest().body(be.getMessage());
+		}
+		catch(AttractionException pe) {
+			return ResponseEntity.internalServerError().body(pe.getMessage());
+		}
+	}
+	
+	@GetMapping("/areas/sido/{sidoCode}")
+	public ResponseEntity<?> retrieveSido(
+			@PathVariable("sidoCode") Long sidoCode
+			) {
+		try {
+			List<Gugun> gugunList = attractionService.retrieveSidoGugun(sidoCode,null);
+			return ResponseEntity.ok().body(gugunList);
+		}
+		catch(BadParameterException be) {
+			return ResponseEntity.badRequest().body(be.getMessage());
+		}
+		catch(AttractionException pe) {
+			return ResponseEntity.internalServerError().body(pe.getMessage());
+		}
+	}
+	
+	@GetMapping("/areas/sido/{sidoCode}/gugun/{gugunCode}")
+	public ResponseEntity<?> retrieveGugun(
+			@PathVariable("sidoCode") Long sidoCode,
+			@PathVariable("gugunCode") Long gugunCode
+			) {
+		try {
+			List<Gugun> gugunList = attractionService.retrieveSidoGugun(sidoCode,gugunCode);
+			return ResponseEntity.ok().body(gugunList);
 		}
 		catch(BadParameterException be) {
 			return ResponseEntity.badRequest().body(be.getMessage());

@@ -2,6 +2,7 @@ package com.enjoytrip.service.attraction;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -9,11 +10,14 @@ import com.enjoytrip.dao.attraction.AttractionDao;
 import com.enjoytrip.dao.attraction.AttractionDescriptionDao;
 import com.enjoytrip.dao.attraction.AttractionInfoDao;
 import com.enjoytrip.dao.attraction.AttractionModifyRequestDao;
+import com.enjoytrip.dao.attraction.SidoGugunDao;
 import com.enjoytrip.dto.attraction.Attraction;
 import com.enjoytrip.dto.attraction.AttractionDescription;
 import com.enjoytrip.dto.attraction.AttractionInfo;
 import com.enjoytrip.dto.attraction.AttractionSearchCondition;
 import com.enjoytrip.dto.attraction.AttractionSimpleInfo;
+import com.enjoytrip.dto.attraction.Gugun;
+import com.enjoytrip.dto.attraction.Sido;
 import com.enjoytrip.dto.plan.response.AttractionTotalInfo;
 import com.enjoytrip.exception.AttractionException;
 import com.enjoytrip.exception.BadParameterException;
@@ -24,20 +28,19 @@ public class AttractionService {
 	private AttractionDao attractionDao;
 	private AttractionDescriptionDao attractionDescriptionDao;
 	private AttractionInfoDao attractionInfoDao;
-	private AttractionModifyRequestDao attractionModifyRequestDao;
+	private SidoGugunDao sidoGugunDao;
 	
 	
 	
+	@Autowired
 	public AttractionService(AttractionDao attractionDao, AttractionDescriptionDao attractionDescriptionDao,
-			AttractionInfoDao attractionInfoDao, AttractionModifyRequestDao attractionModifyRequestDao) {
+			AttractionInfoDao attractionInfoDao, SidoGugunDao sidoGugunDao) {
 		super();
 		this.attractionDao = attractionDao;
 		this.attractionDescriptionDao = attractionDescriptionDao;
 		this.attractionInfoDao = attractionInfoDao;
-		this.attractionModifyRequestDao = attractionModifyRequestDao;
+		this.sidoGugunDao = sidoGugunDao;
 	}
-
-
 
 	@Transactional
 	public Long createAttraction(AttractionTotalInfo attractionTotalInfo) throws AttractionException,BadParameterException{
@@ -116,5 +119,15 @@ public class AttractionService {
 		}
 		
 		return attractionId;
+	}
+	
+	@Transactional
+	public List<Sido> retrieveSido(){
+		return sidoGugunDao.retrieveSido();
+	}
+	
+	@Transactional
+	public List<Gugun> retrieveSidoGugun(Long sidoCode,Long gugunCode){
+		return sidoGugunDao.retrieveGugun(sidoCode, gugunCode);
 	}
 }
