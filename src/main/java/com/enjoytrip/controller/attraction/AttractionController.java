@@ -22,6 +22,8 @@ import com.enjoytrip.exception.BadParameterException;
 import com.enjoytrip.service.attraction.AttractionRetrieveService;
 import com.enjoytrip.service.attraction.AttractionService;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController
 @RequestMapping("/attractions")
 public class AttractionController {

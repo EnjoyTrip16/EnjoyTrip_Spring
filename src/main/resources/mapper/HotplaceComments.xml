@@ -6,7 +6,7 @@
 		INSERT INTO hotplace_comments(
 			hotplace_id,
 			user_id,
-			conten,
+			content
 		)
 		VALUES (
 			#{hotplaceId},

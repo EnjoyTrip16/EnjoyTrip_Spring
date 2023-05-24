@@ -38,7 +38,7 @@
 	
 	<select id="countPlanParticipate" parameterType="java.lang.Long">
 		SELECT COUNT(*)
-		FROM plan_user
+		FROM plan_member
 		WHERE user_id = #{userId}
 	</select>
 

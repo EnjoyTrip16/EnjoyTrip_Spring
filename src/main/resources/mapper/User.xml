@@ -4,9 +4,9 @@
 
 	<insert id="createUser" parameterType="User">
 		INSERT INTO user
-			(id, pw, name, email)
+			(id,pw,name,email)
 		VALUES
-			(#{id}, #{pw}, #{name}, #{email})
+			(#{id},#{pw},#{name},#{email})
 	</insert>
 
 	<select id="searchUser" parameterType="UserSearch" resultType="User">
@@ -16,20 +16,17 @@
 			user
 		WHERE
 		<trim prefixOverrides="AND">
-			<if test="userId != null">
+			<if test="userId!=null">
 				AND user_id = #{userId}
 			</if>
-			<if test="pw != null">
-				AND pw = #{pw}
-			</if>
 			<!-- id, name, email은 검색 조건 -->
-			<if test="id != null">
+			<if test="id!=null">
 				AND id LIKE CONCAT('%', #{id}, '%')
 			</if>
-			<if test="name != null">
+			<if test="name!=null">
 				AND name LIKE CONCAT('%', #{name}, '%')
 			</if>
-			<if test="email != null">
+			<if test="email!=null">
 				AND email LIKE CONCAT('%', #{email}, '%')
 			</if>
 		</trim>
@@ -38,16 +35,28 @@
 	<update id="updateUser" parameterType="User">
 		UPDATE user
 		SET
-			id = #{id},
-			pw = #{pw},
-			name = #{name},
-			email = #{email},
-			pic = #{pic}
+			<trim suffixOverrides=",">
+				<if test="name!=null">
+					,name=#{name}
+				</if>
+				<if test="id!=null">
+					,id=#{id}
+				</if>
+				<if test="pw!=null">
+					,pw=#{pw}
+				</if>
+				<if test="email!=null">
+					,email=#{email}
+				</if>
+				<if test="pic!=null">
+					,pic=#{pic}
+				</if>
+			</trim>
 		WHERE
 			user_id = #{userId}
 	</update>
 	
-	<delete id="deleteUser" parameterType="java.lang.Long">
+	<delete id="deleteUser" parameterType="User">
 		DELETE from user
 		WHERE user_id = #{userId};
 	</delete>

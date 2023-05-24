@@ -16,11 +16,6 @@
 			hotplace.read_count
 		from 
 			hotplace
-		LEFT JOIN
-    		hotplace_bookmark_favor AS bookmark_favor ON hotplace.hotplace_id = bookmark_favor.hotplace_id
-		LEFT JOIN
-		    hotplace_comments AS comments ON hotplace.hotplace_id = comments.hotplace_id
-        
 		<where>
 			<trim prefixOverrides="AND">
 				<if test="hotplaceId!=null">
@@ -32,23 +27,6 @@
 				<if test="keywordTitle">
 					AND hotplace.title like CONCAT('%',#{keywordTitle},'%')
 				</if>
-				<!-- 
-				<if test="sidoCode!=null">
-					AND sido_code = #{sidoCode}
-				</if>
-				<if test="gugunCode!=null">
-					AND gugun_code = #{gugunCode}
-				</if>
-				<if test="attractionTypeId!=null">
-					AND attraction.attraction_type_id = #{attractionTypeId}
-				</if>
-				<if test="keywordAttractionType!=null">
-					AND attraction.attraction_type like CONCAT('%',#{keywordAttractionType},'%')
-				</if>
-				<if test="keywordAttractionTitle!=null">
-					AND attraction.title like CONCAT('%',#{keywordAttractionTitle},'%')
-				</if>
-				-->
 			</trim>
 		</where>
 		GROUP BY
@@ -90,20 +68,30 @@
 		</choose>
 	</select>
 
-	<insert id="createHotplace" useGeneratedKeys="true" parameterType="Hotplace">
+	<insert id="createHotplace" useGeneratedKeys="true" parameterType="Hotplace" keyProperty="hotplaceId">
 		INSERT INTO
 			hotplace (user_id, title, content, image, created_at, updated_at, attraction_id, read_count)
 		VALUES (#{userId}, #{title}, #{content}, #{image}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, #{attractionId}, 0)
 	</insert>
 	
 	<update id="updateHotplace" parameterType="Hotplace">
-	UPDATE hotplace
-	SET
-		title = #{title},
-		content = #{content},
-		image = #{image},
-		updated_at = CURRENT_TIMESTAMP
-	WHERE hotplace_id = #{hotplaceId}
+		UPDATE hotplace
+		SET
+			<trim suffixOverrides=",">
+				<if test="title!=null">
+					,title= #{title}
+				</if>
+				<if test="content!=null">
+					,content= #{title}
+				</if>
+				<if test="title!=null">
+					,title= #{title}
+				</if>
+				<if test="title!=null">
+					,title= #{title}
+				</if>
+			</trim>
+		WHERE hotplace_id = #{hotplaceId}
 	</update>
 	
 	<delete id="deleteHotplace" parameterType="Hotplace">
