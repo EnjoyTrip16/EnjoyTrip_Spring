@@ -24,10 +24,10 @@ public class AttractionInfo {
 	private String firstImage2;
 	
 	//attraction_info table latitude 경도
-	private Double latitude;
+	private String latitude;
 	
 	//attraction_info table longitude 위도
-	private Double longitude;
+	private String longitude;
 	
 	//sido table PK 시도 코드
 	private Integer sidoCode;
@@ -90,20 +90,22 @@ public class AttractionInfo {
 	public void setFirstImage2(String firstImage2) {
 		this.firstImage2 = firstImage2;
 	}
-
-	public Double getLatitude() {
+	
+	
+	
+	public String getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(Double latitude) {
+	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
 
-	public Double getLongitude() {
+	public String getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(Double longitude) {
+	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
 

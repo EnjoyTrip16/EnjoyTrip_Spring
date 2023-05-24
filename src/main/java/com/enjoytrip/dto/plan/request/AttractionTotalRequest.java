@@ -1,8 +1,10 @@
-package com.enjoytrip.dto.attraction;
+package com.enjoytrip.dto.plan.request;
 
 import java.util.List;
 
-public class AttractionSearchCondition {
+import com.enjoytrip.dto.attraction.AttractionSortOrder;
+
+public class AttractionTotalRequest {
 	
 	//관광지에 해당하는 PK
 	private Long attractionId;
@@ -24,10 +26,7 @@ public class AttractionSearchCondition {
 	//관광지 종류명을 통한 검색 키워드
 	private String keywordAttractionType;
 	
-	private AttractionSortOrder sortOrder;
-	
-	private Long index = 0L;
-	private Long limit = 10L;
+	private AttractionSortOrder sortOrder = AttractionSortOrder.DICTIONARY_ASC;
 	
 	public Integer getSidoCode() {
 		return sidoCode;
@@ -92,24 +91,6 @@ public class AttractionSearchCondition {
 	public void setAttractionIdList(List<Long> attractionIdList) {
 		this.attractionIdList = attractionIdList;
 	}
-	
-	
-
-	public Long getIndex() {
-		return index;
-	}
-
-	public void setIndex(Long index) {
-		this.index = index;
-	}
-
-	public Long getLimit() {
-		return limit;
-	}
-
-	public void setLimit(Long limit) {
-		this.limit = limit;
-	}
 
 	@Override
 	public String toString() {
@@ -118,5 +99,4 @@ public class AttractionSearchCondition {
 				+ ", keywordTitle=" + keywordTitle + ", keywordAttractionType=" + keywordAttractionType + ", sortOrder="
 				+ sortOrder + "]";
 	}
-	
 }
