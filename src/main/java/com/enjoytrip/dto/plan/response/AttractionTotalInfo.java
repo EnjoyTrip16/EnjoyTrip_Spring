@@ -27,13 +27,5 @@ public class AttractionTotalInfo {
 	public void setAttractionDescription(AttractionDescription attractionDescription) {
 		this.attractionDescription = attractionDescription;
 	}
-
-	public AttractionTotalInfo(AttractionSimpleInfo attractionSimpleInfo, AttractionDescription attractionDescription) {
-		super();
-		this.attractionSimpleInfo = attractionSimpleInfo;
-		this.attractionDescription = attractionDescription;
-	}
-	
-	
 	
 }
