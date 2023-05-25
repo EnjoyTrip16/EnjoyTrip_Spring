@@ -89,6 +89,7 @@ public class PlanController {
 	@PostMapping
 	public ResponseEntity<?> createPlan(@RequestBody Plan plan) {
 		try {
+			System.out.println(plan);
 			Long planId = planService.createPlan(plan);
 			String currentContextUri = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
 			String resourceUri = currentContextUri + "/plans/"+planId;

@@ -93,7 +93,7 @@ public class PlanMemoController {
 			String currentContextUri = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
 			String resourceUri = currentContextUri + "/plans/"+planId + "/memos/"+memoId;
 		    // 생성된 리소스의 URI 생성
-			return ResponseEntity.created(URI.create(resourceUri)).build();
+			return ResponseEntity.created(URI.create(resourceUri)).body(memoId);
 		}
 		catch(BadParameterException be) {
 			return ResponseEntity.badRequest().body(be.getMessage());

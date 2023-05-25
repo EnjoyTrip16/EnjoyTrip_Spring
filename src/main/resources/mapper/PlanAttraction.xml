@@ -30,13 +30,13 @@
 			(
 				plan_id,
 				attraction_id,
-				sequence
+				added_at
 			)
 		values
 		(
 			#{planId},
 			#{attractionId},
-			#{sequence}
+			#{addedAt}
 		)
 	</insert>
 	
@@ -44,7 +44,11 @@
 		update
 			plan_attraction
 		<set>
-			sequence = #{sequence}
+			<trim suffixOverrides=",">
+				<if test="addedAt!=null">
+					,addedAt=#{addedAt}
+				</if>
+			</trim>
 		</set>
 		<where>
 			<trim suffixOverrides="AND">

@@ -30,7 +30,7 @@ public class PlanAttractionService {
 
 	@Transactional
 	public void createPlanAttraction(PlanAttraction planAttraction) throws PlanException,BadParameterException {
-		if(planAttraction.getPlanId()==null || planAttraction.getAttractionId()==null) {
+		if(planAttraction.getPlanId()==null || planAttraction.getAttractionId()==null || planAttraction.getAddedAt()==null) {
 			throw new BadParameterException("PlanId혹은 AttractionId가 필요합니다.");
 		}
 		PlanSearchCondition planSearchCondition = new PlanSearchCondition();
