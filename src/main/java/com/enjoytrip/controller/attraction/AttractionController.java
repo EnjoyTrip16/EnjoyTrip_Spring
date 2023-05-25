@@ -57,11 +57,11 @@ public class AttractionController {
 	}
 	
 	@GetMapping("/{attractionId}")
-	public ResponseEntity<?> retrieveAttractionTotalInfo(@ModelAttribute 
-			@PathVariable("attractionId") Long attractionId,
+	public ResponseEntity<?> retrieveAttractionTotalInfo(@PathVariable("attractionId") Long attractionId,@ModelAttribute 
 			AttractionSearchCondition attractionSearchCondition) {
 		try {
 			attractionSearchCondition.setAttractionId(attractionId);
+			System.out.println(attractionSearchCondition);
 			AttractionTotalInfo attractionTotalInfo = attractionRetrieveService
 					.retrieveTotalInfo(attractionSearchCondition);
 			return ResponseEntity.ok().body(attractionTotalInfo);

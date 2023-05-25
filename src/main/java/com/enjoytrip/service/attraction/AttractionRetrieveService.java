@@ -47,8 +47,15 @@ public class AttractionRetrieveService {
 		
 		List<AttractionDescription> attractionDescriptions = attractionDescriptionDao.
 				retrieveAttractionDescription(attractionSearchCondition);
-		if(attractionSimpleInfos.size()!=1 || attractionDescriptions.size()!=1) {
+		if(attractionSimpleInfos.size()!=1) {
 			throw new AttractionException("잘못된 관광지 상세검색");
+		}
+		if(attractionDescriptions.isEmpty()) {
+			AttractionDescription attractionDescription = new AttractionDescription();
+			attractionDescription.setAttractionId(attractionSearchCondition.getAttractionId());
+			attractionDescription.setHomepage("");
+			attractionDescription.setOverview("");
+			attractionDescriptions.add(attractionDescription);
 		}
 		attractionTotalInfo.setAttractionDescription(attractionDescriptions.get(0));
 		attractionTotalInfo.setAttractionSimpleInfo(attractionSimpleInfos.get(0));
